@@ -1,0 +1,147 @@
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+a:hover{
+  color:primary;
+}
+
+div.container{
+  max-width: 1100px;
+  overflow: hidden;
+  position: relative; 
+}
+
+input::placeholder {
+  vertical-align: baseline;
+  font-size:12px;
+}
+
+header.login h1.main_logo{
+  font-family: 'Jua', sans-serif;
+}
+header.login form{
+  height:40px;
+}
+
+
+div.runner_menu{
+  line-height:60px;
+}
+div.runner_menu a{
+  letter-spacing: -1px;
+  margin-right: 10px;
+  color:black;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+
+div.body_main{
+  border: 2px solid  rgb(210, 210, 210);
+  border-radius: 10px;
+  padding:20px;
+}
+div.body_side{
+  border: 2px solid  rgb(210, 210, 210);
+  border-radius: 10px;
+  padding:20px;
+}
+
+ul{
+  margin:0;
+  padding:0;
+}
+p{
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+div.modal-body p{
+  font-family: Noto Sans KR;
+}
+div.modal form img{
+  height: 20px; vertical-align: middle;
+}
+div.member_ev{
+  height: 40px;
+  line-height: 40px;
+}
+button.comment_button{
+  position: absolute;
+  left: 170px;
+  text-align: center;
+}
+div.ev_button button{
+  width:60px;
+  height: 40px;
+  text-align: center;
+  vertical-align: top;
+}
+div.ev_button img{
+  height:20px; vertical-align: middle;
+}
+
+div.card{
+  border-radius: 0;
+  border:none;
+}
+
+
+ul.match_condition{
+  overflow: hidden;
+  height:30px;
+  line-height: 30px;
+}
+ul.match_condition>li{
+  float: left;
+  margin-left: 20px;
+}
+ul.match_condition>li:first-child{
+  margin-left: 0;
+}
+ul.match_condition img{
+  width:20px;
+  margin-right: 10px;
+}
+ul.match_notice li{
+  margin-top: 15px;
+}
+
+
+ul.join_list>li{
+  margin-bottom: 15px;
+}
+
+ul.join_list>li>a{
+  font-weight: 600;
+}
+
+p.join_waiting{
+
+}
+span.now_wait{
+  font-weight: 600;
+  color:rgb(69, 130, 236);
+}
+
+p.application_time{
+  font-size: 16px;
+  
+}
+p.application_where{
+  font-size: 16px;
+}
+
+div.button_area{
+  text-align: center;
+}

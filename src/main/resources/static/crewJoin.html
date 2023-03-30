@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/team.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5 g-0">
+      
+      <!-- 헤더 -->
+      <header class="login">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand align-items-md-center" href="#">
+              <h1 class="main_logo">러닝메이트</h1>
+            </a>
+              <ul class="collapse navbar-collapse navbar-nav justify-content-end" id="navbarSupportedContent">
+                <form class="d-flex col-6 px-1">
+                  <input class="form-control p-sm-1 me-sm-2" type="search" placeholder="지역으로 찾기">
+                  <button class="btn btn-light" type="submit">search</button>
+                </form>
+                <button class="nav-item btn btn-primary my-2 my-sm-0" type="login">login</button>
+                <button class="nav-item btn btn-primary ms-1 my-2 my-sm-0" type="join">join</button>
+              </ul>
+        </nav>
+    </header>
+    
+      <!-- 메뉴 -->
+      <div class="runner_menu">
+        <a href="#">러닝 매치</a>
+        <a href="#">공지사항</a>
+        <a href="#">자주묻는 질문</a>
+        <a href="#">새로운 매치</a>
+      </div>
+
+      <!-- 사진 -->
+      <div class="runner_place">
+        <img class="w-100" src="/img/1.png" alt="장소사진"/>
+      </div>
+
+      <!-- 정보 컨테이너 -->
+      <div class="runner_join">
+        <div class="row g-2">
+          <div class="col-7">
+            
+            <div class="card bg-light mb-3">
+              <div class="card-body">
+                <h4 class="card-title p-3">러닝 매치</h4>
+                <div class="card-text p-3">
+                  <ul class="match_condition">
+                    <li><img src="/img/icon/user-solid.svg">최대 10명</li>
+                    <li><img src="/img/icon/star-solid.svg">건강한 런닝</li>
+                    <li><img src="/img/icon/road-solid.svg">왕복 10km</li>
+                  </ul>
+                  <ul class="match_notice mt-5">
+                    <li>🏃‍♂️ 근린 공원에서 시작하여 호수를 따라 왕복</li>
+                    <li>🚗 근린공원 입구 부근에 무료 주차장 이용 가능</li>
+                    <li>☀️ 행사 당일 맑음, 기온 22도 예상</li>
+                  </ul>
+                  <div class="mt-5">
+                    <b>주최 유저 <a href="#">뫄뫄</a></b>
+                    <p class="mt-2 user_say">출발 전 30분 동안 스트레칭 및 인사말, 이후 런닝을 시작하려 합니다! <br>
+                    5km 지점에 공원 팔각정에서 음료 마시며 휴식☺️ 시립 미술관 앞에서 만나요!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+              <div class="card-body">
+                <p class="card-text p-3">매치에 참여한 사람만 볼 수 있어요!</p>
+              </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+              <div class="card-body">
+                <p class="card-text p-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 신청 -->
+          <div class="col-5 sticky-top">
+            <div class="card bg-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title p-3 pb-0 application_head">서울 노원구 중계동 근린공원</h5>
+                <div class="card-text p-3 pt-0">
+                  <p class="application_time">4월 10일 PM 14:00</p>
+                  <p class="application_where">시립 미술관 앞</p>
+
+                  <div class="button_area mt-5">
+                    <button type="button" class="btn btn-primary join_button" data-bs-toggle="modal" data-bs-target="#ev_modal">신청하기</button>
+                    <button type="button" class="btn btn-primary bookmark_button" data-bs-toggle="modal" data-bs-target="#ev_modal"><img src="/img/icon/heart-regular.svg" width="20px" alt="찜하기 하트 그림"/></button>
+                  </div>
+                </div>
+                
+            </div>
+
+
+          </div>
+
+
+      </div>
+
+      <footer>
+
+      </footer>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
