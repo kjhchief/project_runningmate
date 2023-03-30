@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="ezen.springmvc.domain.member.mapper.MemberMapper">
+
+	<select id="findByAll" resultType="Member">
+		SELECT member_id, name, email, age
+		FROM member
+	</select>
+
+	<select id="findById" parameterType="string" resultType="Member">
+		SELECT member_id, name, email, age, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
+		FROM member
+		WHERE member_id = #{value}
+	</select>
+
+	<select id="findByAgeRange" parameterType="int" resultType="Member">
+		SELECT member_id, name, email, age
+		FROM member
+		WHERE age BETWEEN #{begin} AND #{end}
+	</select>
+
+	<select id="findByNameLike" parameterType="string" resultType="Member">
+		SELECT member_id, name, email, age
+		FROM member
+		WHERE name LIKE '%' || #{value} || '%'
+	</select>
+	
+	<insert id="create" parameterType="Member">
+		INSERT INTO member(member_id, password, name, email, age)
+		VALUES(#{memberId}, #{password}, #{name}, #{email}, #{age})
+	</insert>
+	
+	<update id="update" parameterType="Member">
+		UPDATE member
+		SET age = #{age}
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 동적 SQL 활용 -->
+	<select id="findBySearchType" parameterType="string" resultType="Member" >
+		SELECT member_id, name, email, age 
+		FROM member
+		<where>
+			<if test="type != null and type == 'id'">
+				and member_id = #{value}
+			</if>
+			<if test="type != null and type == 'name'">
+				and name LIKE '%' || #{value} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="findBySearchAll" parameterType="string" resultType="Member" >
+		SELECT member_id, name, email, age 
+		FROM member
+		WHERE member_id = #{value} OR name LIKE '%' || #{value} || '%'
+	</select>
+	
+	<select id="findBySearchAllOption" parameterType="MemberSearchCondition" resultType="Member" >
+		SELECT member_id, name, email, age 
+		FROM member
+		<!-- where절 쓰면 앞에 or는 알아서 빠짐 -->
+			<where>
+				<if test="memberId != null and memberId != ''">
+					or member_id = #{memberId}
+				</if>
+				<if test="name != null and name != ''">
+					or name LIKE '%' || #{name} || '%'
+				</if>
+				<if test="age != null">
+					or age = #{age}
+				</if>
+			</where>
+	</select>
+	
+</mapper>

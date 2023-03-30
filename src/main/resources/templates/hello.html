@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+  <h2>Spring MVC에서 Thymeleaf 사용하기</h2>
+  <p th:text="${message1}">템플릿 문장</p>
+  <!-- /* 이스케이프 처리 O */ -->
+  <p th:text="${message2}">템플릿 문장</p>
+  <!-- /* 이스케이프 처리 X */ -->
+  <p th:utext="${message2}">템플릿 문장</p>
+  
+  <!-- /* 이스케이프 처리 O */ -->
+  <p>[[${message2}]]</p>
+  <!-- /* 이스케이프 처리 X */ -->
+  <p>[(${message2})]</p>
+  
+</body>
+</html>
+
+
+
+
+
+
