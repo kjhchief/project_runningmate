@@ -22,6 +22,11 @@ public class ThymeleafController {
 		return "main";
 	}
 	
+	@GetMapping("/boardWrite")
+	public String boardWrite() {
+		return "boardWrite";
+	}
+	
 	
 	
 
