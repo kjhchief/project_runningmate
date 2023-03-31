@@ -1,8 +1,23 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{layout/layout :: layout(~{::title}, ~{::section})}">
+  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script}, ~{::section})}">
 
   <title>러닝 모임 만들기</title>
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+  window.onload = function(){
+      document.getElementById("placeSelect").addEventListener("click", function(){ //주소입력칸을 클릭하면
+          //카카오 지도 발생
+          new daum.Postcode({
+              oncomplete: function(data) { //선택시 입력값 세팅
+                  document.getElementById("placeSelect").value = data.address; // 주소 넣기
+                  document.querySelector("input[name=placeSelect_detail]").focus(); //상세입력 포커싱
+              }
+          }).open();
+      });
+  }
+  </script>
   
 <section>
   <div class="wrap">
@@ -76,7 +91,8 @@
 
             <div class="form-group">
             <label class="form-label mt-4 formtitle">장소 선택</label>
-            <input type="text" class="form-control" id="title" placeholder="오픈api 이용해서 바뀔수있음 (20자 이내)">
+            <input type="text" class="form-control" id="placeSelect" placeholder="클릭하면 주소 검색">
+            <input type="text" class="form-control" name="placeSelect_detail" placeholder="상세 주소 입력">
           </div>
           
           <div class="row">
