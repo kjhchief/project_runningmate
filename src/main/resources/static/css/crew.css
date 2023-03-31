@@ -12,6 +12,9 @@ a{
 a:hover{
   color:primary;
 }
+p{
+  font-family: 'Noto Sans KR', sans-serif;
+}
 
 div.container{
   max-width: 1100px;
@@ -60,9 +63,7 @@ ul{
   margin:0;
   padding:0;
 }
-p{
-  font-family: 'Noto Sans KR', sans-serif;
-}
+
 
 
 
