@@ -27,6 +27,11 @@ public class ThymeleafController {
 		return "boardWrite";
 	}
 	
+	@GetMapping("/yourpage")
+	public String yourpage() {
+		return "yourpage";
+	}
+	
 	
 	
 
