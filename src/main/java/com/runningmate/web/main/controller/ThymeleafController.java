@@ -47,6 +47,80 @@ public class ThymeleafController {
 		return "board";
 	}
 	
+	@GetMapping("/joinmembership")
+	public String joinmembership() {
+		return "joinmembership";
+	}
+	
+	@GetMapping("/createcrew")
+	public String createcrew() {
+		return "createcrew";
+	}
+	
+	@GetMapping("/crewJoin")
+	public String crewJoin() {
+		return "crewJoin";
+	}
+	
+	@GetMapping("/crewList")
+	public String crewList() {
+		return "crewList";
+	}
+	
+	@GetMapping("/levelMatchingPage")
+	public String levelMatchingPage() {
+		return "levelMatchingPage";
+	}
+	
+	@GetMapping("/list")
+	public String list() {
+		return "list";
+	}
+	
+	@GetMapping("/crewJoinAfter")
+	public String crewJoinAfter() {
+		return "crewJoinAfter";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("/memberDetail")
+	public String memberDetail() {
+		return "memberDetail";
+	}
+	
+	@GetMapping("/memberDetailChange")
+	public String memberDetailChange() {
+		return "memberDetailChange";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
+	
+	@GetMapping("/noticeDetail")
+	public String noticeDetail() {
+		return "noticeDetail";
+	}
+	
+	@GetMapping("/questionsDetail")
+	public String questionsDetail() {
+		return "questionsDetail";
+	}
+	@GetMapping("/wishlist")
+	public String wishlist() {
+		return "wishlist";
+	}
+	@GetMapping("/writeReview")
+	public String writeReview() {
+		return "writeReview";
+	}
+	
+	
 	
 	
 

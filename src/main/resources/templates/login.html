@@ -1,29 +1,11 @@
-
 <!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>로그인 화면</title>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
 
-   
-    
-   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-   
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/margin2.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>로그인 화면</title>
   
-    
+    <link th:href="@{/css/margin2.css}" rel="stylesheet}">    
   
-  </head>
-  <body>
+  <section>
     <div class="container m">
       <div class="row">
         <div class="col me-4">
@@ -102,7 +84,5 @@
   
      
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</section>
 </html>

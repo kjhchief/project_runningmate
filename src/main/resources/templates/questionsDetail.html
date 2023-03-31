@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+
+  <title>리뷰 쓰기</title>
+
+  <!--따로 구분한 css 링크-->
+  <link th:href="@{/css/questionsDetail.css}" rel="stylesheet">
+
+<section>
+  <div class="wrap">
+    <div class="container">  
+      
+      <!-- 헤더 -->
+
+        <nav class="navbar navbar-expand-lg navbar-light mt-5 mb-3">         
+            <div class="collapse navbar-collapse " id="navbarColor03">
+              <ul class="navbar-nav me-auto">
+                <h5 class="" style="color: #007bff;">자주 묻는 질문</h5>           
+               </ul>
+              <form class="d-flex">                
+                <input class="form-control me-sm-2" style="height:60px;" type="search" 
+                placeholder="키워드로 질문하기">
+              </form>
+            </div>
+         </nav>
+         <hr>
+         <div class="container mt-4">
+          <div class="row justify-content-center">
+              <div class="list-group">
+              
+                <div class="list-title">러닝메이트 매치 진행</div>
+
+                
+                <br>
+                경기 중에 비가 많이 오면 어떻게 되나요??
+                <hr>
+              신청하려는 매치의 인원이 궁금해요
+              <hr>
+              플랩매치의 진행방식이 궁금해요
+              <hr>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    </div>
+
+</section>
+</html>

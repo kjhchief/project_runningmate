@@ -1,0 +1,78 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+    <title>모임 리스트 </title>
+    
+    <link th:href="@{/css/crewList.css}" rel="stylesheet">
+<section>
+
+
+      
+      <div class="dropdown text-end list_drop">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">전체</a></li>
+          <li><a class="dropdown-item" href="#">참여 크루</a></li>
+          <li><a class="dropdown-item" href="#">전체 크루</a></li>
+        </ul>
+      </div>
+
+      <!-- 참여 크루 -->
+      <div class="join_list">
+        <div class="join_list bg-primary p-3 mt-2 mb-0">참여 크루</div>
+        <table class="table table-hover text-center w-100">
+          <tbody>
+            <tr>
+              <th scope="row" class="">3.23(목)<br>16:00</th>
+              <td colspan="2">참여한 크루 이름</td>
+              <td class="text-end"><button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3.23(목)<br>16:00</th>
+              <td colspan="2">참여한 크루 이름</td>
+              <td class="text-end"><button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3.23(목)<br>16:00</th>
+              <td colspan="2">참여한 크루 이름</td>
+              <td class="text-end"><button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
+      <!-- 모집 크루 -->
+      <div class="join_list">
+        <div class="join_list bg-primary p-3 mt-5 mb-0">모집 크루</div>
+        <table class="table table-hover text-center w-100">
+          <tbody>
+            <tr>
+              <th scope="row" class="">3.23(목)<br>16:00</th>
+              <td colspan="2">내가 만든 러닝 크루~</td>
+              <td class="text-end">
+                <button type="button" class="btn btn-secondary btn-sm me-1">수정</button>
+                <button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="">3.23(목)<br>16:00</th>
+              <td colspan="2">내가 만든 러닝 크루~</td>
+              <td class="text-end">
+                <button type="button" class="btn btn-secondary btn-sm me-1">수정</button>
+                <button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+            <tr>
+              <th scope="row" class="">3.23(목)<br>16:00</th>
+              <td colspan="2">내가 만든 러닝 크루~</td>
+              <td class="text-end">
+                <button type="button" class="btn btn-secondary btn-sm me-1">수정</button>
+                <button type="button" class="btn btn-danger btn-sm">취소</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+  
+
+    </section>
+</html>

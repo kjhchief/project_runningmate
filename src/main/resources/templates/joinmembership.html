@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>런닝 메이트 회원가입</title>
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/joinmembership.css" rel="stylesheet">
-  <link href="/css/main.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
 
-</head>
-<body>
+  <title>런닝 메이트 회원가입</title>
+
+  
+  <link th:href="@{/css/joinmembership.css}" rel="stylesheet">
+
+
+<section>
   <table class="table table-hover text-center">
   <table class="container-fluid">
     <div class="image-container">
@@ -180,5 +175,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </table>
-</body>
+</section>
 </html>
