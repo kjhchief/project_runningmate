@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>자주 묻는 질문</title>
-  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-  
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/main.css" rel="stylesheet">
-  <link href="/css/margin.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+<title>자주 묻는 질문</title>
 
+<link th:href="@{/css/margin.css}" rel="stylesheet">
 
-</head>
-<body>
+<section>
   <div class="container-lg m">
 
-<h7 class="d-flex p-2 border-bottom text-primary mb-4">자주 묻는 질문 > 공지사항</h7>
+    <h7 class="d-flex p-2 border-bottom text-primary mb-4">자주 묻는 질문
+    > 공지사항</h7>
 
-</div>
+  </div>
 
-<div class="container-lg border-bottom">
+  <div class="container-lg border-bottom">
 
-  <h5 class="mb-4">자주묻는 질문 자주묻는 질문</h5>
-  
-  <pre>
+    <h5 class="mb-4">자주묻는 질문 자주묻는 질문</h5>
+
+    <pre>
     이것은 자주 묻는 질문입니다. 공지사항과 다른 게시판입니다. 자주묻는 질문 게시판 통해서 들어오는 자주묻는 질문 창입니다.
 
     강수 예보에도 참여를 원하시는 참가자분들이 있다면 가능한 경기를 진행하고 있습니다.
@@ -47,20 +37,19 @@
     ▶취소 방법: 마이 페이지 > '신청 내역'에서 직접 취소
     ▶환불 규정: 매치 시작 1시간 30분 전까지 취소했을 경우
     ▶기준 강수: 기상청 날씨 누리 기준 해당 지역 1mm 이상 예보가 있는 경우</pre>
-</div>
-
-
-
-<div class="container-lg mt-1">
-  <div class="form-group m-3">
-    <label for="exampleTextarea" class="form-label">다른 키워드로 찾아보세요</label>
-    <form class="d-flex">
-      <input type="search" class="form-control" placeholder="키워드로 질문하기">
-    </form>
-  </div>
   </div>
 
-</div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+
+
+  <div class="container-lg mt-1">
+    <div class="form-group m-3">
+      <label for="exampleTextarea" class="form-label">다른 키워드로
+        찾아보세요</label>
+      <form class="d-flex">
+        <input type="search" class="form-control"
+          placeholder="키워드로 질문하기">
+      </form>
+    </div>
+  </div>
+</section>
 </html>

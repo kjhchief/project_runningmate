@@ -32,6 +32,21 @@ public class ThymeleafController {
 		return "yourpage";
 	}
 	
+	@GetMapping("/faq")
+	public String faq() {
+		return "faq";
+	}
+	
+	@GetMapping("/FQDetail")
+	public String FQDetail() {
+		return "FQDetail";
+	}
+	
+	@GetMapping("/board")
+	public String board() {
+		return "board";
+	}
+	
 	
 	
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+<title>자주 묻는 질문</title>
+<!-- 따로 구분한 css 링크 -->
+<link th:href="@{/css/자주 묻는 질문.css}" rel="stylesheet">
+
+<section>
+  <div class="container my-3 middle">
+    <h1 class="text-center mb-5">궁금증을 빠르게 해결하세요</h1>
+    <div class="d-flex justify-content-center mb-3 ">
+      <div class="search-container">
+        <br> <input type="search" class="form-control"
+          placeholder="키워드로 질문하기 (환불, 인원 변경 등  )">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mb-3" middle></div>
+    <br>
+  </div>
+
+
+  <div class="container">
+    <h4 class="Kategorie mt-4">&nbsp카테고리</h4>
+    <div class="btn-group w-100" role="group" aria-label="Button group">
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼1</button>
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼2</button>
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼3</button>
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼1</button>
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼2</button>
+      <button type="button" class="btn btn-outline-black me-2 mb-2"
+        style="border-radius: 4%;">버튼3</button>
+      <button type="button" class="btn btn-outline-black mb-2">버튼3</button>
+    </div>
+
+    <div class="btn-group me-4 w-100" role="group"
+      aria-label="Button group">
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼1</button>
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼2</button>
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼3</button>
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼1</button>
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼2</button>
+      <button type="button" class="btn btn-outline-black me-2"
+        style="border-radius: 4%;">버튼3</button>
+      <button type="button" class="btn btn-outline-black">버튼3</button>
+    </div>
+
+    <hr style="margin-top: 5%;">
+
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <h4 class="mb-4">자주 묻는 질문</h4>
+        <div class="list-group">
+          <button type="button"
+            class="list-group-item list-group-item-action faq-button"
+            style="width: 100%">캐시를 환불하고 싶어요</button>
+          <button type="button"
+            class="list-group-item list-group-item-action faq-button mt-3">
+            입금했는데 충전이 안 돼요</button>
+          <button type="button"
+            class="list-group-item list-group-item-action faq-button mt-3">
+            눈 오는 날 러닝메이트는?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+
+<title>공지사항</title>
+
+
+<link th:href="@{/css/margin.css}" rel="stylesheet">
+
+<section>
+  <div class="container-lg m">
+    <h5 class="p-3 mb-2 bg-primary text-white rounded mb-4">공지사항</h5>
+
+    <div class="d-flex justify-content-end">
+      <div class="form-group me-2">
+        <select class="form-select" id="exampleSelect1">
+          <option>제목</option>
+          <option>내용</option>
+          <option>작성자</option>
+        </select>
+      </div>
+
+
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search"
+          placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+    </div>
+
+    <div class="mb-3 ms-2" style="font-size: 1rem;">
+      전체 <b class="text-primary">10</b>건의 게시물이 있습니다(<b
+        class="text-primary">1</b>/5)
+    </div>
+
+
+    <table class="table table-hover text-center">
+      <thead>
+        <tr class="table-active">
+          <th scope="col-1">번호</th>
+          <th scope="col-5">제목</th>
+          <th scope="col-2">작성자</th>
+          <th scope="col-3">작성날짜</th>
+          <th scope="col-1">조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td scope="row">1
+          </th>
+          <td>주의사항</td>
+          <td>매니저</td>
+          <td>2023.03.16</td>
+          <td>3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <ul class="pagination pagination-sm d-flex justify-content-center">
+        <li class="page-item disabled"><a class="page-link"
+          href="#">&laquo;</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#">&raquo;</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</html>

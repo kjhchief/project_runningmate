@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, links, content)">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, links, scripts, content)">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,7 @@
     
     <!-- 추가 -->
     <th:block th:replace="${links}" />
+    <th:block th:replace="${scripts}" />
    
   </head>
 
