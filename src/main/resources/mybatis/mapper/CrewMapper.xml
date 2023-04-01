@@ -5,7 +5,7 @@
                         
 	<insert id="create" parameterType="Crew">
 	INSERT INTO crew
-	VALUES (crew_seq.NEXTVAL, #{title}, #{crewdate}, #{memberCount}, 
+	VALUES (crew_seq.NEXTVAL, #{title}, TO_DATE(#{crewdate}, 'YYYY-MM-DD HH:MI'), #{memberCount}, 
 	#{crewLocation}, #{crewLevel}, #{courseLeng}, #{courseIntro}, #{weatherIntro},
 	#{etcIntro}, #{description}, #{awaiterCount})
 	</insert>                        
