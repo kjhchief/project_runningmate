@@ -60,14 +60,16 @@ CREATE TABLE crew (
 	awaiter_count	NUMBER(7)			
 );
 -- sequence 생성
-CREATE SEQUENCE crew_seq;
+CREATE SEQUENCE crew_seq
+INCREMENT BY 1;
+DROP SEQUENCE crew_seq;
 -- 제약조건 추가
 ALTER TABLE crew
   ADD CONSTRAINT crew_id_pk   PRIMARY KEY(crew_id);
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '재밌는 러닝', 
-TO_DATE('2023/4/1 15:20:11', 'YYYY/MM/DD HH24:MI:SS'), 5, 
+VALUES (crew_seq.NEXTVAL, '두번째', 
+TO_DATE('2020-3-4 오후 7:7', 'YYYY-MM-DD PM HH:MI', 'NLS_DATE_LANGUAGE = KOREAN'), 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
 
