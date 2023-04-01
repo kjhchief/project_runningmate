@@ -16,7 +16,9 @@ public class CrewController {
 	private CrewService crewService;
 	
 	@PostMapping
-	public Crew create
+	public String createCrew(Crew crew) {
+		return "";
+	}
 	
 	
 

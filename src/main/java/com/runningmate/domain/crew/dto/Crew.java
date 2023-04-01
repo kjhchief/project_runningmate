@@ -13,7 +13,7 @@ public class Crew {
 	private String crewdate;
 	private String memberCount;
 	private String crewLocation;
-	private String level;
+	private String crewLevel;
 	private String courseLeng;
 	private String courseIntro;
 	private String weatherIntro;

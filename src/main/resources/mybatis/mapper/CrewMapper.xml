@@ -4,8 +4,10 @@
 <mapper	namespace="com.runningmate.domain.crew.mapper.CrewMapper">                        
                         
 	<insert id="create" parameterType="Crew">
-		INSERT INTO member(member_id, password, name, email, age)
-		VALUES(#{memberId}, #{password}, #{name}, #{email}, #{age})
+	INSERT INTO crew
+	VALUES (crew_seq.NEXTVAL, #{title}, #{crewdate}, #{memberCount}, 
+	#{crewLocation}, #{crewLevel}, #{courseLeng}, #{courseIntro}, #{weatherIntro},
+	#{etcIntro}, #{description}, #{awaiterCount})
 	</insert>                        
                         
                         
