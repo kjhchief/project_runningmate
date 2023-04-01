@@ -1,0 +1,24 @@
+package com.runningmate.domain.crew.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Crew {
+	private String crewId;
+	private String title;
+	private String crewdate;
+	private String memberCount;
+	private String crewLocation;
+	private String level;
+	private String courseLeng;
+	private String courseIntro;
+	private String weatherIntro;
+	private String etcIntro;
+	private String description;
+	private int awaiterCount;
+
+}
