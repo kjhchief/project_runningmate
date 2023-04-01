@@ -11,10 +11,10 @@ public class Crew {
 	private String crewId;
 	private String title;
 	private String crewdate;
-	private String memberCount;
+	private int memberCount;
 	private String crewLocation;
 	private String crewLevel;
-	private String courseLeng;
+	private int courseLeng;
 	private String courseIntro;
 	private String weatherIntro;
 	private String etcIntro;

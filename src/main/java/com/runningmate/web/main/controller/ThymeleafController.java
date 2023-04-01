@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@RequestMapping("/tl")
 @Slf4j
 public class ThymeleafController {
 
@@ -52,10 +53,10 @@ public class ThymeleafController {
 		return "joinmembership";
 	}
 	
-	@GetMapping("/createcrew")
-	public String createcrew() {
-		return "createcrew";
-	}
+//	@GetMapping("/createcrew")
+//	public String createcrew() {
+//		return "createcrew";
+//	}
 	
 	@GetMapping("/crewJoin")
 	public String crewJoin() {

@@ -9,15 +9,15 @@ import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.service.CrewService;
 
 @Controller
-@RequestMapping("Crew")
+@RequestMapping("/crew")
 public class CrewController {
 	
 	@Autowired 
 	private CrewService crewService;
 	
-	@PostMapping
-	public String createCrew(Crew crew) {
-		return "";
+	@PostMapping("/createcrew")
+	public void createCrew(Crew crew) {
+		crewService.createCrew(crew);
 	}
 	
 	
