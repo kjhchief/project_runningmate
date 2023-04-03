@@ -1,6 +1,5 @@
 package com.runningmate.domain.member.dto;
 
-import java.util.Calendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,18 +9,34 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Members {
- private String memberId;
+ private String email;
  private String name;
  private String password;
  private String gender;
- private Calendar birthdate;
+ private String year;
+ private String month;
+ private String date;
+ private String birthdate;
  private String phoneNumber;
  private String city;
  private String region;
  private String memberClass;
- private String kakaoYn;
- private float managerTemp;
+ private String kakaoaccYn;
+ private float mannerTemp;
  private int commentCount;
  private int joinCount;
  private int hostCount;
+ 
+ 
+ public void setBirthdate() {
+	 this.birthdate  = getYear() + "." + getMonth() + "." + getDate();
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 }
