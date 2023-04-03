@@ -5,7 +5,7 @@
 <mapper	namespace="com.runningmate.domain.member.mapper.MembersMapper">
 
 <insert id="create" parameterType="Members">
-INSERT INTO members(email, name, password, gender, birthdate, phone_number, city, region)
+INSERT INTO members(email, name, password, gender,  birthdate, phone_number, city, region)
 VALUES (#{email}, #{name}, #{password}, #{gender}, #{birthdate}, #{phoneNumber}, #{city}, #{region})
 </insert>
 
