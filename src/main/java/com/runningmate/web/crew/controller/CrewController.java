@@ -25,7 +25,7 @@ public class CrewController {
 	// 모임 만들기 요청 처리 메소드
 	@GetMapping
 	public String createcrew() {
-		return "createcrew";
+		return "crew/createcrew";
 	}
 	
 	@PostMapping
@@ -38,7 +38,7 @@ public class CrewController {
 	// 모임 만들기 결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
-		return "crew-result";		
+		return "crew/crew-result";		
 	}
 
 
