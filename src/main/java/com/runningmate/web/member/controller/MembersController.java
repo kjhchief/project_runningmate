@@ -23,7 +23,7 @@ public class MembersController {
 	// 회원가입 화면 요청에 대한 처리 메소드
 	@GetMapping
 	public String registerForm() {
-		return "joinmembership";
+		return "member/joinmembership";
 		
 	}
 	
@@ -40,7 +40,7 @@ public class MembersController {
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
-		return "member-result";		
+		return "member/member-result";		
 	}
 	
 
