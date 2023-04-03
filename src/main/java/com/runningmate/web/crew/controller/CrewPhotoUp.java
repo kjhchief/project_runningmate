@@ -1,4 +1,4 @@
-package com.runningmate.domain.crew.dto;
+package com.runningmate.web.crew.controller;
 
 import java.util.List;
 
@@ -15,9 +15,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 public class CrewPhotoUp {
-//	private String uploader;
-//	private String description;
-	private MultipartFile uploadfile;
+	private String title;
+	//  필요한 파라메터 추가
 	private List<MultipartFile> uploadfiles;
 }
 

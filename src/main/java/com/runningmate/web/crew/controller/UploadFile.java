@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UploadPhoto {
+public class UploadFile {
 	private String uploadFileName;
 	private String storeFileName;
 }

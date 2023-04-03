@@ -7,7 +7,7 @@ import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 
 @Service
-public class CrewServiceImpl implements CrewService {
+public class CrewServiceImpl implements CrewService { 
 	
 	@Autowired
 	private CrewMapper crewMapper;

@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 //업로드 된 파일 저장 및 관리
 @Component
-public class PhotoStore {
+public class FileStore {
 
 	@Value("${file.dir}")
 	private String location;
@@ -21,26 +21,26 @@ public class PhotoStore {
 		return location + filename;
 	}
 
-	public List<UploadPhoto> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
-		List<UploadPhoto> storeFileResult = new ArrayList<UploadPhoto>();
+	public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
+		List<UploadFile> storeFileResult = new ArrayList<UploadFile>();
 		for (MultipartFile multipartFile : multipartFiles) {
 			if (!multipartFile.isEmpty()) {
 				// 업로드 파일 저장
-				UploadPhoto uploadFile = storeFile(multipartFile);
+				UploadFile uploadFile = storeFile(multipartFile);
 				storeFileResult.add(uploadFile);
 			}
 		}
 		return storeFileResult;
 	}
 
-	public UploadPhoto storeFile(MultipartFile multipartFile) throws IOException {
+	public UploadFile storeFile(MultipartFile multipartFile) throws IOException {
 		if (multipartFile == null || multipartFile.isEmpty()) {
 			return null;
 		}
 		String originalFilename = multipartFile.getOriginalFilename();
 		String storeFileName = createStoreFileName(originalFilename);
 		multipartFile.transferTo(new File(getFullPath(storeFileName)));
-		return new UploadPhoto(originalFilename, storeFileName);
+		return new UploadFile(originalFilename, storeFileName);
 	}
 
 	private String createStoreFileName(String originalFilename) {
