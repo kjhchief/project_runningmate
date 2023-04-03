@@ -62,7 +62,7 @@
 
     
           <h2>러닝 모임 만들기</h2>
-         <form method="post">
+         <form method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label class="form-label mt-4 formtitle">제목</label>
             <input type="text" class="form-control" id="title" placeholder="모임 제목을 입력하세요 (20자 이내)" name="title">
@@ -132,7 +132,7 @@
           </div>
           <div class="form-group">
             <label for="formFile" class="form-label mt-4">사진 업로드</label>
-            <input class="form-control" type="file" id="formFile" name="uploadfiles" multiple>
+            <input class="form-control" type="file" id="formFile" name="uploadfiles" multiple >
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary mt-4">&nbsp&nbsp등 록&nbsp&nbsp</button>
