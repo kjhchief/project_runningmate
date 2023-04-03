@@ -18,8 +18,9 @@ public class Members {
  private String date;
  private String birthdate;
  private String phoneNumber;
- private String city;
- private String region;
+ private String address;
+ private String addressdetail;
+ private String location;
  private String memberClass;
  private String kakaoaccYn;
  private float mannerTemp;
@@ -32,6 +33,8 @@ public class Members {
 	 this.birthdate  = getYear() + "." + getMonth() + "." + getDate();
  }
  
- 
+ public void setLocation() {
+	 this.location  = getAddress() + " " + getAddressdetail();
+ } 
  
 }

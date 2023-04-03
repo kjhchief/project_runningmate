@@ -32,6 +32,7 @@ public class MembersController {
 	@PostMapping
 	public String register(@ModelAttribute("members") Members members) {
 		members.setBirthdate();
+		members.setLocation();
 		log.info("members {}", members);
 		memberService.create(members);
 		return "redirect:/members/result";
