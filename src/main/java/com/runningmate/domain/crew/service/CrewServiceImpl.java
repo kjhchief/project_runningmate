@@ -5,16 +5,17 @@ import org.springframework.stereotype.Service;
 
 import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.mapper.CrewMapper;
+import com.runningmate.web.crew.controller.CrewCreate;
 
 @Service
 public class CrewServiceImpl implements CrewService { 
 	
 	@Autowired
-	private CrewMapper crewMapper;
+	private CrewMapper crewMapper; 
 
 	@Override
-	public void createCrew(Crew crew) {
-		crewMapper.create(crew);
+	public void createCrew(CrewCreate crewCreate) {
+		crewMapper.create(crewCreate);
 	}
 
 }

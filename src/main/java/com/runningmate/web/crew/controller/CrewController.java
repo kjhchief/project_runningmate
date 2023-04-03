@@ -38,14 +38,14 @@ public class CrewController {
 	
 	// 모임 등록
 	@PostMapping
-	public String register(@ModelAttribute("crewPhotoUp") CrewPhotoUp crewPhotoUp) throws IOException {
-		log.info("crew= {}", crewPhotoUp);
+	public String register(@ModelAttribute("crewPhotoUp") CrewCreate crewCreate) throws IOException {
+		log.info("crew= {}", crewCreate);
 		
 		// 파라메터는 DB에 저장
 		// 파일은 특정 디렉토리에 저장
-		List<UploadFile> uploadFiles = fileStore.storeFiles(crewPhotoUp.getUploadfiles());
+		List<UploadFile> uploadFiles = fileStore.storeFiles(crewCreate.getUploadfiles());
 		
-		//crewService.createCrew(crew);
+		crewService.createCrew(crewCreate);
 		return "redirect:/crew/result";
 	}
 	

@@ -14,9 +14,18 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
-public class CrewPhotoUp {
+public class CrewCreate {
 	private String title;
-	//  필요한 파라메터 추가
+	private String crewdate;
+	private int memberCount;
+	private String crewLocation;
+	private String crewLevel;
+	private int courseLeng;
+	private String courseIntro;
+	private String weatherIntro;
+	private String etcIntro;
+	private String description;
+	private int awaiterCount;
 	private List<MultipartFile> uploadfiles;
 }
 

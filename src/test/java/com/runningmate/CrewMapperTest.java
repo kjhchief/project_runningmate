@@ -31,7 +31,7 @@ public class CrewMapperTest {
 		crew.setEtcIntro("기타 머시기가 저시기 인트로");
 		crew.setDescription("메인 설명. 아주 긴 설명. 사실 그렇게 길지는 않지만 그렇다고 짧지는 않은 꽤 긴 설명");
 		crew.setAwaiterCount(3);
-		crewMapper.create(crew);
+//		crewMapper.create(crew);
 		log.info("모임 등록 완료 : {}", crew);
 		
 		

@@ -46,7 +46,7 @@ public class FileStore {
 	private String createStoreFileName(String originalFilename) {
 		String ext = extractExt(originalFilename);
 		String uuid = UUID.randomUUID().toString();
-		return uuid + "." + ext;
+		return originalFilename + "-" + uuid + "." + ext;
 	}
 
 	private String extractExt(String originalFilename) {
