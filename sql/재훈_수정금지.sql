@@ -49,7 +49,7 @@ VALUES ('zi@nave121r11.com', '송진11호', '1111', 'M', '19940413', '010-9111-2422
 
 --2. 모임 테이블
 SELECT *
-FROM crew
+FROM crew;
 ORDER BY crew_id;
 
 DROP TABLE crew;
@@ -81,7 +81,7 @@ ALTER TABLE crew
 INSERT INTO crew
 VALUES (crew_seq.NEXTVAL, '두번째', 
 TO_DATE('2020-3-4 오후 7:7', 'YYYY-MM-DD PM HH:MI', 'NLS_DATE_LANGUAGE = KOREAN'), 5, 
-'서울시 도봉구 도봉동 무슨아파트 큰 공원', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
+'서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
 -- 특정 모임 선택(select)
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description

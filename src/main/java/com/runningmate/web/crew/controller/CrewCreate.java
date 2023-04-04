@@ -7,14 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
+
 public class CrewCreate {
 	private String title;
 	private Date crewdate;
@@ -31,6 +29,9 @@ public class CrewCreate {
 	// 사진 정보
 	private List<MultipartFile> uploadfiles;
 	private String name;
+	
+	
+//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 }
 
 
