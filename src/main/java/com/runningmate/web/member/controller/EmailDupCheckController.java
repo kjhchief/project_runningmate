@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping("/members")
-public class MembersController {
+@RequestMapping("/members2")
+public class EmailDupCheckController {
 	
 	@Autowired
 	private MemberService memberService;
@@ -30,22 +30,18 @@ public class MembersController {
 		
 	}
 	
-	
-	// 회원가입 처리에 대한 메소드
+	//이메일 유효성 검사
 	@PostMapping
-	public String register(@ModelAttribute("members") Members members) {
-		members.setBirthdate();
-		members.setLocation();
-//		log.info("members {}", members);
-		memberService.create(members);
-		return "redirect:/members/result";
+	@ResponseBody
+	public String emailCheck(@RequestParam String email) {
+		String usableMessage=null;
+		if(memberService.existEmail(email)) {
+			return usableMessage = "사용중인 이메일입니다.";
+		}else {
+			return usableMessage = "사용가능한 이메일입니다.";
+		}
 	}
-	
-	// 회원가입결과에 대한 메소드
-	@GetMapping("/result")
-	public String registerResult() {
-		return "member/member-result";		
-	}
+
 	
 	
 }

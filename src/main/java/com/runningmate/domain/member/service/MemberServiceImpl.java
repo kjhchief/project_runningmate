@@ -15,8 +15,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void create(Members member) {
 		memberMapper.create(member);
-		
-
 	}
 
+	@Override
+	public boolean existEmail(String email) {
+		if(memberMapper.findByEmail(email) != null) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 }

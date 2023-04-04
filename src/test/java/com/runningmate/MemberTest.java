@@ -28,8 +28,6 @@ public class MemberTest {
 		members.setBirthdate("19990411");
 		members.setGender("M");
 		members.setPhoneNumber("010.1111.2222");
-		members.setCity("서울");
-		members.setRegion("중랑구");
 		membersMapper.create(members);
 		log.info("등록 완료");
 

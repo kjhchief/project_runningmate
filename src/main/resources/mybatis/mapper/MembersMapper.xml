@@ -9,7 +9,11 @@ INSERT INTO members(email, name, password, gender,  birthdate, phone_number, loc
 VALUES (#{email}, #{name}, #{password}, #{gender}, #{birthdate}, #{phoneNumber}, #{location})
 </insert>
 
-
+<select id="findByEmail" parameterType="String" resultType="String">
+SELECT email
+		FROM members
+		WHERE email = #{value}
+</select>
 
 
 

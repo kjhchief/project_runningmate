@@ -8,7 +8,9 @@ import com.runningmate.domain.member.dto.Members;
  *
  */
 public interface MemberService {
-
+	//회원가입
 	public void create(Members member);
+	
+	public boolean existEmail(String email);
 	
 }
