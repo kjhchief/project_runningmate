@@ -60,8 +60,8 @@
               <div class="card-body">
                 <h5 class="card-title p-3 pb-0 application_head" th:text="${crewCreate.crewLocation}">서울 노원구 중계동 근린공원</h5>
                 <div class="card-text p-3 pt-0">
-                  <p class="application_time" th:text="${crewCreate.crewdate}">4월 10일 PM 14:00</p>
-                  <p class="application_where">시립 미술관 앞</p>
+                  <p class="application_time" th:text="${#dates.format(crewCreate.crewdate, 'yyyy년 MM월 dd일 a hh:mm')}"></p>
+                  <p class="application_where" th:text="${crewCreate.crewLocationDt}">시립 미술관 앞</p>
 
                   <div class="button_area mt-5">
                     <button type="button" class="btn btn-primary join_button" data-bs-toggle="modal" data-bs-target="#ev_modal">신청하기</button>

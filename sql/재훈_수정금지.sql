@@ -60,11 +60,12 @@ CREATE TABLE crew (
 	crewdate	DATE	DEFAULT SYSDATE,
 	mate_count	NUMBER(7)		NOT NULL,
 	crew_location	VARCHAR2(200)		NOT NULL,
+    crew_location_dt	VARCHAR2(200)		,
 	crewlevel	VARCHAR2(50)		NOT NULL,
 	course_leng	NUMBER(7)		NOT NULL,
 	course_intro	VARCHAR2(300)		NULL,
 	weather_intro	VARCHAR2(300)		NULL,
-	etc_intro	VARCHAR2(300)		NULL,
+	etc_intro	VARCHAR2(300)		,
 	description	VARCHAR2(4000)		NOT NULL,
 	awaiter_count	NUMBER(7)			
 );
@@ -123,6 +124,11 @@ SELECT m.email, m.name, c.crew_id, l.types
 FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
                 JOIN mate m ON l.email = m.email
 WHERE c.crew_id = '62';
+
+SELECT m.name, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description
+FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+                JOIN mate m ON l.email = m.email;
+WHERE crew_id = '62';
 
 
 --3. 자주 묻는 질문 테이블
@@ -199,14 +205,35 @@ ALTER TABLE comment
    CONSTRAINT notice_id_fk FOREIGN KEY(notice_id) REFERENCES notice(notice_id));
 
 --9. 사진
+SELECT *
+FROM photo;
 DROP TABLE photo;
 
 CREATE TABLE photo (
 	photo_id	VARCHAR2(50)		NOT NULL,
 	name	VARCHAR2(50)		NOT NULL,
-	type	VARCHAR2(50)		NOT NULL,
+	type	VARCHAR2(50)		,
 	crew_id	VARCHAR2(50)		NOT NULL
 );
+--제약조건 설정
 ALTER TABLE photo
   ADD ( CONSTRAINT photo_id_pk   PRIMARY KEY(photo_id),
    CONSTRAINT photo_crew_id_fk FOREIGN KEY(crew_id) REFERENCES crew(crew_id));
+-- sequence 생성
+CREATE SEQUENCE photo_seq
+START WITH 1
+INCREMENT BY 1;
+--사진 insert
+INSERT INTO photo (photo_id, name, crew_id)
+VALUES (photo_seq.NEXTVAL, '배경사진01', '61');
+   
+--사진정보 포함 추가
+INSERT ALL
+    INTO crew VALUES(crew_id, title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description, awaiter_count)
+    INTO photo VALUES(name, type)
+
+INSERT INTO crew (crew_id, title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description, awaiter_count)
+SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count
+FROM crew c
+JOIN photo p ON c.crew_id = p.crew_id;
+
