@@ -64,8 +64,22 @@ public class CrewController {
 	public String JoinCrew(@PathVariable String crewId, Model model) {
 		CrewCreate crewCreate = crewService.getCrew(crewId);
 		model.addAttribute("crewCreate", crewCreate);
+		log.info("crewCreate= {}", crewCreate);
+		
+		List<CrewMates> crewMates = crewService.getCrews(crewId);
+		model.addAttribute("crewMates", crewMates);
+		log.info("crewMates= {}", crewMates);
+		
 		return "crew/crewJoin";
 	}
+	
+	// 특정 모임의 회원 리스트 보여주기
+//	@GetMapping
+//	public String mates(Model model) {
+//		// 서비스 객체를 이용한 회원 목록
+//		
+//		return "member/list";
+//	}
 
 
 }

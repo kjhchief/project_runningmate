@@ -1,5 +1,7 @@
 package com.runningmate;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 import com.runningmate.web.crew.controller.CrewCreate;
+import com.runningmate.web.crew.controller.CrewMates;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,12 +42,21 @@ public class CrewMapperTest {
 	}
 	
 	@Test
+	@Disabled
 	public CrewCreate getCrew() {
 		CrewCreate crewCreate = new CrewCreate();
 		crewCreate.getTitle();
 		log.info("모임 정보: {}", crewCreate);
 		return crewCreate;
 		
-		
 	};
+	
+	@Test
+	public void findAllTest() {
+		List<CrewMates> list = crewMapper.findByAll("64");
+		log.info("모임 정보: {}", list);
+	};
+	
+	
+	
 }

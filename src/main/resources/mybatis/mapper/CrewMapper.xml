@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper	namespace="com.runningmate.domain.crew.mapper.CrewMapper">                        
-                        
+    <!-- 모임 만들기 -->
 	<insert id="create" parameterType="CrewCreate">
 	INSERT INTO crew(crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description)
 	VALUES (crew_seq.NEXTVAL, #{title}, TO_DATE(#{crewdate}, 'YYYY-MM-DD"T"HH24:MI'), #{mateCount}, 
@@ -15,6 +15,15 @@
 	VALUES (photo_seq.NEXTVAL, #{name}, crew_seq.NEXTVAL)
 	</insert>   -->
 	
+	<!-- 특정 모임에 참석하는 회원 리스트 -->
+	<select id="findByAll" parameterType="string" resultType="CrewMates">
+		SELECT m.name, m.email, c.title, c.crew_id
+		FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+		                JOIN mate m ON l.email = m.email
+		WHERE c.crew_id = #{value}
+	</select>
+	
+	<!-- 특정 모임 DB에서 불러오기(모임 참석 화면 쏘는 용도) -->
 	<select id="findById" parameterType="string" resultType="CrewCreate">
 	SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 	FROM crew

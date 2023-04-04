@@ -44,7 +44,7 @@ ALTER TABLE mate
         );
 --예시 데이터 추가        
 INSERT INTO mate (email, name, password, gender, birthdate, phone_number, location)
-VALUES ('zi@nave121r11.com', '송진11호', '1111', 'M', '19940413', '010-9111-2422', '서울 노원구 띵띵동');
+VALUES ('kjh@naver.com', '후니김', '1111', 'M', '19940413', '010-9111-2222', '서울 노원구 띵띵동');
 
 
 --2. 모임 테이블
@@ -120,7 +120,7 @@ ALTER TABLE crewlist
    );
 --예시 데이터 추가
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'zi@nave121r11.com', 64);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh@naver.com', 64);
 
 --특정 회원이 참석하는 특정 모임
 SELECT m.email, m.name, c.crew_id, l.types
@@ -128,10 +128,20 @@ FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
                 JOIN mate m ON l.email = m.email
 WHERE c.crew_id = '62';
 
-SELECT m.name, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description
-FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
-                JOIN mate m ON l.email = m.email;
-WHERE crew_id = '62';
+--특정 모임에 참석중인 회원: 64번 모임에 참석중인 송진11호
+SELECT m.name, m.email, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.crew_id
+	FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+	                JOIN mate m ON l.email = m.email
+	WHERE c.crew_id = '64';
+    
+SELECT m.name, m.email, c.title, c.crew_id
+	FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+	                JOIN mate m ON l.email = m.email
+	WHERE c.crew_id = '64';
+    
+
+commit;
+
 
 
 --3. 자주 묻는 질문 테이블

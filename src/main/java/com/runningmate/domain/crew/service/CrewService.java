@@ -1,9 +1,13 @@
 package com.runningmate.domain.crew.service;
 
-import com.runningmate.domain.crew.dto.Crew;
+import java.util.List;
+
 import com.runningmate.web.crew.controller.CrewCreate;
+import com.runningmate.web.crew.controller.CrewMates;
+
 
 public interface CrewService {
 	public void createCrew(CrewCreate crewCreate); 
 	public CrewCreate getCrew(String id);
+	public List<CrewMates> getCrews(String id);
 }

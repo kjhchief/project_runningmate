@@ -43,7 +43,8 @@
 
             <div class="card bg-light mb-3">
               <div class="card-body">
-                <p class="card-text p-3"th:text="${crewCreate.awaiterCount}">매치에 참여한 사람만 볼 수 있어요!</p>
+              <!-- each로 돌려야 함 -->
+                <p class="card-text p-3" th:text="${crewMates.name}">매치에 참여한 사람만 볼 수 있어요!</p>
               </div>
             </div>
 
