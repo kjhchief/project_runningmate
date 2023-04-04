@@ -5,19 +5,19 @@
 <mapper namespace="com.runningmate.domain.manage.mapper.MemberManageMapper">
 
 
-<update id="thumbsUp" parameterType="Mate">
+<update id="thumbsUp" parameterType="String">
 	UPDATE members
     SET manner_temp = manner_temp + 1
     WHERE email = #{email}
 </update>
 
-<update id="thumbsDown" parameterType="Mate">
+<update id="thumbsDown" parameterType="String">
 	UPDATE members
 	SET manner_temp = manner_temp -1
 	WHERE email = #{email}
 </update>
 
-<update id="nAppearance" parameterType="Mate">
+<update id="nAppearance" parameterType="String">
 	UPDATE members
 	SET manner_temp = manner_temp -3
 	WHERE email = #{email}
@@ -27,6 +27,7 @@
 	INSERT INTO review(review_id, author, content, writedate, email)
 	VALUES()
 </insert>
+
 
 </mapper>
 
