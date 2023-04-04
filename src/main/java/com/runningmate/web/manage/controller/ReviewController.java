@@ -14,22 +14,9 @@ import com.runningmate.domain.mate.dto.Mate;
 
 import lombok.extern.slf4j.Slf4j;
 
-
-@Slf4j
 @Controller
 public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
-	
-	@GetMapping("")
-	public String crewJoinForm(Model model) {
-		return "crew/crewJoin";
-	}
-	
-//	@GetMapping("/{userId}")
-//	public String crewUser (@PathVariable String  userId, Model model) {
-//		Mate mate;
-//		return "crew/crewList";
-//	}
 }
