@@ -65,7 +65,7 @@ public class ThymeleafController {
 	
 	@GetMapping("/crewList")
 	public String crewList() {
-		return "crewList";
+		return "crew/crewList";
 	}
 	
 	@GetMapping("/levelMatchingPage")
@@ -114,7 +114,7 @@ public class ThymeleafController {
 	}
 	@GetMapping("/wishlist")
 	public String wishlist() {
-		return "wishlist";
+		return "crew/wishlist";
 	}
 	@GetMapping("/writeReview")
 	public String writeReview() {

@@ -91,6 +91,9 @@ FROM crew;
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 --FROM crew
 --WHERE crew_id = 63;
+SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+	FROM crew
+	WHERE crew_id = 76;
 
 --8. 모임리스트
 SELECT *
@@ -117,7 +120,7 @@ ALTER TABLE crewlist
    );
 --예시 데이터 추가
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'zi@nave121r11.com', 22);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'zi@nave121r11.com', 64);
 
 --특정 회원이 참석하는 특정 모임
 SELECT m.email, m.name, c.crew_id, l.types
