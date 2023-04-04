@@ -12,7 +12,9 @@ document.querySelector("#email").addEventListener("keyup", (event) => {
 	let messageDiv = document.getElementById("emailMessage");
 	
 	//test는 기본내장객체,인자가 정규표현식의 부합한지 확인하고, true,false반환
-	if (emailRegex.test(inputEmail)){
+	if (inputEmail === "") {
+		messageDiv.innerHTML = "";
+	}else if (emailRegex.test(inputEmail)){
 		messageDiv.innerHTML = "";
 		sendEmail(inputEmail);
 		
@@ -29,9 +31,9 @@ function sendEmail(email) {
 		},
 		body: `email=${email}` //서버로 전송할 데이터
 	};
-	fetch("/members2", option)
+	fetch("/members/email-check", option)
 		.then(respose => respose.json())
-		
+		.then(result => console.dir(result))
 		.catch(error => console.log(error));
 }
 

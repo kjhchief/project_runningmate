@@ -20,9 +20,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean existEmail(String email) {
 		if(memberMapper.findByEmail(email) != null) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	

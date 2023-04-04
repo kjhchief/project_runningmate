@@ -19,18 +19,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/members")
 public class MembersController {
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	// 회원가입 화면 요청에 대한 처리 메소드
 	@GetMapping
 	public String registerForm() {
 		return "member/joinmembership";
-		
+
 	}
-	
-	
+
+	// 이메일 유효성 검사
+	@PostMapping("/email-check")
+	@ResponseBody
+	public String emailCheck(@RequestParam String email) {
+
+		boolean exist = memberService.existEmail(email);
+		log.info("존재여부 {}, ", exist);
+
+		if (memberService.existEmail(email)) {
+			return "false";
+		} else {
+			return "true";
+		}
+	}
+
 	// 회원가입 처리에 대한 메소드
 	@PostMapping
 	public String register(@ModelAttribute("members") Members members) {
@@ -40,12 +54,11 @@ public class MembersController {
 		memberService.create(members);
 		return "redirect:/members/result";
 	}
-	
+
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
-		return "member/member-result";		
+		return "member/member-result";
 	}
-	
-	
+
 }

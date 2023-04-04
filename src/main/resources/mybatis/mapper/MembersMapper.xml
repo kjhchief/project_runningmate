@@ -5,14 +5,14 @@
 <mapper	namespace="com.runningmate.domain.member.mapper.MembersMapper">
 
 <insert id="create" parameterType="Members">
-INSERT INTO members(email, name, password, gender,  birthdate, phone_number, location)
-VALUES (#{email}, #{name}, #{password}, #{gender}, #{birthdate}, #{phoneNumber}, #{location})
+	INSERT INTO members(email, name, password, gender,  birthdate, phone_number, location)
+	VALUES (#{email}, #{name}, #{password}, #{gender}, #{birthdate}, #{phoneNumber}, #{location})
 </insert>
 
-<select id="findByEmail" parameterType="String" resultType="String">
-SELECT email
-		FROM members
-		WHERE email = #{value}
+<select id="findByEmail" parameterType="string" resultType="string">
+	SELECT email
+	FROM members
+	WHERE email = #{value}
 </select>
 
 
