@@ -1,11 +1,13 @@
 package com.runningmate;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.mapper.CrewMapper;
+import com.runningmate.web.crew.controller.CrewCreate;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,12 +19,13 @@ public class CrewMapperTest {
 	private CrewMapper crewMapper;
 	
 	@Test
+	@Disabled
 	void createTest() {
 		Crew crew = new Crew();
 		crew.setCrewId("1");
 		crew.setTitle("안녕 모임 호호호");
 		crew.setCrewdate("23/3/2");
-		crew.setMemberCount(5);
+		crew.setMateCount(5);
 		crew.setCrewLocation("어디구 어디동 어디 공원");
 		crew.setCrewLevel("다소 강한 러닝");
 		crew.setCourseLeng(20);
@@ -33,7 +36,15 @@ public class CrewMapperTest {
 		crew.setAwaiterCount(3);
 //		crewMapper.create(crew);
 		log.info("모임 등록 완료 : {}", crew);
-		
-		
 	}
+	
+	@Test
+	public CrewCreate getCrew() {
+		CrewCreate crewCreate = new CrewCreate();
+		crewCreate.getTitle();
+		log.info("모임 정보: {}", crewCreate);
+		return crewCreate;
+		
+		
+	};
 }

@@ -9,6 +9,7 @@ import com.runningmate.web.crew.controller.CrewCreate;
 
 @Mapper
 public interface CrewMapper {
+	public CrewCreate findById(String id);
 	public void create(CrewCreate crewCreate);
 	public void update(CrewCreate crewCreate);
 	public List<Crew> findByAll();

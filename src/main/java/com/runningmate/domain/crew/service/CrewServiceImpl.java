@@ -18,4 +18,10 @@ public class CrewServiceImpl implements CrewService {
 		crewMapper.create(crewCreate);
 	}
 
+	@Override
+	public CrewCreate getCrew(String id) {
+		return crewMapper.findById(id);
+	}
+
+
 }

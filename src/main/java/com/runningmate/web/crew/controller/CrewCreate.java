@@ -17,7 +17,7 @@ import lombok.ToString;
 public class CrewCreate {
 	private String title;
 	private String crewdate;
-	private int memberCount;
+	private int mateCount;
 	private String crewLocation;
 	private String crewLevel;
 	private int courseLeng;

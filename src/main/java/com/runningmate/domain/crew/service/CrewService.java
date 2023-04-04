@@ -5,4 +5,5 @@ import com.runningmate.web.crew.controller.CrewCreate;
 
 public interface CrewService {
 	public void createCrew(CrewCreate crewCreate); 
+	public CrewCreate getCrew(String id);
 }

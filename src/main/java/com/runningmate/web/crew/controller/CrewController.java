@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,7 +40,7 @@ public class CrewController {
 	
 	// 모임 등록
 	@PostMapping
-	public String register(@ModelAttribute("crewPhotoUp") CrewCreate crewCreate) throws IOException {
+	public String register(@ModelAttribute("crewCreate") CrewCreate crewCreate) throws IOException {
 		log.info("crew= {}", crewCreate);
 		
 		// 파라메터는 DB에 저장
@@ -55,6 +57,14 @@ public class CrewController {
 	@GetMapping("/result")
 	public String registerResult() {
 		return "crew/crew-result";		
+	}
+	
+	// 특정 모임의 모임 참석 화면 보여주기
+	@GetMapping("/{crewId}")
+	public String JoinCrew(@PathVariable String crewId, Model model) {
+		CrewCreate crewCreate = crewService.getCrew(crewId);
+		model.addAttribute("crewCreate", crewCreate);
+		return "crew/crewJoin";
 	}
 
 

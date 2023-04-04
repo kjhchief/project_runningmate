@@ -58,10 +58,10 @@ public class ThymeleafController {
 //		return "createcrew";
 //	}
 	
-	@GetMapping("/crewJoin")
-	public String crewJoin() {
-		return "crewJoin";
-	}
+//	@GetMapping("/crewJoin")
+//	public String crewJoin() {
+//		return "crew/crewJoin";
+//	}
 	
 	@GetMapping("/crewList")
 	public String crewList() {

@@ -11,7 +11,7 @@ public class Crew {
 	private String crewId;
 	private String title;
 	private String crewdate;
-	private int memberCount;
+	private int mateCount;
 	private String crewLocation;
 	private String crewLevel;
 	private int courseLeng;
