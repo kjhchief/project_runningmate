@@ -5,10 +5,10 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class MemberMannage {
-	private String review_id;
+public class Review {
+	private String reviewId;
 	private String author;
-	private String member_id;
-	private String content;
 	private Date writeDate;
+	private String email;
+	private String content;
 }
