@@ -49,7 +49,8 @@ VALUES ('zi@nave121r11.com', '송진11호', '1111', 'M', '19940413', '010-9111-2422
 
 --2. 모임 테이블
 SELECT *
-FROM crew;
+FROM crew
+ORDER BY crew_id;
 
 DROP TABLE crew;
 
@@ -69,6 +70,7 @@ CREATE TABLE crew (
 );
 -- sequence 생성
 CREATE SEQUENCE crew_seq
+START WITH 1
 INCREMENT BY 1;
 DROP SEQUENCE crew_seq;
 -- 제약조건 추가
@@ -94,6 +96,7 @@ CREATE TABLE crewlist (
 );
 -- sequence 생성
 CREATE SEQUENCE crewlist_seq
+START WITH 1
 INCREMENT BY 1;
 -- 제약조건 추가
 ALTER TABLE crewlist
