@@ -27,20 +27,19 @@
         <form method="post">
           <div class="form-group  mt-4">
             <label for="email" style="font-size: 0.6rem;"><strong>이메일</strong></label>
-            <input type="text" class="form-control" id="email"
-              name="email">
-              <div class="" id="emailMessage" th:text="${usableMessage}">Success! You've done it.</div>
+            <input type="text" class="form-control" id="email" name="email" placeholder="runningmate123@domain.com" required>
+              <div class="mt-1 text-success" id="emailMessage" style="font-size: 0.6rem;"></div>
           </div>
           <div class="form-group row">
             <div class="col">
               <label for="password" style="font-size: 0.6rem;"><strong>비밀번호</strong></label>
-              <input type="password" class="form-control" id="password"
-                name="password">
+              <input type="password" class="form-control" id="password" name="password" placeholder="8자 이상,문자/숫자/기호 사용 가능" required>
+              <div class="mt-1 text-success" id="password-Message" style="font-size: 0.6rem;"></div>
             </div>
             <div class="col">
-              <label for="password-confirm" style="font-size: 0.6rem;"><strong>비밀번호
-                  확인</strong></label> <input type="password" class="form-control"
-                id="password-confirm">
+              <label for="password-check" style="font-size: 0.6rem;"><strong>비밀번호 확인</strong></label>
+               <input type="password" class="form-control" id="password-check" required>
+              <div class="mt-1 text-success" id="password-check-message" style="font-size: 0.6rem;"></div>
             </div>
           </div>
 
@@ -49,7 +48,7 @@
             <div class="col">
               <label for="name" style="font-size: 0.6rem;"><strong>이름</strong></label>
               <input type="text" class="form-control" id="name"
-                name="name">
+                name="name" required>
             </div>
             <div class="col">
               <label for="gender" style="font-size: 0.6rem;"><strong>성별</strong></label>
@@ -61,14 +60,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="phone" style="font-size: 0.6rem;"><strong>휴대폰
-                번호</strong></label>
+            <label for="phone" style="font-size: 0.6rem;"><strong>휴대폰번호</strong></label>
             <div class="input-group">
-              <input type="tel" class="form-control" id="phone"
-                name="phoneNumber">
-              <button type="button" class="btn  btn-primary"
-                id="verify-button">인증 요청</button>
+              <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="('-' 없이 입력해 주십시오.)" required>
+              <button type="button" class="btn  btn-primary" id="phonenumber-verify-button">인증 요청</button>
             </div>
+              <div class="mt-1 text-success" id="phonenumber-check-message" style="font-size: 0.6rem;"></div>
           </div>
 
 
@@ -242,13 +239,12 @@
 
           <div class="form-group">
             <label for="location" style="font-size: 0.6rem;"><strong>주소</strong></label>
-            <input type="text" class="form-control" id="address_kakao"
-              name="address" readonly />
+            <input type="text" class="form-control" id="address_kakao" name="address" readonly/>
           </div>
           <div class="form-group">
             <label for="location_detail" style="font-size: 0.6rem;"><strong>상세
                 주소</strong></label> <input type="text" class="form-control"
-              name="addressdetail" />
+              name="addressdetail" required/>
           </div>
 
 

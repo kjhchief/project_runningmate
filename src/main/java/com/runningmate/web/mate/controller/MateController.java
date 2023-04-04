@@ -35,7 +35,7 @@ public class MateController {
 	public String emailCheck(@RequestParam String email) {
 
 		boolean exist = mateService.existEmail(email);
-		log.info("존재여부 {}, ", exist);
+		log.info("존재여부 {}", exist);
 
 		if (mateService.existEmail(email)) {
 			return "false";
@@ -49,7 +49,7 @@ public class MateController {
 	public String register(@ModelAttribute("mate") Mate mate) {
 		mate.setBirthdate();
 		mate.setLocation();
-//		log.info("mate {}", mate);
+		log.info("mate {}", mate);
 		mateService.create(mate);
 		return "redirect:/mate/result";
 	}

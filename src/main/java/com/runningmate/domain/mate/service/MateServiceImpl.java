@@ -19,10 +19,12 @@ public class MateServiceImpl implements MateService {
 
 	@Override
 	public boolean existEmail(String email) {
+		
 		if(mateMapper.findByEmail(email) != null) {
 			return true;
+		}else {
+			return false;
 		}
-		return false;
 	}
 	
 	

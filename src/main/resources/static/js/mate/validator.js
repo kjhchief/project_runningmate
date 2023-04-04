@@ -12,14 +12,14 @@ document.querySelector("#email").addEventListener("keyup", (event) => {
 	let messageDiv = document.getElementById("emailMessage");
 	
 	//test는 기본내장객체,인자가 정규표현식의 부합한지 확인하고, true,false반환
-	if (inputEmail === "") {
-		messageDiv.innerHTML = "";
-	}else if (emailRegex.test(inputEmail)){
-		messageDiv.innerHTML = "";
+	if(emailRegex.test(inputEmail)){
+		
 		sendEmail(inputEmail);
 		
-	} else {
-		messageDiv.innerHTML = "<span style='color:red'>이메일 형식이 틀렸습니다.</span>";
+	} else if(inputEmail.length >= 6){
+		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 이메일 형식 입니다.</span>";
+	} else if(inputEmail.length < 6){
+		messageDiv.innerHTML = "";
 	}
 });
 
@@ -33,9 +33,69 @@ function sendEmail(email) {
 	};
 	fetch("/mate/email-check", option)
 		.then(respose => respose.json())
-		.then(result => console.dir(result))
+		.then(result => emailResultMessage(result))
 		.catch(error => console.log(error));
 }
 
+function emailResultMessage(result){
+	
+	let messageDiv = document.getElementById("emailMessage");
+	
+	if(result === false){
+		messageDiv.innerHTML = "<span style='color:red'>이미 존재하는 이메일입니다.</span>";
+	}else if(result === true){
+		messageDiv.innerHTML = "<span>사용 가능한 이메일입니다.</span>";
+	}
+	
+}
 
+let inputPassword;
+document.querySelector("#password").addEventListener("keyup", (event) => {
+	
+	inputPassword = event.target.value;
+	
+	// 최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 
+	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
+	
+	let messageDiv = document.getElementById("password-Message");
+	
+	if (passwordRegex.test(inputPassword)){
+		messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";		
+	} else if(inputPassword.length >= 6){
+		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 비밀번호 형식 입니다.</span>";
+	}else if(inputPassword.length < 6){
+		messageDiv.innerHTML = "";
+	}
+});
+
+document.querySelector("#password-check").addEventListener("keyup", (event) => {
+	
+	let inputPasswordCheck = event.target.value;
+	
+	let messageDiv = document.getElementById("password-check-message");
+	
+	if (inputPassword === inputPasswordCheck) {
+		messageDiv.innerHTML = "비밀번호가 일치합니다.";
+	} else if(inputPasswordCheck.length >= 6){
+		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
+	}else if(inputPasswordCheck.length < 6){
+		messageDiv.innerHTML = "";
+	}
+});
+
+document.querySelector("#phonenumber-verify-button").addEventListener("click", () => { //클릭은 인자없음
+	
+	let inputPhoneNumber = document.querySelector("#phonenumber").value;
+	
+	// 010으로 시작하고 뒤에8자리만 입력가능,(부트스트랩)input타입의 tel속성이 -(하이픈) 자동 생성해서 DB에 저장해주기때문에 숫자만입력하게 구현
+	const phonenumberRegex = /^010\d{8}$/;
+	
+	let messageDiv = document.getElementById("phonenumber-check-message");
+	
+	if (phonenumberRegex.test(inputPhoneNumber)){
+		messageDiv.innerHTML = "인증완료.";		
+	} else {
+		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
+	}
+});
 
