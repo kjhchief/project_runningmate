@@ -1,4 +1,4 @@
-package com.runningmate.domain.member.dto;
+package com.runningmate.domain.mate.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Members {
+public class Mate {
  private String email;
  private String name;
  private String password;
@@ -21,7 +21,7 @@ public class Members {
  private String address;
  private String addressdetail;
  private String location;
- private String memberClass;
+ private String mateClass;
  private String kakaoaccYn;
  private float mannerTemp;
  private int commentCount;
