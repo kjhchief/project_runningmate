@@ -2,6 +2,9 @@
  * 러닝메이트 회원가입 도시선택에 따라 동적으로 변하는 지역 설정 스크립트
  */
 
+
+
+
 document.querySelector("#email").addEventListener("keyup", (event) => {
 	
 	let inputEmail = event.target.value;
@@ -18,10 +21,14 @@ document.querySelector("#email").addEventListener("keyup", (event) => {
 		
 	} else if(inputEmail.length >= 6){
 		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 이메일 형식 입니다.</span>";
+		return;
 	} else if(inputEmail.length < 6){
 		messageDiv.innerHTML = "";
+		return;
 	}
 });
+
+
 
 function sendEmail(email) {
 	let option = {
@@ -43,11 +50,15 @@ function emailResultMessage(result){
 	
 	if(result === false){
 		messageDiv.innerHTML = "<span style='color:red'>이미 존재하는 이메일입니다.</span>";
+		return;
 	}else if(result === true){
 		messageDiv.innerHTML = "<span>사용 가능한 이메일입니다.</span>";
+		
 	}
 	
 }
+
+
 
 let inputPassword;
 document.querySelector("#password").addEventListener("keyup", (event) => {
@@ -60,11 +71,14 @@ document.querySelector("#password").addEventListener("keyup", (event) => {
 	let messageDiv = document.getElementById("password-Message");
 	
 	if (passwordRegex.test(inputPassword)){
-		messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";		
+		messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";	
+			return true;
 	} else if(inputPassword.length >= 6){
 		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 비밀번호 형식 입니다.</span>";
+		
 	}else if(inputPassword.length < 6){
 		messageDiv.innerHTML = "";
+		
 	}
 });
 
@@ -76,26 +90,36 @@ document.querySelector("#password-check").addEventListener("keyup", (event) => {
 	
 	if (inputPassword === inputPasswordCheck) {
 		messageDiv.innerHTML = "비밀번호가 일치합니다.";
+		
 	} else if(inputPasswordCheck.length >= 6){
 		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
+		
 	}else if(inputPasswordCheck.length < 6){
 		messageDiv.innerHTML = "";
+		
 	}
 });
 
-document.querySelector("#phonenumber-verify-button").addEventListener("click", () => { //클릭은 인자없음
+document.querySelector("#phoneNumber-verify-button").addEventListener("click", () => { //클릭은 인자없음
 	
-	let inputPhoneNumber = document.querySelector("#phonenumber").value;
+	let inputPhoneNumber = document.querySelector("#phoneNumber").value;
 	
 	// 010으로 시작하고 뒤에8자리만 입력가능,(부트스트랩)input타입의 tel속성이 -(하이픈) 자동 생성해서 DB에 저장해주기때문에 숫자만입력하게 구현
-	const phonenumberRegex = /^010\d{8}$/;
+	const phoneNumberRegex = /^010\d{8}$/;
 	
-	let messageDiv = document.getElementById("phonenumber-check-message");
+	let messageDiv = document.getElementById("phoneNumber-check-message");
 	
-	if (phonenumberRegex.test(inputPhoneNumber)){
+	if (phoneNumberRegex.test(inputPhoneNumber)){
 		messageDiv.innerHTML = "인증완료.";		
+		
 	} else {
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
+		
 	}
 });
+document.querySelector("#registForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // 폼 제출 기본 동작 막기
+    
+    document.querySelector("#registForm").submit();//폼 제출
 
+});
