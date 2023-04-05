@@ -57,7 +57,7 @@ public class MateController {
 		mateService.create(mate);
 		return "redirect:/mate/result";
 	}
-
+/*
 	@PostMapping
 	@ResponseBody
 	public String Login(@RequestParam String email, @RequestParam String password) {
@@ -66,7 +66,7 @@ public class MateController {
 		return "mate";
 		
 	}
-	
+*/	
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
