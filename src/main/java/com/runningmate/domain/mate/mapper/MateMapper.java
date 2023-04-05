@@ -10,8 +10,9 @@ public interface MateMapper {
 	//회원 가입
 	public void create(Mate mate);
 	
-	// 회원 상세 조회
+	// 이메일 유효성 체크
 	public String findByEmail(String email);
 	
-	
+	//로그인
+	public Mate getLoginInfo(String email, String name);
 }

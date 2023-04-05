@@ -10,7 +10,9 @@ import com.runningmate.domain.mate.dto.Mate;
 public interface MateService {
 	//회원가입
 	public void create(Mate mate);
-	
+	//이메일 유효성
 	public boolean existEmail(String email);
+	//로그인 회원 정보
+	public Mate getLoginInfo(String email, String password);
 	
 }

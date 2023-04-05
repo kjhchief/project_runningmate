@@ -28,15 +28,18 @@ public class MateController {
 		return "mate/register";
 
 	}
+	
+	// 로그인 화면 요청에 대한 처리 메소드
+	@GetMapping("/login")
+	public String loginForm() {
+		return "mate/login";
+
+	}
 
 	// 이메일 유효성 검사
 	@PostMapping("/email-check")
 	@ResponseBody
 	public String emailCheck(@RequestParam String email) {
-
-		boolean exist = mateService.existEmail(email);
-		log.info("존재여부 {}", exist);
-
 		if (mateService.existEmail(email)) {
 			return "false";
 		} else {
@@ -49,15 +52,25 @@ public class MateController {
 	public String register(@ModelAttribute("mate") Mate mate) {
 		mate.setBirthdate();
 		mate.setLocation();
+		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
 		return "redirect:/mate/result";
 	}
 
+	@PostMapping
+	@ResponseBody
+	public String Login(@RequestParam String email, @RequestParam String password) {
+		Mate mate;
+		mate = mateService.getLoginInfo(email, password);
+		return "mate";
+		
+	}
+	
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
-		return "mate/mate-result";
+		return "main";
 	}
 
 }

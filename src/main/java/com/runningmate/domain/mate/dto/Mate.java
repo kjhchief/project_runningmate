@@ -37,4 +37,9 @@ public class Mate {
 	 this.location  = getAddress() + " " + getAddressdetail();
  } 
  
+ public void setPhoneNumber() {
+	 this.phoneNumber = phoneNumber.substring(0, 3) + "-" + phoneNumber.substring(3, 7) + "-" + phoneNumber.substring(7);
+	
+ } 
+ 
 }

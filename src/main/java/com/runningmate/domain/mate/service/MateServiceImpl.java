@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.runningmate.domain.mate.dto.Mate;
 import com.runningmate.domain.mate.mapper.MateMapper;
 
+
 @Service
 public class MateServiceImpl implements MateService {
 
@@ -25,6 +26,14 @@ public class MateServiceImpl implements MateService {
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public Mate getLoginInfo(String email, String password) {
+		Mate mate = null;
+		mate = mateMapper.getLoginInfo(email, password);
+		return mate;
+		
 	}
 	
 	

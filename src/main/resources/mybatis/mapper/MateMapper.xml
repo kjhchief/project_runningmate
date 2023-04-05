@@ -15,7 +15,11 @@
 	WHERE email = #{value}
 </select>
 
-
+<select id="getLoginInfo" parameterType="string" resultType="Mate">
+	SELECT email, name
+	FROM mate
+	WHERE email = #{value} AND password =#{value}
+</select>
 
 
 </mapper>                        
