@@ -56,7 +56,7 @@ DROP TABLE crew;
 
 CREATE TABLE crew (
     crew_id	VARCHAR2(50)		NOT NULL,
-	title	VARCHAR2(50)		NOT NULL,
+	title	VARCHAR2(300)		NOT NULL,
 	crewdate	DATE	DEFAULT SYSDATE,
 	mate_count	NUMBER(7)		NOT NULL,
 	crew_location	VARCHAR2(200)		NOT NULL,
@@ -77,16 +77,22 @@ DROP SEQUENCE crew_seq;
 -- 제약조건 추가
 ALTER TABLE crew
   ADD CONSTRAINT crew_id_pk   PRIMARY KEY(crew_id);
+
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '두번째', 
+VALUES (crew_seq.NEXTVAL, '테스트', 
 TO_DATE('2020-3-4 오후 7:7', 'YYYY-MM-DD PM HH:MI', 'NLS_DATE_LANGUAGE = KOREAN'), 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
+
+commit;
+
 -- 특정 모임 선택(select)
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 SELECT *
 FROM crew;
+
+
 --WHERE crew_id = '61';
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 --FROM crew
@@ -224,7 +230,7 @@ DROP TABLE photo;
 
 CREATE TABLE photo (
 	photo_id	VARCHAR2(50)		NOT NULL,
-	name	VARCHAR2(50)		NOT NULL,
+	name	VARCHAR2(4000)		NOT NULL,
 	type	VARCHAR2(50)		,
 	crew_id	VARCHAR2(50)		NOT NULL
 );
@@ -236,17 +242,43 @@ ALTER TABLE photo
 CREATE SEQUENCE photo_seq
 START WITH 1
 INCREMENT BY 1;
+
 --사진 insert
 INSERT INTO photo (photo_id, name, crew_id)
-VALUES (photo_seq.NEXTVAL, '배경사진01', '61');
+VALUES (photo_seq.NEXTVAL, '배경사진01', '64');
    
 --사진정보 포함 추가
 INSERT ALL
     INTO crew VALUES(crew_id, title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description, awaiter_count)
-    INTO photo VALUES(name, type)
+    INTO photo VALUES(name, type);
 
-INSERT INTO crew (crew_id, title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description, awaiter_count)
-SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count
+-- 크루+사진 테이블 셀렉트(화면에 쏘기)
+SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.name
 FROM crew c
-JOIN photo p ON c.crew_id = p.crew_id;
+JOIN photo p ON c.crew_id = p.crew_id
+WHERE c.crew_id = '125';
+
+SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE crew_id = #{value}
+
+
+select * 
+from crew
+ORDER BY crew_id DESC;
+
+SELECT crew_id
+FROM crew
+WHERE title = '테스트 모임...';
+
+select * 
+from photo
+ORDER BY crew_id DESC;
+
+commit;
+
+
+
+
+
 

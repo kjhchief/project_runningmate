@@ -1,4 +1,4 @@
-package com.runningmate.web.crew.controller;
+package com.runningmate.domain.crew.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class CrewCreate {
+	private String crewId;
 	private String title;
-	private Date crewdate;
+	private String crewdate;
 	private int mateCount;
 	private String crewLocation;
 	private String crewLocationDt;
@@ -26,10 +26,10 @@ public class CrewCreate {
 	private String etcIntro;
 	private String description;
 	private int awaiterCount;
+	
 	// 사진 정보
 	private List<MultipartFile> uploadfiles;
-	private String name;
-	
+	private String photoName;
 	
 //	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 }

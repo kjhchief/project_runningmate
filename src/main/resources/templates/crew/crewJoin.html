@@ -10,7 +10,8 @@
 
       <!-- 사진 -->
       <div class="runner_place">
-        <img class="w-100" src="/img/1.png" alt="장소사진"/>
+        <img class="w-100" th:src="@{${'/crew/images/' + crewCreate.photoName}}" alt="장소사진"/>
+
       </div>
 
       <!-- 정보 컨테이너 -->
@@ -44,7 +45,11 @@
             <div class="card bg-light mb-3">
               <div class="card-body">
               <!-- each로 돌려야 함 -->
-                <p class="card-text p-3" th:text="${crewMates.name}">매치에 참여한 사람만 볼 수 있어요!</p>
+                <p class="card-text p-3">
+                  <span class="pe-4" th:each="crewMate : ${crewMates}">
+                    <span th:text="${crewMate.name}">이름1</span>
+                  </span>
+                </p>
               </div>
             </div>
 
@@ -61,8 +66,8 @@
               <div class="card-body">
                 <h5 class="card-title p-3 pb-0 application_head" th:text="${crewCreate.crewLocation}">서울 노원구 중계동 근린공원</h5>
                 <div class="card-text p-3 pt-0">
-                   <p class="application_time" th:text="${#dates.format(crewCreate.crewdate, 'yyyy년 MM월 dd일 a hh:mm')}"></p>
-                  <!-- <p class="application_time" th:text="${crewCreate.crewdate}"></p> -->
+                   <!-- <p class="application_time" th:text="${#dates.format(crewCreate.crewdate, 'yyyy년 MM월 dd일 a hh:mm')}"></p> -->
+                  <p class="application_time" th:text="${crewCreate.crewdate}"></p>
                   <p class="application_where" th:text="${crewCreate.crewLocationDt}">시립 미술관 앞</p>
 
                   <div class="button_area mt-5">

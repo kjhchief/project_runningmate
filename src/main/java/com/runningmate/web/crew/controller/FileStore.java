@@ -48,6 +48,8 @@ public class FileStore {
 		String uuid = UUID.randomUUID().toString();
 		return originalFilename + "-" + uuid + "." + ext;
 	}
+	
+	//사진 파일 이름 받기
 
 	private String extractExt(String originalFilename) {
 		int pos = originalFilename.lastIndexOf(".");
