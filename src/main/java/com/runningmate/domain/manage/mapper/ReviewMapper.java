@@ -11,6 +11,5 @@ public interface ReviewMapper {
 	public void thumbsDown();
 	public void nAppearance();
 	public void newReview(Review review);
-	public List<Review> findByEmail(String email);
-	
+	public List<Review> getReviews();
 }
