@@ -3,6 +3,8 @@ package com.runningmate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.mapper.CrewMapper;
@@ -28,13 +30,13 @@ public class MateTest {
 		mate.setBirthdate("19990411");
 		mate.setGender("M");
 		mate.setPhoneNumber("010.1111.2222");
-		mateMapper.create(mate);
+//		mateMapper.create(mate);
 		log.info("등록 완료");
 
-		
-		
 		
 
 		
 	}
+
+	
 }

@@ -2,12 +2,14 @@ package com.runningmate.domain.mate.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.runningmate.domain.mate.dto.Mate;
 import com.runningmate.domain.mate.mapper.MateMapper;
 
 
 @Service
+@Transactional
 public class MateServiceImpl implements MateService {
 
 	@Autowired
@@ -29,11 +31,11 @@ public class MateServiceImpl implements MateService {
 	}
 
 	@Override
-	public Mate getLoginInfo(String email, String password) {
-		Mate mate = null;
-		mate = mateMapper.getLoginInfo(email, password);
-		return mate;
-		
+	public Mate getLoginInfo(Mate mate) {
+		if(mateMapper.getLoginInfo(mate) != null) {
+			return mate;
+		}
+		return null;
 	}
 	
 	

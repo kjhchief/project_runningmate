@@ -14,5 +14,5 @@ public interface MateMapper {
 	public String findByEmail(String email);
 	
 	//로그인
-	public Mate getLoginInfo(String email, String name);
+	public Mate getLoginInfo(Mate mate);
 }

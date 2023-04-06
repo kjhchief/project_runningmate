@@ -62,10 +62,10 @@ public class MateController {
 		return "redirect:/mate/result";
 	}
 /*
-	@PostMapping
+	@PostMapping("/login-check")
 	@ResponseBody
 	public String Login(@ModelAttribute("mate") Mate mate) {
-		mate = mateService.getLoginInfo(mate.getEmail(), mate.getPassword());
+		mateService.getLoginInfo(mate);
 		return "mate";
 		
 	}

@@ -15,8 +15,8 @@
 	WHERE email = #{value}
 </select>
 
-<select id="getLoginInfo" parameterType="string" resultType="Mate">
-	SELECT *
+<select id="getLoginInfo" parameterType="Mate" resultType="Mate">
+	SELECT * 
 	FROM mate
 	WHERE email = #{value} AND password =#{value}
 </select>

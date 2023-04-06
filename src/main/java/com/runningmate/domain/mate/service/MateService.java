@@ -13,6 +13,6 @@ public interface MateService {
 	//이메일 유효성
 	public boolean existEmail(String email);
 	//로그인 회원 정보
-	public Mate getLoginInfo(String email, String password);
+	public Mate getLoginInfo(Mate mate);
 	
 }
