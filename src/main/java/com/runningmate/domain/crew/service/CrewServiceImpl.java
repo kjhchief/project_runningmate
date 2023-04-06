@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewCreatePhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 import com.runningmate.web.crew.controller.CrewMates;
 

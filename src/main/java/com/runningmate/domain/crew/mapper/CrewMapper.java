@@ -5,12 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewCreatePhoto;
 import com.runningmate.web.crew.controller.CrewMates;
 
 @Mapper
 public interface CrewMapper {
 	
+	// 크루 ID로 CrewDreate DTO 정보 불러오기. 참석 화면 보여주는 용도
 	public CrewCreate findById(String id);
 	// 모임 등록
 	public void createCrew(CrewCreate crewCreate);

@@ -3,7 +3,6 @@ package com.runningmate.domain.crew.service;
 import java.util.List;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewCreatePhoto;
 import com.runningmate.web.crew.controller.CrewMates;
 
 

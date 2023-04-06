@@ -10,7 +10,7 @@
 
       <!-- 사진 -->
       <div class="runner_place">
-        <img class="w-100" th:src="@{${'/crew/images/' + crewCreate.photoName}}" alt="장소사진"/>
+        <img class="w-100" th:src="@{${'/crew/images/' + photoName}}" alt="장소사진"/>
 
       </div>
 
@@ -24,14 +24,14 @@
                 <h4 class="card-title p-3" th:text="${crewCreate.title}">러닝 매치</h4>
                 <div class="card-text p-3">
                   <ul class="match_condition">
-                    <li th:text="${crewCreate.mateCount}"><img src="/img/icon/user-solid.svg">최대 10명</li>
-                    <li th:text="${crewCreate.crewLevel}"><img src="/img/icon/star-solid.svg">건강한 런닝</li>
-                    <li th:text="${crewCreate.courseLeng}"><img src="/img/icon/road-solid.svg">왕복 10km</li>
+                    <li><img src="/img/icon/user-solid.svg"><span th:text="${crewCreate.mateCount}">최대 10명</span></li>
+                    <li><img src="/img/icon/star-solid.svg"><span th:text="${crewCreate.crewLevel}">건강한 런닝</span></li>
+                    <li><img src="/img/icon/road-solid.svg"><span th:text="${crewCreate.courseLeng}">10</span>km</li>
                   </ul>
                   <ul class="match_notice mt-5">
-                    <li th:text="${crewCreate.courseIntro}">🏃‍♂️ 근린 공원에서 시작하여 호수를 따라 왕복</li>
-                    <li th:text="${crewCreate.etcIntro}">🚗 근린공원 입구 부근에 무료 주차장 이용 가능</li>
-                    <li th:text="${crewCreate.weatherIntro}">☀️ 행사 당일 맑음, 기온 22도 예상</li>
+                    <li>🏃‍♂️ <span th:text="${crewCreate.courseIntro}">근린 공원에서 시작하여 호수를 따라 왕복</span></li>
+                    <li>🚗 <span th:text="${crewCreate.etcIntro}">근린공원 입구 부근에 무료 주차장 이용 가능</span></li>
+                    <li>☀️ <span th:text="${crewCreate.weatherIntro}">행사 당일 맑음, 기온 22도 예상</span></li>
                   </ul>
                   <div class="mt-5">
                     <b>주최 유저 <a href="#">뫄뫄(정적 데이터)</a></b>
@@ -44,7 +44,6 @@
 
             <div class="card bg-light mb-3">
               <div class="card-body">
-              <!-- each로 돌려야 함 -->
                 <p class="card-text p-3">
                   <span class="pe-4" th:each="crewMate : ${crewMates}">
                     <span th:text="${crewMate.name}">이름1</span>
@@ -67,7 +66,7 @@
                 <h5 class="card-title p-3 pb-0 application_head" th:text="${crewCreate.crewLocation}">서울 노원구 중계동 근린공원</h5>
                 <div class="card-text p-3 pt-0">
                    <!-- <p class="application_time" th:text="${#dates.format(crewCreate.crewdate, 'yyyy년 MM월 dd일 a hh:mm')}"></p> -->
-                  <p class="application_time" th:text="${crewCreate.crewdate}"></p>
+                  <p class="application_time" th:text="${#temporals.format(crewdate, 'yyyy년 MM월 dd일 a hh:mm')}"></p>
                   <p class="application_where" th:text="${crewCreate.crewLocationDt}">시립 미술관 앞</p>
 
                   <div class="button_area mt-5">

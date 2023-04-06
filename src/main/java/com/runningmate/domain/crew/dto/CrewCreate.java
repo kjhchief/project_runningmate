@@ -31,7 +31,6 @@ public class CrewCreate {
 	private List<MultipartFile> uploadfiles;
 	private String photoName;
 	
-//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 }
 
 

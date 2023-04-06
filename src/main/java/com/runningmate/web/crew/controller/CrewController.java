@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewCreatePhoto;
 import com.runningmate.domain.crew.service.CrewService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,7 +61,8 @@ public class CrewController {
 			log.info("photoNames= {}", photoName.getStoreFileName());
 		}
 		
-		crewService.createCrew(crewCreate);// 여기서 이미 디비 갔다 와버림.
+		
+		crewService.createCrew(crewCreate);// 여기서 디비 갔다옴 와버림.
 		
 		log.info("crew= {}", crewCreate);
 //		photoUp(crewCreatePhoto);
@@ -110,11 +112,15 @@ public class CrewController {
 	@GetMapping("/{crewId}")
 	public String JoinCrew(@PathVariable String crewId, Model model) {
 		CrewCreate crewCreate = crewService.getCrew(crewId);
+		LocalDateTime localDateTime = LocalDateTime.parse(crewCreate.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 		model.addAttribute("crewCreate", crewCreate);
-		log.info("crewCreate= {}", crewCreate);
+		model.addAttribute("crewdate", localDateTime);
+		model.addAttribute("photoName", crewCreate.getPhotoName());
 		
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);
+		
+		log.info("crewCreate= {}", crewCreate);
 		log.info("crewMates= {}", crewMates);
 		
 		return "crew/crewJoin";

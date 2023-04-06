@@ -1,6 +1,5 @@
 package com.runningmate;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -8,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.runningmate.domain.crew.dto.Crew;
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewCreatePhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 import com.runningmate.web.crew.controller.CrewMates;
 
@@ -44,15 +41,15 @@ public class CrewMapperTest {
 		return crew;
 	}
 	
-	@Test
+//	@Test
 //	@Disabled
-	void createPhotoTest() {
-		CrewCreatePhoto crewCreatePhoto = new CrewCreatePhoto(); 
-		crewCreatePhoto.setCrewId(createTest().getCrewId());
-		crewCreatePhoto.setPhotoName("xxxx.jpg");
-		crewMapper.createPhoto(crewCreatePhoto);
-		log.info("사진 등록 완료 : {}", crewCreatePhoto);
-	}
+//	void createPhotoTest() {
+//		CrewCreatePhoto crewCreatePhoto = new CrewCreatePhoto(); 
+//		crewCreatePhoto.setCrewId(createTest().getCrewId());
+//		crewCreatePhoto.setPhotoName("xxxx.jpg");
+//		crewMapper.createPhoto(crewCreatePhoto);
+//		log.info("사진 등록 완료 : {}", crewCreatePhoto);
+//	}
 	
 	
 	@Test

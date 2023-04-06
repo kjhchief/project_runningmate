@@ -16,7 +16,7 @@
 	
 	<!-- 사진 등록 -->
   	<insert id="createPhoto" parameterType="CrewCreate">
-		INSERT INTO photo (photo_id, name, crew_id)
+		INSERT INTO photo (photo_id, photo_name, crew_id)
 		VALUES (photo_seq.NEXTVAL, #{photoName}, #{crewId})
 	</insert>
 	
@@ -35,7 +35,7 @@
 		WHERE crew_id = #{value}
 	</select> -->
 	<select id="findById" parameterType="string" resultType="CrewCreate">
-		SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.name
+		SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.photo_name
 		FROM crew c
 		JOIN photo p ON c.crew_id = p.crew_id
 		WHERE c.crew_id = #{value}

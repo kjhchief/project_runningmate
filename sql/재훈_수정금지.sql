@@ -230,7 +230,7 @@ DROP TABLE photo;
 
 CREATE TABLE photo (
 	photo_id	VARCHAR2(50)		NOT NULL,
-	name	VARCHAR2(4000)		NOT NULL,
+	photo_name	VARCHAR2(4000)		NOT NULL,
 	type	VARCHAR2(50)		,
 	crew_id	VARCHAR2(50)		NOT NULL
 );
@@ -254,13 +254,17 @@ INSERT ALL
 
 -- 크루+사진 테이블 셀렉트(화면에 쏘기)
 SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.name
-FROM crew c
-JOIN photo p ON c.crew_id = p.crew_id
-WHERE c.crew_id = '125';
+		FROM crew c
+		JOIN photo p ON c.crew_id = p.crew_id
+		WHERE c.crew_id = 126;
 
 SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
-		WHERE crew_id = #{value}
+		WHERE crew_id = #{value};
+
+select photo_id, photo_name, crew_id
+from photo
+WHERE crew_id='135';
 
 
 select * 
