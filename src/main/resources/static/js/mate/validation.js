@@ -129,7 +129,7 @@ document.querySelector("#phoneNumber-verify-button").addEventListener("click", (
 });
 
 //모든 유효성 통과할때만 form으로 서버에 전송
-document.querySelector("#registForm").addEventListener("submit", function(event) {
+document.querySelector("#registForm").addEventListener("submit", (event) => {
  
     if(emailChecked && passswordChecked1 && passswordChecked2 && phonenumberChecked){
 		alert("회원 가입이 정상적으로 처리 되었습니다.");

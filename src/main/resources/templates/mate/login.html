@@ -50,26 +50,31 @@
         <div class="col">
           <h3>함께 달리고 싶을 땐</h3>
           <h3 class="color-">RUNNINGMATE</h3>
+          <form id="loginForm" class="needs-validation" method="post">
           <div class="form-group mt-4">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="아이디 또는 이메일" name="id">
-              <label for="floatingInput">이메일</label>
+              <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required>
+              <label for="email">이메일</label>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-floating">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="비밀번호" name="password">
-              <label for="floatingPassword">비밀번호</label>
+              <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password" required>
+              <label for="password">비밀번호</label>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
             </div>
           </div> 
           
             <div class="form-check mt-3 mb-3">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                아이디 저장
+              <input class="form-check-input" type="checkbox" value="" id="saveEmail">
+              <label class="form-check-label" for="saveEmail">
+                이메일 저장
               </label>
             </div>
           
           <div class="d-grid gap-2">
-            <button class="btn btn-lg btn-primary" type="button">로그인</button>
+            <button class="btn btn-lg btn-primary" type="submit" id="loginSubmit">로그인</button>
           </div>
         <ol class="breadcrumb d-flex justify-content-center  mt-2 mb-2"> <!--좌로정렬,우로정렬,가운데정렬하고싶을떈 flex찾아보기-->
           <li class="breadcrumb-item"><a href="#">이메일/비밀번호 찾기</a></li>
@@ -78,11 +83,80 @@
         <div class="d-grid gap-2 mt-5">
         <button class="btn btn-lg" style="background-color:#FEE500;" type="button"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_kakao.svg"/> 카카오 로그인</button>
       </div>
+      </form>
+      
       </div>
+      
     </div>
 
+<form class="row g-3 needs-validation" novalidate>
+  <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">First name</label>
+    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Last name</label>
+    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustomUsername" class="form-label">Username</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+      <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="validationCustom03" class="form-label">City</label>
+    <input type="text" class="form-control" id="validationCustom03" required>
+    <div class="invalid-feedback">
+      Please provide a valid city.
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom04" class="form-label">State</label>
+    <select class="form-select" id="validationCustom04" required>
+      <option selected disabled value="">Choose...</option>
+      <option>...</option>
+    </select>
+    <div class="invalid-feedback">
+      Please select a valid state.
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="validationCustom05" required>
+    <div class="invalid-feedback">
+      Please provide a valid zip.
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
   
      
   </div>
+  
+  <script src="/js/mate/login.js"></script>
 </section>
 </html>

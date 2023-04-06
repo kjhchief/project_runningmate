@@ -1,5 +1,7 @@
 package com.runningmate.web.mate.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.runningmate.domain.mate.dto.Mate;
 import com.runningmate.domain.mate.service.MateService;
@@ -16,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@SessionAttributes("mate")
 @RequestMapping("/mate")
 public class MateController {
 
@@ -60,13 +64,12 @@ public class MateController {
 /*
 	@PostMapping
 	@ResponseBody
-	public String Login(@RequestParam String email, @RequestParam String password) {
-		Mate mate;
-		mate = mateService.getLoginInfo(email, password);
+	public String Login(@ModelAttribute("mate") Mate mate) {
+		mate = mateService.getLoginInfo(mate.getEmail(), mate.getPassword());
 		return "mate";
 		
 	}
-*/	
+	*/
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
