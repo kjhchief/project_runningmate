@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{mate/layout :: layout(~{::title}, ~{::link}, ~{::section}, ~{::script)}">
+  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script}, ~{::section})}">
   
   <title>마이페이지</title>
-  
   
   <section>
     <div class="container mt-5 g-0">
@@ -93,5 +92,6 @@
   
 
   </section>
-  <script th:src="@{/js/mate/mypage.js}"></script>
+  <script src="/js/mate/logout.js"></script>
+  <script src="/js/mate/mypage.js"></script>
 </html>

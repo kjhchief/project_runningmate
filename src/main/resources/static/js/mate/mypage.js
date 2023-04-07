@@ -1,5 +1,5 @@
 
-const detailButton = document.getElementById(detail);  
+const detailButton = document.getElementById('detail');  
 
 detailButton.addEventListener('click', () => {
 	

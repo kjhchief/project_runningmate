@@ -116,12 +116,18 @@ public class MateController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session, Model model) {
+		Mate mate = (Mate)session.getAttribute("mate");
+		model.addAttribute("mate", mate);
+			log.info("mate : {}", mate);
 		return "/mate/mypage" ;
 	}
 	
 	@GetMapping("/mateDetailChange")
-	public String mateDatail() {
+	public String mateDatail(HttpSession session, Model model) {
+		Mate mate = (Mate)session.getAttribute("mate");
+		model.addAttribute("mate", mate);
+			log.info("mate : {}", mate);
 		return "/mate/mateDetailChange";
 	}
 

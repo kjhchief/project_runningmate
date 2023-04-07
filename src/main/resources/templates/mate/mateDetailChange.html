@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{mate/layout :: layout(~{::title}, ~{::links}, ~{::section}, ~{::scripts})}">
+  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script}, ~{::section})}">
   
   <title>회원 상세 수정</title>
   <section class="py-5">
@@ -15,8 +15,8 @@
       <input type="text" id="email" name="email" class="form-control" value="" readonly>
     </div>
     <div>
-      <label for="userid">이름</label> 
-      <input type="text" id="userid" name="userid" class="form-control" value="" readonly>
+      <label for="name">이름</label> 
+      <input type="text" id="name" name="name" class="form-control" value="" readonly>
     </div>
     <div>
       <label for="password">비밀번호</label> 
@@ -24,15 +24,15 @@
     </div>
     <div>
       <label for="password">비밀번호 확인</label> 
-      <input type="text" id="password" name="password" class="form-control" value="" readonly>
+      <input type="text" id="passwordCheck" name="passwordCheck" class="form-control" value="" readonly>
     </div>
     <div>
       <label for="age">나이</label> 
       <input type="text" id="age" name="age" class="form-control" value="" readonly>
     </div>
     <div>
-      <label for="regdate">생년월일</label> 
-      <input type="text" id="regdate" name="regdate" class="form-control" value="" readonly>
+      <label for="birthdate">생년월일</label> 
+      <input type="text" id="birthdate" name="birthdate" class="form-control" value="" readonly>
     </div>
    
     <div class="row mt-4">
@@ -53,5 +53,6 @@
     
   
   </section>
-
+  <script src="/js/mate/logout.js"></script>
+  <script src="/js/mate/mateDetailChange.js"></script>
 </html>
