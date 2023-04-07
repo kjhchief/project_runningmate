@@ -16,4 +16,7 @@ public interface MateMapper {
 	
 	//로그인
 	public Mate findByEmailAndPassword(@Param("email") String email, @Param("password")String  password);
+	
+	//회원 정보 수정
+	public Mate findMateDetail();
 }

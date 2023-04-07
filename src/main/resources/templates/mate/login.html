@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{mate/layout :: layout(~{::title}, ~{::link}, ~{::section}, ~{::script})}">
 
     <title>로그인 화면</title>
   
@@ -51,7 +51,7 @@
           <h3>함께 달리고 싶을 땐</h3>
           <h3 class="color-">RUNNINGMATE</h3>
           
-          <form id="loginForm" action="login" class="needs-validation" method="post" novalidate>
+          <form id="loginForm"  class="needs-validation" method="post" novalidate>
           <div class="form-group mt-4">
             <div class="form-floating mb-3">
               <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required th:value="${saveEmail}">
@@ -95,7 +95,6 @@
       
     </div>
     </div>
-  
-  <script src="/js/mate/login.js"></script>
 </section>
+  <script th:src="@{/js/mate/login.js}"></script>
 </html>

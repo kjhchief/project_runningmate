@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{layout/layout2 :: layout(~{::title}, ~{::link}, ~{::section})}">
+  th:replace="~{mate/layout :: layout(~{::title}, ~{::link}, ~{::section}, ~{::script})}">
 
 <title>런닝 메이트 회원가입</title>
 
@@ -286,7 +286,7 @@ window.onload = function(){
     });
 }
 </script>
-  <script src="/js/mate/validation.js"></script>
   
 </section>
+  <script th:src="@{/js/mate/validation.js}"></script>
 </html>

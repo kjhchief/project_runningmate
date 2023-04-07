@@ -1,7 +1,7 @@
-const form = document.getElementById('loginForm');
+const form = document.querySelector('#loginForm');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-const saveEmail = document.getElementById('saveEmail');  
+const saveEmail = document.getElementById('saveEmail'); 
 
 //checkbox가 체크되었을 때 value 값 또는 "on" 문자열이 반환, 체크되지 않았을 때는 빈 문자열("")이 반환
 //만약 checkbox의 value 속성이 명시되지 않았다면, 체크박스가 체크되었을 때와 체크되지 않았을 때 모두 "on" 문자열이 반환
@@ -9,9 +9,9 @@ const saveEmail = document.getElementById('saveEmail');
 form.addEventListener('submit', (event) =>{
     //const checkedSave = document.querySelector('#saveEmail');
 	event.preventDefault();
-    // 클릭 이벤트가 상위 요소로 전파되지 않도록 중단시킴
+    // 클릭 이벤트가 상위 요소로 전파되지 않도록 중단시킴 
       
-	 // 폼 유효성 검사
+	 // 폼 유효성 검사 
     if ((!form.checkValidity())){
       form.classList.add('was-validated');
     }else{
@@ -23,7 +23,6 @@ form.addEventListener('submit', (event) =>{
 			saveEmail.value='';
 			//console.log(saveEmail.value);
 		    sendEmailPassword(email.value, password.value, saveEmail.value);
-			
 		}}
 });
 

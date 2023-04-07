@@ -71,6 +71,7 @@ public class MateController {
 		mateService.create(mate);
 		return "redirect:/mate/main";
 	}
+	
 	//로그인 처리 메소드
 	@PostMapping("/login")
 	@ResponseBody
@@ -101,7 +102,7 @@ public class MateController {
 		}else {// 회원이 아닌 경우
 			return "false";
 		}
-		
+			
 	}
 	
 	// 회원가입결과에 대한 메소드
