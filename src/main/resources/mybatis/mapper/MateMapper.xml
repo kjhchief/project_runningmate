@@ -18,7 +18,7 @@
 <select id="getLoginInfo" parameterType="Mate" resultType="Mate">
 	SELECT * 
 	FROM mate
-	WHERE email = #{value} AND password =#{value}
+	WHERE email = #{email} AND password =#{password}
 </select>
 
 

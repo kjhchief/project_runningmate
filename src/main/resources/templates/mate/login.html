@@ -54,7 +54,7 @@
           <form id="loginForm" class="needs-validation" method="post" novalidate>
           <div class="form-group mt-4">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required>
+              <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required th:value="${savedEmail}">
               <label for="email">이메일</label>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
@@ -68,7 +68,7 @@
           </div> 
           
             <div class="form-check mt-3 mb-3">
-              <input class="form-check-input" type="checkbox" value="" id="saveEmail">
+              <input class="form-check-input" type="checkbox" value="saveEmail" id="saveEmail">
               <label class="form-check-label" for="saveEmail">
                 이메일 저장
               </label>
