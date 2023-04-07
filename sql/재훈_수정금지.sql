@@ -127,13 +127,16 @@ ALTER TABLE crewlist
    );
 --예시 데이터 추가
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh3@naver.com', 139);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjhhhh@naver.com', 145);
 
 --특정 회원이 참석하는 특정 모임
 SELECT m.email, m.name, c.crew_id, l.types
 FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
                 JOIN mate m ON l.email = m.email
-WHERE c.crew_id = '139';
+WHERE c.crew_id = '145';
+
+DELETE FROM crewlist
+WHERE email = 'kjhhhh@naver.com';
 
 --특정 모임에 참석중인 회원: 64번 모임에 참석중인 송진11호
 SELECT m.name, m.email, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.crew_id

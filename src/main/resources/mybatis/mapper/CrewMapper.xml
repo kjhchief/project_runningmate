@@ -19,6 +19,12 @@
 		INSERT INTO photo (photo_id, photo_name, crew_id)
 		VALUES (photo_seq.NEXTVAL, #{photoName}, #{crewId})
 	</insert>
+	<!-- 모임 신청 -->
+	<insert id="joinCrew" parameterType="CrewList2">
+		INSERT INTO crewlist
+		VALUES (crewlist_seq.NEXTVAL, '참여', #{email}, #{value})
+	</insert>
+	
 	
 <!-- 조회 -->
 	<!-- 특정 모임에 참석하는 회원 리스트 -->

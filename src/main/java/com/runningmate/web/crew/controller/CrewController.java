@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
+import com.runningmate.domain.crew.dto.CrewList2;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.service.CrewService;
@@ -63,6 +64,26 @@ public class CrewController {
 		log.info("crew= {}", crewCreate);
 		return "redirect:/crew/result";
 	}
+	// 모임 등록 결과에 대한 메소드
+	@GetMapping("/result")
+	public String registerResult() {
+		return "crew/crew-result";		
+	}
+	
+	// 모임 신청
+	@PostMapping("/{crewId}")
+	public String joinCrew(@PathVariable String crewId, @ModelAttribute Model model) {
+		CrewList2 crewList2 = new CrewList2();
+		crewList2.setCrewId(crewId);
+		
+		
+		return "redirect:/crew/join-result";
+	}
+	// 모임 신청 결과에 대한 메소드
+	@GetMapping("/join-result")
+	public String joinCrewResult() {
+		return "crew/join-result";		
+	}
 	
 
 	
@@ -81,11 +102,7 @@ public class CrewController {
 	
 	
 	
-	// 모임 만들기 결과에 대한 메소드
-	@GetMapping("/result")
-	public String registerResult() {
-		return "crew/crew-result";		
-	}
+
 	
 	// 특정 모임의 모임 참석 화면 보여주기
 	@GetMapping("/{crewId}")

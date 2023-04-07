@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
+import com.runningmate.domain.crew.dto.CrewList2;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
@@ -53,7 +54,7 @@ public class CrewMapperTest {
 	
 	
 	@Test
-//	@Disabled
+	@Disabled
 	public void getCrew() {
 		CrewCreate crewCreate = crewMapper.findById("136");
 		
@@ -73,6 +74,15 @@ public class CrewMapperTest {
 	void getPhotosTest() {
 		List<CrewPhoto> photos = crewMapper.getPhotos("139");
 		log.info("사진 이름들: {}", photos);
+	}
+	@Test
+//	@Disabled
+	void joinCrewTest() {
+		CrewList2 crewList2 = new CrewList2();
+		crewList2.setEmail("kjhhhh@naver.com");
+		crewList2.setCrewId("145");
+		crewMapper.joinCrew(crewList2);
+		log.info("등록한 크루리스트: {}", crewList2);
 	}
 	
 	
