@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script}, ~{::section})}">
+  
+  <title>마이페이지</title>
+  
+  <script src="/js/mate/mateDetailChange.js"></script>
+  
+  <section>
+    <div class="container mt-5 g-0">
+      <div class="row">
+        <div class="col-5">
+    <div class="card border-0  mb-3" style="max-width: 25rem;">
+      <div class="card-header" style="height: 6rem;">
+        <div class="d-flex justify-content-between mt-4">
+          <div class="container">
+            <div class="row row-cols-1">
+              <div class="col text-start"><h4 style="margin: 0%;">송진호</h4></div>
+              <div class="col s-6 text-start">thdx@naver.com<span class="badge rounded-pil text" style="background-color:#FEE500; color:#282B33; line-height: 0.5rem;">Kakao</span></div>
+            </div>
+          </div>
+      <button type="button" class="btn btn-outline-primary" id="detail" style="white-space: nowrap; height: 2.5rem;">프로필 보기</button>
+    </div>
+    </div>
+      <div class="card-body border-bottom">
+
+
+        <div class="row justify-content-center text-center">
+          <div class="col-1">
+        <i class="fas fa-temperature-low"></i>
+      </div>
+      <div class="col-10">
+        <div class="progress mt-2">
+          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      </div>
+      
+  
+
+
+        <div class="card border-success m-auto mt-3 mb-3" style="max-width: 20rem;">
+          <div class="card-body">
+            <div class="d-flex justify-content-evenly">
+              <div>
+                참여 횟수
+              </div>
+              <div>
+               /
+              </div>
+              <div>
+                주최 횟수
+              </div>
+            </div>
+            <div class="d-flex justify-content-around">
+              <div>
+                1 회
+              </div>
+        
+              <div>
+               1 회
+              </div>
+            </div>
+          </div>
+        </div>
+
+ 
+
+
+    </div>
+    </div>
+    </div>
+ <div class="col-7">
+ 
+  <div class="card border-0 mb-3">
+    <h6 class="card-header">나의 러닝메이트</h6>
+    <ul class="list-group list-group-flush border-bottom">
+      <li class="list-group-item"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_myplab_color.svg" alt="신청 내역">&nbsp;신청 내역</li>
+      <li class="list-group-item"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_friend.svg" alt="친구">&nbsp;친구 목록</li>
+      <li class="list-group-item"><i class="far fa-heart"></i>&nbsp;&nbsp;찜한 목록</li>
+    </ul>
+    <h6 class="card-header mt-4">고객 센터</h6>
+    <ul class="list-group list-group-flush border-bottom">
+      <li class="list-group-item"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_faq_color.svg" width="25rem" alt="자주 묻는 질문">&nbsp;자주 묻는 질문</li>
+      <li class="list-group-item"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_notice_color.svg" width="25rem" alt="공지사항">&nbsp;공지 사항</li>
+    </ul>
+   
+  </div>
+  </div>
+  </div>
+
+
+  </div>
+  
+
+  </section>
+</html>

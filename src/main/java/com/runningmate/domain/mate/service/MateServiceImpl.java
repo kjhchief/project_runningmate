@@ -31,11 +31,8 @@ public class MateServiceImpl implements MateService {
 	}
 
 	@Override
-	public Mate getLoginInfo(Mate mate) {
-		if(mateMapper.getLoginInfo(mate) != null) {
-			return mate;
-		}
-		return null;
+	public Mate getLoginInfo(String email, String password) {
+		return mateMapper.findByEmailAndPassword(email, password);
 	}
 	
 	

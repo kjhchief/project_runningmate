@@ -15,8 +15,8 @@
 	WHERE email = #{value}
 </select>
 
-<select id="getLoginInfo" parameterType="Mate" resultType="Mate">
-	SELECT * 
+<select id="findByEmailAndPassword" parameterType="String" resultType="Mate">
+	SELECT email, name, gender, birthdate, phone_number, location 
 	FROM mate
 	WHERE email = #{email} AND password =#{password}
 </select>

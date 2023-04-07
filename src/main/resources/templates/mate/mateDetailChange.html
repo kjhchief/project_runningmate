@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{layout/layout :: layout(~{::title}, ~{::section})}">
+  th:replace="~{mate/layout :: layout(~{::title}, ~{::section}, ~{::scripts})}">
   
   <title>회원 상세 수정</title>
   <section class="py-5">
@@ -53,7 +53,9 @@
       </div>
     </div>
     </div>
+    
+    
+  
   </section>
 
-  
 </html>

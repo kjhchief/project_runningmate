@@ -1,6 +1,7 @@
 package com.runningmate.domain.mate.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.runningmate.domain.mate.dto.Mate;
 
@@ -14,5 +15,5 @@ public interface MateMapper {
 	public String findByEmail(String email);
 	
 	//로그인
-	public Mate getLoginInfo(Mate mate);
+	public Mate findByEmailAndPassword(@Param("email") String email, @Param("password")String  password);
 }

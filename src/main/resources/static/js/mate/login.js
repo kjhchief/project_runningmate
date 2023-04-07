@@ -1,64 +1,53 @@
 const form = document.getElementById('loginForm');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
+const saveEmail = document.getElementById('saveEmail');  
+
+//checkbox가 체크되었을 때 value 값 또는 "on" 문자열이 반환, 체크되지 않았을 때는 빈 문자열("")이 반환
+//만약 checkbox의 value 속성이 명시되지 않았다면, 체크박스가 체크되었을 때와 체크되지 않았을 때 모두 "on" 문자열이 반환
 
 form.addEventListener('submit', (event) =>{
     //const checkedSave = document.querySelector('#saveEmail');
-
+	event.preventDefault();
+    // 클릭 이벤트가 상위 요소로 전파되지 않도록 중단시킴
+      
 	 // 폼 유효성 검사
     if ((!form.checkValidity())){
-      // 검증 실패시 폼 제출 안되게 비활성화
-      event.preventDefault();
-      // 클릭 이벤트가 상위 요소로 전파되지 않도록 중단시킴
-      event.stopPropagation();
-    form.classList.add('was-validated');
+      form.classList.add('was-validated');
     }else{
-		sendEmailPassword(email.value, password.value);
-	}
-    
-    //if(checkedSave.checked){}	
+		if(saveEmail.checked){
+			saveEmail.value='on';
+			//console.log(saveEmail.value);
+			sendEmailPassword(email.value, password.value, saveEmail.value);
+		}else{
+			saveEmail.value='';
+			//console.log(saveEmail.value);
+		    sendEmailPassword(email.value, password.value, saveEmail.value);
+			
+		}}
 });
 
 
-function sendEmailPassword(email, password){
+function sendEmailPassword(email, password, saveEmail){
 	let option = {
 		method: "post",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded"
-			
 		},
-		body: `email=${email}&password=${password}` //서버로 전송할 데이터
+		body: `email=${email}&password=${password}&saveEmail=${saveEmail}` //서버로 전송할 데이터
 	};
-	fetch("/mate/login-check", option)
-		.then(respose => respose.text())
+	
+	fetch("/mate/login", option)
+		.then(respose => respose.json())
 		.then(result => loginResultMessage(result))
 		.catch(error => console.log(error));
 }
 
 function loginResultMessage(result){
-	if(result === 'success'){
+	if(result){
 		location.href='/mate/main';
-	}else if(result === 'failure'){
+	}else{
 		alert("이메일, 비밀번호를 다시 입력 해주세요.");
 	}
 	
 }
-
-/*
-// "saveEmail" 쿠키 값 읽어오기
-var savedEmail = getCookie("saveEmail");
-
-// "이메일" 입력란에 쿠키 값 채우기
-if (savedEmail) {
-  document.getElementById("email").value = savedEmail;
-}
-
-// 쿠키 값을 읽어오는 함수 구현
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length === 2) {
-    return parts.pop().split(";").shift();
-  }
-}
-*/

@@ -51,10 +51,10 @@
           <h3>함께 달리고 싶을 땐</h3>
           <h3 class="color-">RUNNINGMATE</h3>
           
-          <form id="loginForm" class="needs-validation" method="post" novalidate>
+          <form id="loginForm" action="login" class="needs-validation" method="post" novalidate>
           <div class="form-group mt-4">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required th:value="${savedEmail}">
+              <input type="email" class="form-control" id="email" placeholder="이메일" name="email" required th:value="${saveEmail}">
               <label for="email">이메일</label>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
@@ -67,8 +67,13 @@
             </div>
           </div> 
           
+         <!-- /* 
+         checkbox가 체크되었을 때 value 값 또는 "on" 문자열이 반환, 체크되지 않았을 때는 빈 문자열("")이 반환
+         만약 checkbox의 value 속성이 명시되지 않았다면, 체크박스가 체크되었을 때와 체크되지 않았을 때 모두 "on" 문자열이 반환
+                */ -->
+          
             <div class="form-check mt-3 mb-3">
-              <input class="form-check-input" type="checkbox" value="saveEmail" id="saveEmail">
+              <input class="form-check-input" type="checkbox" id="saveEmail" name="saveEmail" value="on">
               <label class="form-check-label" for="saveEmail">
                 이메일 저장
               </label>

@@ -38,8 +38,14 @@ public class MateController {
 	}
 	
 	// 로그인 화면 요청에 대한 처리 메소드
-	@GetMapping("/login")
-	public String loginForm() {
+	@GetMapping("/login") //@CookieValue브러우저에 저장되어있는 쿠키정보 불러옴
+	public String loginForm(@CookieValue(value="savedEmail", required = false) String savedEmail, Model model) {
+		log.info("savedEmail : {}", savedEmail);
+		
+		if(savedEmail != null) {
+			model.addAttribute("saveEmail", savedEmail);
+		}
+		
 		return "mate/login";
 
 	}
@@ -66,39 +72,56 @@ public class MateController {
 		return "redirect:/mate/main";
 	}
 	//로그인 처리 메소드
-	@PostMapping("/login-check")
+	@PostMapping("/login")
 	@ResponseBody
-	public String Login(@ModelAttribute("mate") Mate mate, 
-			HttpSession session, HttpServletResponse response, 
-			@CookieValue(value = "saveEmail", required = false) String saveEmail, 
-			Model model) {
+	public String Login(@RequestParam String email, @RequestParam String password, 
+						@RequestParam(required = false) String saveEmail,
+						HttpSession session, HttpServletResponse response) {
+		log.info("email : {}", email);
+		log.info("password : {}", password);
 		
-		// required = false 파라미터가 필수적이지 않음을 명시
-		if(mateService.getLoginInfo(mate) != null) {
-			session.setAttribute("mate", mateService.getLoginInfo(mate));
-			
-			if (saveEmail != null) {
-				
-				log.info("쿠키{}", saveEmail);
+		log.info("이메일저장 여부 : {}", saveEmail);
+		
+		// 회원인 경우
+		Mate mate = mateService.getLoginInfo(email, password); //변수처리안하고 if문에 넣으면 DB 두 번 갔다옴
+		if(mate != null) {
+			session.setAttribute("mate", mate);
+
+			if (saveEmail != "") {
+				log.info("쿠키저장");
+
 				Cookie cookie = new Cookie("savedEmail", mate.getEmail());
 				cookie.setMaxAge(60 * 60 * 1 * 1); // 1시간
 				cookie.setPath("/");
-				response.addCookie(cookie);
-				
-				 model.addAttribute("savedEmail", saveEmail);
-			}
-			
-			return "success";
-		}else {
-			return "failure";
+				response.addCookie(cookie);				
+			}else {
+				log.info("쿠키저장안됨");
+			}	
+			return "true";
+		}else {// 회원이 아닌 경우
+			return "false";
 		}
 		
 	}
 	
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/main")
-	public String registerResult() {
-		return "main";
+	public String registerResult(HttpSession session, Model model) {
+	Mate mate = (Mate)session.getAttribute("mate");
+	model.addAttribute("mate", mate);
+		log.info("mate : {}", mate);
+		
+		return "/mate/main";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "/mate/mypage" ;
+	}
+	
+	@GetMapping("/mateDetailChange")
+	public String mateDatail() {
+		return "/mate/mateDetailChange";
 	}
 
 }
