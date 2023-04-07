@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
+import com.runningmate.domain.crew.dto.CrewMates;
+import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.service.CrewService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,31 +57,14 @@ public class CrewController {
 	public String register(@ModelAttribute CrewCreate crewCreate) throws IOException {
 		
 		
-		crewService.createCrew(crewCreate);// 실제 쿼리 날리는 코드.
+		crewService.createCrew(crewCreate);
 		
 		
 		log.info("crew= {}", crewCreate);
-//		photoUp(crewCreatePhoto);
 		return "redirect:/crew/result";
 	}
 	
-	// 사진 등록 헬퍼 메소드
-	/*
-	private CrewCreatePhoto photoUp(CrewCreatePhoto crewCreatePhoto) throws IOException {
-		log.info("crewCreatePhoto= {}", crewCreatePhoto);
-		List<UploadFile> uploadFiles = fileStore.storeFiles(crewCreatePhoto.getUploadfiles());
-		
-		for(UploadFile photoName : uploadFiles){
-			crewCreatePhoto.setPhotoName(photoName.getStoreFileName());
-			log.info("photoNames= {}", photoName.getStoreFileName());
-		}
-		
-		crewService.createCrewPhoto(crewCreatePhoto);
-		
-		return crewCreatePhoto;
-	}
-	*/
-	
+
 	
 	
 	//이미지 출력
@@ -109,12 +94,19 @@ public class CrewController {
 		LocalDateTime localDateTime = LocalDateTime.parse(crewCreate.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 		model.addAttribute("crewCreate", crewCreate);
 		model.addAttribute("crewdate", localDateTime);
-		model.addAttribute("photoName", crewCreate.getPhotoName());
+		
+		List<CrewPhoto> crewPhotos = crewService.getPhotos(crewId);
+		model.addAttribute("photos", crewPhotos);
+//		int i=0;
+//		for (CrewPhoto photo : crewPhotos) {
+//			i++;
+//		}
 		
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);
 		
 		log.info("crewCreate= {}", crewCreate);
+		log.info("photo= {}", crewPhotos);
 		log.info("crewMates= {}", crewMates);
 		
 		return "crew/crewJoin";

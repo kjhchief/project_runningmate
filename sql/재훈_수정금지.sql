@@ -44,13 +44,13 @@ ALTER TABLE mate
         );
 --예시 데이터 추가        
 INSERT INTO mate (email, name, password, gender, birthdate, phone_number, location)
-VALUES ('kjh@naver.com', '후니김', '1111', 'M', '19940413', '010-9111-2222', '서울 노원구 띵띵동');
+VALUES ('kjh3@naver.com', '후니김3', '1111', 'M', '19940413', '010-2111-2223', '서울 노원구 띵띵동');
 
 
 --2. 모임 테이블
 SELECT *
-FROM crew;
-ORDER BY crew_id;
+FROM crew
+ORDER BY crew_id DESC;
 
 DROP TABLE crew;
 
@@ -80,8 +80,8 @@ ALTER TABLE crew
 
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '테스트', 
-TO_DATE('2020-3-4 오후 7:7', 'YYYY-MM-DD PM HH:MI', 'NLS_DATE_LANGUAGE = KOREAN'), 5, 
+VALUES (crew_seq.NEXTVAL, '테스트222', 
+SYSDATE, 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
 
@@ -90,16 +90,17 @@ commit;
 -- 특정 모임 선택(select)
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 SELECT *
-FROM crew;
+FROM crew
+ORDER BY crew_id DESC;
 
 
 --WHERE crew_id = '61';
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 --FROM crew
 --WHERE crew_id = 63;
-SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
-	FROM crew
-	WHERE crew_id = 76;
+SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+FROM crew
+WHERE crew_id = 139;
 
 --8. 모임리스트
 SELECT *
@@ -126,13 +127,13 @@ ALTER TABLE crewlist
    );
 --예시 데이터 추가
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh@naver.com', 64);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh3@naver.com', 139);
 
 --특정 회원이 참석하는 특정 모임
 SELECT m.email, m.name, c.crew_id, l.types
 FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
                 JOIN mate m ON l.email = m.email
-WHERE c.crew_id = '62';
+WHERE c.crew_id = '139';
 
 --특정 모임에 참석중인 회원: 64번 모임에 참석중인 송진11호
 SELECT m.name, m.email, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.crew_id
@@ -244,8 +245,8 @@ START WITH 1
 INCREMENT BY 1;
 
 --사진 insert
-INSERT INTO photo (photo_id, name, crew_id)
-VALUES (photo_seq.NEXTVAL, '배경사진01', '64');
+INSERT INTO photo (photo_id, photo_name, crew_id)
+VALUES (photo_seq.NEXTVAL, 'pic02', '139');
    
 --사진정보 포함 추가
 INSERT ALL
@@ -275,11 +276,14 @@ SELECT crew_id
 FROM crew
 WHERE title = '테스트 모임...';
 
-select * 
-from photo
-ORDER BY crew_id DESC;
+select photo_id, photo_name, crew_id
+from photo;
+WHERE crew_id =  '143';
 
 commit;
+
+DELETE FROM photo 
+WHERE photo_id = 108;
 
 
 

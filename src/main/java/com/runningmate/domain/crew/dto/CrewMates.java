@@ -1,4 +1,4 @@
-package com.runningmate.web.crew.controller;
+package com.runningmate.domain.crew.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

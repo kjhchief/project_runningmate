@@ -25,15 +25,15 @@
           aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="3000">
-            <img th:src="@{${'/crew/images/' + photos[0].photoName}}" class="d-block w-100" alt="...">
+          <div class="carousel-item active" data-bs-interval="4000">
+            <img th:src="@{${'/crew/images/' + photo0}}" class="d-block w-100" alt="...">
           </div>
-           <th:block th:each="photo : ${photos}" th:unless="${photo.photoName == photos[0].photoName}">
-            <div class="carousel-item" data-bs-interval="3000">
-              <img th:src="@{${'/crew/images/' + photo.photoName}}" class="d-block w-100" alt="...">
-            </div>
-          </th:block>
-          
+          <div class="carousel-item" data-bs-interval="4000">
+            <img th:src="@{${'/crew/images/' + photo1}}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="4000">
+            <img th:src="@{${'/crew/images/' + photo2}}" class="d-block w-100" alt="...">
+          </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">

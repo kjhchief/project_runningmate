@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.web.crew.controller.CrewMates;
+import com.runningmate.domain.crew.dto.CrewMates;
+import com.runningmate.domain.crew.dto.CrewPhoto;
 
 @Mapper
 public interface CrewMapper {
@@ -20,6 +21,8 @@ public interface CrewMapper {
 	public void update(CrewCreate crewCreate);
 	
 	public List<CrewMates> findByAll(String id);
+	
+	public List<CrewPhoto> getPhotos(String id);
 	
 	
 }

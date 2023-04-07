@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
+import com.runningmate.domain.crew.dto.CrewMates;
+import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 import com.runningmate.web.crew.controller.CrewController;
-import com.runningmate.web.crew.controller.CrewMates;
 import com.runningmate.web.crew.controller.FileStore;
 import com.runningmate.web.crew.controller.UploadFile;
 
@@ -61,6 +62,12 @@ public class CrewServiceImpl implements CrewService {
 	@Override
 	public List<CrewMates> getCrews(String id) {
 		return crewMapper.findByAll(id);
+	}
+
+	@Override
+	public List<CrewPhoto> getPhotos(String id) {
+		
+		return crewMapper.getPhotos(id);
 	}
 
 

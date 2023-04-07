@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper	namespace="com.runningmate.domain.crew.mapper.CrewMapper">                        
-    
+
+<!-- 등록 -->    
     <!-- 모임 등록 -->
 	<insert id="createCrew" parameterType="CrewCreate">
 		INSERT INTO crew(crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description)
@@ -13,13 +14,13 @@
 	    	SELECT crew_seq.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
-	
 	<!-- 사진 등록 -->
   	<insert id="createPhoto" parameterType="CrewCreate">
 		INSERT INTO photo (photo_id, photo_name, crew_id)
 		VALUES (photo_seq.NEXTVAL, #{photoName}, #{crewId})
 	</insert>
 	
+<!-- 조회 -->
 	<!-- 특정 모임에 참석하는 회원 리스트 -->
 	<select id="findByAll" parameterType="string" resultType="CrewMates">
 		SELECT m.name, m.email, c.title, c.crew_id
@@ -27,19 +28,27 @@
 		                JOIN mate m ON l.email = m.email
 		WHERE c.crew_id = #{value}
 	</select>
-	
-	<!-- 특정 모임 DB에서 불러오기(모임 참석 화면 쏘는 용도) -->
+	<!-- 특정 모임 전체 정보 -->
 	<!-- <select id="findById" parameterType="string" resultType="CrewCreate">
-		SELECT title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
-		FROM crew
-		WHERE crew_id = #{value}
-	</select> -->
-	<select id="findById" parameterType="string" resultType="CrewCreate">
 		SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.photo_name
 		FROM crew c
 		JOIN photo p ON c.crew_id = p.crew_id
 		WHERE c.crew_id = #{value}
-	</select>                        
+	</select> -->
+ 	<select id="findById" parameterType="string" resultType="CrewCreate">
+		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE crew_id = #{value}
+	</select> 
+	
+	
+	<!-- 특정 모임 사진 정보 -->
+	<select id="getPhotos" parameterType="string" resultType="CrewPhoto">
+		select photo_id, photo_name, crew_id
+		from photo
+		WHERE crew_id = #{value}
+	</select>
+	                        
                         
                         
                         
