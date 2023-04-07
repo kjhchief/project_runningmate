@@ -1,5 +1,6 @@
 package com.runningmate.domain.crew.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.mapper.CrewMapper;
+import com.runningmate.web.crew.controller.CrewController;
 import com.runningmate.web.crew.controller.CrewMates;
+import com.runningmate.web.crew.controller.FileStore;
+import com.runningmate.web.crew.controller.UploadFile;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class CrewServiceImpl implements CrewService { 
 	
 	@Autowired
 	private CrewMapper crewMapper; 
+	@Autowired
+	private FileStore fileStore;
 
 	@Override
 	@Transactional
@@ -22,7 +31,19 @@ public class CrewServiceImpl implements CrewService {
 		// 모임등록
 		crewMapper.createCrew(crewCreate);
 		// 사진등록
-		crewMapper.createPhoto(crewCreate);
+		
+		List<UploadFile> uploadFiles = null;
+		try {
+			uploadFiles = fileStore.storeFiles(crewCreate.getUploadfiles());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(UploadFile photoName : uploadFiles){
+			crewCreate.setPhotoName(photoName.getStoreFileName());
+			log.info("photoNames= {}", photoName.getStoreFileName());
+			crewMapper.createPhoto(crewCreate);
+		}
+		
 	}
 	/*
 	@Override

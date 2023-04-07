@@ -54,15 +54,8 @@ public class CrewController {
 	@PostMapping
 	public String register(@ModelAttribute CrewCreate crewCreate) throws IOException {
 		
-		List<UploadFile> uploadFiles = fileStore.storeFiles(crewCreate.getUploadfiles());
 		
-		//uploadFiles에 담긴 객체들의 이름만 가져옴(사진파일 전체이름). 근데 이게 없으면 1111 에러가 남.
-		for(UploadFile photoName : uploadFiles){
-			crewCreate.setPhotoName(photoName.getStoreFileName());
-			log.info("photoNames= {}", photoName.getStoreFileName());
-		}
-		
-		crewService.createCrew(crewCreate);// 여기서 디비 갔다옴 와버림.
+		crewService.createCrew(crewCreate);// 실제 쿼리 날리는 코드.
 		
 		
 		log.info("crew= {}", crewCreate);
