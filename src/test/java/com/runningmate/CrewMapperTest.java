@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewList2;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
+import com.runningmate.domain.manage.dto.CrewList;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -78,11 +78,11 @@ public class CrewMapperTest {
 	@Test
 //	@Disabled
 	void joinCrewTest() {
-		CrewList2 crewList2 = new CrewList2();
-		crewList2.setEmail("kjhhhh@naver.com");
-		crewList2.setCrewId("145");
-		crewMapper.joinCrew(crewList2);
-		log.info("등록한 크루리스트: {}", crewList2);
+		CrewList crewList = new CrewList();
+		crewList.setEmail("kjhhhh@naver.com");
+		crewList.setCrewId("145");
+		crewMapper.joinCrew(crewList);
+		log.info("등록한 크루리스트: {}", crewList);
 	}
 	
 	

@@ -20,7 +20,7 @@
 		VALUES (photo_seq.NEXTVAL, #{photoName}, #{crewId})
 	</insert>
 	<!-- 모임 신청 -->
-	<insert id="joinCrew" parameterType="CrewList2">
+	<insert id="joinCrew" parameterType="CrewList">
 		INSERT INTO crewlist
 		VALUES (crewlist_seq.NEXTVAL, '참여', #{email}, #{crewId})
 	</insert>

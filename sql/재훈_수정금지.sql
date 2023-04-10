@@ -122,8 +122,8 @@ ALTER TABLE crewlist
   ADD ( CONSTRAINT crewlist_id_pk   PRIMARY KEY(crewlist_id),
    CONSTRAINT crewlist_email_fk FOREIGN KEY(email) REFERENCES mate(email),
    CONSTRAINT crewlist_crew_id_fk FOREIGN KEY(crew_id) REFERENCES crew(crew_id),
-   CONSTRAINT crewlist_types_ck CHECK (types IN('참여', '주최', '찜'))
-   
+   CONSTRAINT crewlist_types_ck CHECK (types IN('참여', '주최', '찜')),
+   CONSTRAINT crewlist_email_uk      UNIQUE(email)
    );
 --예시 데이터 추가
 INSERT INTO crewlist
@@ -138,6 +138,8 @@ WHERE c.crew_id = '145';
 DELETE FROM crewlist
 WHERE email = 'kjhhhh@naver.com';
 
+commit;
+
 --특정 모임에 참석중인 회원: 64번 모임에 참석중인 송진11호
 SELECT m.name, m.email, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.crew_id
 	FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
@@ -148,9 +150,6 @@ SELECT m.name, m.email, c.title, c.crew_id
 	FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
 	                JOIN mate m ON l.email = m.email
 	WHERE c.crew_id = '64';
-    
-
-commit;
 
 
 
@@ -280,7 +279,8 @@ FROM crew
 WHERE title = '테스트 모임...';
 
 select photo_id, photo_name, crew_id
-from photo;
+from photo
+ORDER BY crew_id DESC;
 WHERE crew_id =  '143';
 
 commit;

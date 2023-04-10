@@ -80,13 +80,13 @@ public class ThymeleafController {
 	
 	@GetMapping("/crewJoinAfter")
 	public String crewJoinAfter() {
-		return "crewJoinAfter";
+		return "crew/crewJoinAfter";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+//	@GetMapping("/login")
+//	public String login() {
+//		return "login";
+//	}
 	
 	@GetMapping("/memberDetail")
 	public String memberDetail() {

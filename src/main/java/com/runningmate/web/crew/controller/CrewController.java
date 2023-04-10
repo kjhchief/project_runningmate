@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -25,10 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewList2;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.service.CrewService;
+import com.runningmate.domain.manage.dto.CrewList;
+import com.runningmate.domain.mate.dto.Mate;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,16 +75,26 @@ public class CrewController {
 	
 	// 모임 신청
 	@PostMapping("/{crewId}")
-	public String joinCrew(@PathVariable String crewId, @ModelAttribute Model model) {
-		CrewList2 crewList2 = new CrewList2();
-		crewList2.setCrewId(crewId);
+	public String joinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
+		model.addAttribute("crewCrewId", crewId);
 		
-		return "redirect:/crew/join-result";
+		Mate mate = (Mate)httpSession.getAttribute("mate");
+	    log.info("모임신청mate : {}", mate);
+		
+		CrewList crewList = new CrewList();
+		model.addAttribute("mateCrewId", crewList.getCrewId());
+		
+		crewList.setCrewId(crewId);
+		crewList.setEmail(mate.getEmail());
+		log.info("crewList: {}", crewList);
+		crewService.joinCrew(crewList);
+		
+		return "redirect:/crew/{crewId}";
 	}
-	// 모임 신청 결과에 대한 메소드
-	@GetMapping("/join-result")
+	// 모임 신청 결과에 대한 메소드 (작동 안 됨)
+	@GetMapping("/joincrew")
 	public String joinCrewResult() {
-		return "crew/join-result";		
+		return "crew/join";
 	}
 	
 
@@ -106,6 +119,9 @@ public class CrewController {
 	// 특정 모임의 모임 참석 화면 보여주기
 	@GetMapping("/{crewId}")
 	public String JoinCrew(@PathVariable String crewId, Model model) {
+		Model testCrewId = model.addAttribute("crewCrewId", crewId);
+		log.info("crewCrewId: {}", testCrewId.toString());
+		
 		CrewCreate crewCreate = crewService.getCrew(crewId);
 		LocalDateTime localDateTime = LocalDateTime.parse(crewCreate.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 		model.addAttribute("crewCreate", crewCreate);
@@ -113,10 +129,6 @@ public class CrewController {
 		
 		List<CrewPhoto> crewPhotos = crewService.getPhotos(crewId);
 		model.addAttribute("photos", crewPhotos);
-//		int i=0;
-//		for (CrewPhoto photo : crewPhotos) {
-//			i++;
-//		}
 		
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);

@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
-import com.runningmate.domain.crew.dto.CrewList2;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
+import com.runningmate.domain.manage.dto.CrewList;
 
 @Mapper
 public interface CrewMapper {
@@ -19,7 +19,7 @@ public interface CrewMapper {
 	// 사진 등록
 	public void createPhoto(CrewCreate crewCreate);
 	// 모임 가입
-	public void joinCrew(CrewList2 crewList2);
+	public void joinCrew(CrewList crewList);
 	
 	public void update(CrewCreate crewCreate);
 	
