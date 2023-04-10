@@ -14,4 +14,5 @@ public interface CrewService {
 	public void joinCrew(CrewList crewList);
 	public List<CrewMates> getCrews(String id);
 	public List<CrewPhoto> getPhotos(String id);
+	public CrewList sessionMate(String email);
 }

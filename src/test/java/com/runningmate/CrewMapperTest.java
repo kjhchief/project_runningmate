@@ -2,6 +2,8 @@ package com.runningmate;
 
 import java.util.List;
 
+import javax.management.loading.PrivateClassLoader;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
 import com.runningmate.domain.crew.mapper.CrewMapper;
+import com.runningmate.domain.crew.service.CrewService;
 import com.runningmate.domain.manage.dto.CrewList;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,9 @@ public class CrewMapperTest {
 	
 	@Autowired
 	private CrewMapper crewMapper;
+	
+	@Autowired
+	private CrewService crewService;
 	
 	@Test
 	@Disabled
@@ -76,13 +82,20 @@ public class CrewMapperTest {
 		log.info("사진 이름들: {}", photos);
 	}
 	@Test
-//	@Disabled
+	@Disabled
 	void joinCrewTest() {
 		CrewList crewList = new CrewList();
 		crewList.setEmail("kjhhhh@naver.com");
 		crewList.setCrewId("145");
 		crewMapper.joinCrew(crewList);
 		log.info("등록한 크루리스트: {}", crewList);
+	}
+	
+	@Test
+//	@Disabled
+	void sessionMateTest() {
+		CrewList sessionMate = crewService.sessionMate("kjh3@naver.com");
+		log.info("sessionMate::::: {}", sessionMate);
 	}
 	
 	

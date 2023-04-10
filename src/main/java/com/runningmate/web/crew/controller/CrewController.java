@@ -76,18 +76,19 @@ public class CrewController {
 	// 모임 신청
 	@PostMapping("/{crewId}")
 	public String joinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
-		model.addAttribute("crewCrewId", crewId);
-		
 		Mate mate = (Mate)httpSession.getAttribute("mate");
+		model.addAttribute("mateEmail", mate.getEmail());
 	    log.info("모임신청mate : {}", mate);
-		
+	    
+	    List<CrewMates> crewMates = crewService.getCrews(crewId);
+	    
 		CrewList crewList = new CrewList();
-		model.addAttribute("mateCrewId", crewList.getCrewId());
-		
 		crewList.setCrewId(crewId);
 		crewList.setEmail(mate.getEmail());
 		log.info("crewList: {}", crewList);
 		crewService.joinCrew(crewList);
+		
+		
 		
 		return "redirect:/crew/{crewId}";
 	}
@@ -96,8 +97,6 @@ public class CrewController {
 	public String joinCrewResult() {
 		return "crew/join";
 	}
-	
-
 	
 	
 	//이미지 출력
@@ -118,10 +117,14 @@ public class CrewController {
 	
 	// 특정 모임의 모임 참석 화면 보여주기
 	@GetMapping("/{crewId}")
-	public String JoinCrew(@PathVariable String crewId, Model model) {
-		Model testCrewId = model.addAttribute("crewCrewId", crewId);
-		log.info("crewCrewId: {}", testCrewId.toString());
-		
+	public String JoinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
+		Mate mate = (Mate)httpSession.getAttribute("mate");
+		if(mate==null) {
+			return "mate/login";
+		}
+		log.info("재훈모임mate= {}", mate);
+		model.addAttribute("crewId", crewId);
+		log.info("crewId= {}", crewId);
 		CrewCreate crewCreate = crewService.getCrew(crewId);
 		LocalDateTime localDateTime = LocalDateTime.parse(crewCreate.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 		model.addAttribute("crewCreate", crewCreate);
@@ -133,11 +136,20 @@ public class CrewController {
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);
 		
+		CrewList sessionMate = crewService.sessionMate(mate.getEmail()); // 지금 mate.getEmail로 로그인된 사용자의 email을 못 가져옴. 왜????
+		log.info("sessionMate= {}", sessionMate);
+		if(sessionMate == null) {
+			return "mate/login";
+		}
+		model.addAttribute("sessionMateCrewId", sessionMate.getCrewId());
+		
+		
 		log.info("crewCreate= {}", crewCreate);
 		log.info("photo= {}", crewPhotos);
 		log.info("crewMates= {}", crewMates);
 		
 		return "crew/crewJoin";
+		
 	}
 	
 	// 특정 모임의 회원 리스트 보여주기

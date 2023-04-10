@@ -34,13 +34,14 @@
 		                JOIN mate m ON l.email = m.email
 		WHERE c.crew_id = #{value}
 	</select>
-	<!-- 특정 모임 전체 정보 -->
-	<!-- <select id="findById" parameterType="string" resultType="CrewCreate">
-		SELECT c.crew_id, c.title, c.crewdate, c.mate_count, c.crew_location, c.crew_location_dt, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.awaiter_count, p.photo_id, p.photo_name
-		FROM crew c
-		JOIN photo p ON c.crew_id = p.crew_id
-		WHERE c.crew_id = #{value}
-	</select> -->
+	<!-- 이메일로 특정 회원 조회(crew_id조회 위함) -->
+	<select id="sessionMate" parameterType="string" resultType="CrewList">
+		SELECT *
+		FROM crewlist
+		WHERE email = #{value}
+	</select>
+	
+	
  	<select id="findById" parameterType="string" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew

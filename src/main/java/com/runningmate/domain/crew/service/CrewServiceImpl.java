@@ -75,6 +75,11 @@ public class CrewServiceImpl implements CrewService {
 		crewMapper.joinCrew(crewList);
 	}
 
+	@Override
+	public CrewList sessionMate(String email) {
+		return crewMapper.sessionMate(email);
+	}
+
 
 
 	

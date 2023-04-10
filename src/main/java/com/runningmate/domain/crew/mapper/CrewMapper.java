@@ -21,6 +21,9 @@ public interface CrewMapper {
 	// 모임 가입
 	public void joinCrew(CrewList crewList);
 	
+	// 이메일로 회원의 이메일,이름,크루아이디,참여리스트타입 조회 (세션 회원이 모임에 참여중인 회원인지 여부 알기 위함)
+	public CrewList sessionMate(String email);
+	
 	public void update(CrewCreate crewCreate);
 	
 	public List<CrewMates> findByAll(String id);

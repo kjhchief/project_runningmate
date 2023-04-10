@@ -106,8 +106,9 @@
 
                   <div class="button_area mt-5">
                     <form method="post">
-                      <button type="submit" class="btn btn-primary join_button" data-bs-toggle="modal" id="join_button" th:if="${mateCrewId == null}">신청하기</button>
-                      <button type="button" class="btn btn-primary" th:if="${mateCrewId == crewCrewId}">신청 취소</button>
+                      <button type="submit" class="btn btn-primary join_button" id="join_button" th:unless="${crewId == sessionMateCrewId}">신청하기</button>
+                      <button type="button" class="btn btn-primary" th:if="${crewId == sessionMateCrewId}">신청 취소</button>
+                      
                       <button type="button" class="btn btn-primary bookmark_button" data-bs-toggle="modal" data-bs-target="#ev_modal"><img src="/img/icon/heart-regular.svg" width="20px" alt="찜하기 하트 그림"/></button>
                       <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ev_modal">평가하기</button> -->
                     </form>
