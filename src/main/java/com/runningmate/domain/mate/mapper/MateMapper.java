@@ -14,9 +14,12 @@ public interface MateMapper {
 	// 이메일 유효성 체크
 	public String findByEmail(String email);
 	
+	// 비밀번호 확인
+	public String findByPassword(@Param("email") String email, @Param("password")String  password);
+	
 	//로그인
-	public Mate findByEmailAndPassword(@Param("email") String email, @Param("password")String  password);
+	public Mate findByEmailAndPassword(@Param("email") String email, @Param("password")String  password);	
 	
 	//회원 정보 수정
-	public Mate findMateDetail();
+	public void update(Mate mate);
 }

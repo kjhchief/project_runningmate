@@ -19,7 +19,7 @@ public class Mate {
  private String birthdate;
  private String phoneNumber;
  private String address;
- private String addressdetail;
+ private String addressDetail;
  private String location;
  private String mateClass;
  private String kakaoaccYn;
@@ -34,12 +34,23 @@ public class Mate {
  }
  
  public void setLocation() {
-	 this.location  = getAddress() + " " + getAddressdetail();
+	 this.location  = getAddress() + "," + getAddressDetail();
  } 
+ 
+ 
+ public void setAddress() {
+	 String[] splitLocation = getLocation().split(",");
+	this.address = splitLocation[0].trim();
+ }
+ public void setAddressDetail() {
+	 String[] splitLocation = getLocation().split(",");
+	 this.addressDetail = splitLocation[1].trim();
+ }
  
  public void setPhoneNumber() {
 	 this.phoneNumber = phoneNumber.substring(0, 3) + "-" + phoneNumber.substring(3, 7) + "-" + phoneNumber.substring(7);
 	
  } 
+
  
 }

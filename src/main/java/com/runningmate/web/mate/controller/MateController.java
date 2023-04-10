@@ -69,7 +69,7 @@ public class MateController {
 		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
-		return "redirect:/mate/main";
+		return "/mate/main";
 	}
 	
 	//로그인 처리 메소드
@@ -123,12 +123,38 @@ public class MateController {
 		return "/mate/mypage" ;
 	}
 	
-	@GetMapping("/mateDetailChange")
+	//mate정보 수정 페이지 화면 처리
+	@GetMapping("/mateDetail")
+	public String mateDatailForm(HttpSession session, Model model) {
+		Mate mate = (Mate)session.getAttribute("mate");
+		
+		mate.setAddress();
+		mate.setAddressDetail();
+		mate.setPhoneNumber();
+		model.addAttribute("mate", mate);
+		log.info("mate : {}", mate);	
+		return "/mate/mateDetail";
+	}
+	
+	//mate정보 수정 기능 처리
+	@PostMapping("/mateDetail")
 	public String mateDatail(HttpSession session, Model model) {
 		Mate mate = (Mate)session.getAttribute("mate");
 		model.addAttribute("mate", mate);
-			log.info("mate : {}", mate);
-		return "/mate/mateDetailChange";
+		mateService.update(mate);
+			
+		return "/mate/mateDetail";
 	}
-
+	
+	//비밀번호 확인
+	@PostMapping("/password-check")
+	@ResponseBody
+	public String passwordCheck(@RequestParam String email, @RequestParam String password) {
+		if (mateService.existPassword(email, password)) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
 }

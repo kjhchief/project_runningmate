@@ -1,3 +1,10 @@
+//스페이스바 입력못하게 하는 코드
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode === 32) {
+    event.preventDefault();
+  }
+});
+
 const form = document.querySelector('#loginForm');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');

@@ -29,11 +29,27 @@ public class MateServiceImpl implements MateService {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean existPassword(String email, String password) {
+		if(mateMapper.findByPassword(email, password) != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	@Override
 	public Mate getLoginInfo(String email, String password) {
 		return mateMapper.findByEmailAndPassword(email, password);
 	}
+
+	@Override
+	public void update(Mate mate) {
+		mateMapper.update(mate);
+	}
+
+	
 	
 	
 }

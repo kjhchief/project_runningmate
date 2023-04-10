@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{mate/layout :: layout(~{::title}, ~{::section})}">
-
-  <title>회원 상세</title>
-
+  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script}, ~{::section})}">
+  
+  <title>회원 상세 수정</title>
   <section class="py-5">
     <div class="container">
 
@@ -11,42 +10,134 @@
       <h2>회원 상세</h2>
     </div>
     
+    <form id="detail-form" class="needs-validation" method="post">
     <div>
-      <label for="name">이름</label> <input type="text" id="name"
-        name="name" class="form-control" value="" readonly>
+      <label for="email">이메일</label> 
+      <input type="text" th:value=${mate.getEmail()} id="email" name="email" class="form-control" value="" readonly>
+    </div>
+    <div class="form-group row">
+    <div class="col-8">
+      <label for="name">이름</label> 
+      <input type="text" th:value=${mate.getName()} id="name" name="name" class="form-control" value="" disabled required>
+    </div>
+    <div class="col">
+      <label for="gender">성별</label> 
+       <div th:if="${mate.getGender == 'M'}">
+      <input type="text" th:value="'남'" id="gender" name="gender" class="form-control" maxlength="1" value="" disabled required>
+      <div id="gender-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
+      </div>
+       <div th:unless="${mate.getGender == 'M'}">
+      <input type="text" th:value="'여'" id="gender" name="gender" class="form-control" maxlength="1" value="" disabled required>
+    </div>
+    </div>
+    </div>
+    <div class="form-group row">
+    <div class="col">
+      <label for="password">비밀번호</label> 
+      <input type="password" id="password" name="password" class="form-control" value="" disabled required>
+      <!--/*<div class="valid-feedback">Valid.</div>*/-->
+      <div class="invalid-feedback">비밀번호를 입력하세요.</div>
+      <div id="password-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
+    </div>
+    <div class="col">
+      <label for="password-check">비밀번호 확인</label> 
+      <input type="password" id="password-check" name="password-check" class="form-control" value="" disabled>
+      <!--/*<div class="valid-feedback">Valid.</div>*/-->
+      <div id="password-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
+    </div>
+     <div class="col">
+     <label for="password-check"></label> 
+        <button class="w-100 btn btn-primary pt-2" onclick="" type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">비밀번호 변경</button>
+      </div>
+            
+
+      
     </div>
     <div>
-      <label for="userid">아이디</label> <input type="text" id="userid"
-        name="userid" class="form-control" value="" readonly>
+      <label for="birthdate">생년월일</label> 
+      <input type="text" th:value=${mate.getBirthdate()} id="birthdate" name="birthdate" class="form-control" maxlength="10" value="" disabled required>
+      <div id="birthdate-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
-      <label for="password">비밀번호</label> <input type="text" id="password"
-        name="password" class="form-control" value="" readonly>
+      <label for="phoneNumber">전화번호</label> 
+      <input type="text" th:value=${mate.getPhoneNumber()} id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11" value="" disabled required>
+      <div id="phoneNumber-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
-      <label for="age">나이</label> <input type="text" id="age"
-        name="age" class="form-control" value="" readonly>
+      <label for="address">주소</label> 
+      <input type="text" th:value=${mate.getAddress()} id="address" name="address" class="form-control" value="" readonly disabled>
     </div>
-    <div>
-      <label for="email">이메일</label> <input type="text" id="email"
-        name="email" class="form-control" value="" readonly>
-    </div>
-    <div>
-      <label for="regdate">가입일자</label> <input type="text" id="regdate"
-        name="regdate" class="form-control" value="" readonly>
+     <div>
+      <label for="address-detail">상세 주소</label> 
+      <input type="text" th:value=${mate.getAddressDetail()} id="address-detail" name="address-detail" class="form-control" value="" disabled required>
     </div>
    
-    <div class="row">
+      <div id="detail-update-list" class="row mt-4">
       <div class="col">
-        <button class="w-100 btn btn-primary btn-lg"
-          onclick="" type="button">회원정보 수정</button>
+        <button class="w-100 btn btn-primary" id="update-button" onclick="" type="submit">회원정보 수정</button>
       </div>
       <div class="col">
-        <button class="w-100 btn btn-secondary btn-lg" onclick="" type="button">회원 목록</button>
+        <button class="w-100 btn btn-secondary" onclick="" type="button">회원 목록</button>
       </div>
     </div>
+    
+    <div id="detail-save-cancel-delete" class="mt-4">
+      <div class="col">
+      <div class="d-flex justify-content-evenly">
+        <button class="w-100 btn btn-primary me-4" id="update-finsh-button" onclick="" type="button">수정 완료</button>
+        <button class="w-100 btn btn-primary me-4" id="cancel-button" onclick="" type="button">취소</button>
+        <button class="w-100 btn btn-danger" id="leave-button" onclick="" type="button">탈퇴</button>
     </div>
+    </div>
+    </div>
+    
+    
+    </form>
+    
+     <div class="modal" id="changePasswordModal">
+  <div class="modal-dialog" role="document">
+  <form id="new-password-form" class="" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">비밀번호 변경</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="col">
+      <label for="new-password">새 비밀번호</label> 
+      <input type="password" id="new-password" name="new-password" class="form-control" value="" required>
+      <div class="mt-1 text-success" id="new-password-message" style="font-size: 0.6rem;"></div>
+    </div>
+    <div class="col">
+      <label for="new-password-check">새 비밀번호 확인</label> 
+      <input type="password" id="new-password-check" name="new-password-check" class="form-control" value="" required>
+      <div class="mt-1 text-success" id="new-password-check-message" style="font-size: 0.6rem;"></div>
+    </div>    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+    </form>
+    
+  </div>
+</div>
+    
+    
+    
+    </div>
+    
   </section>
+  
 
+  
+  <script src="/js/mate/daumAddressAPI.js"></script>
+  <script src="/js/mate/mateDetail.js" defer></script>
+  <script src="/js/mate/logout.js"></script>
   
 </html>

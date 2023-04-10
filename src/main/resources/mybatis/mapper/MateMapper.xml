@@ -8,19 +8,38 @@
 	INSERT INTO mate(email, name, password, gender,  birthdate, phone_number, location)
 	VALUES (#{email}, #{name}, #{password}, #{gender}, #{birthdate}, #{phoneNumber}, #{location})
 </insert>
-
+<!-- 이메일 중복 체크 -->
 <select id="findByEmail" parameterType="string" resultType="string">
 	SELECT email
 	FROM mate
-	WHERE email = #{value}
+	WHERE email = #{email}
 </select>
 
-<select id="findByEmailAndPassword" parameterType="String" resultType="Mate">
-	SELECT email, name, gender, birthdate, phone_number, location 
+<!-- 비밀번호 확인 -->
+<select id="findByPassword" parameterType="string" resultType="string">
+	SELECT password
 	FROM mate
 	WHERE email = #{email} AND password =#{password}
 </select>
 
+<select id="findByEmailAndPassword" parameterType="String" resultType="Mate">
+	SELECT email, name, gender, TO_CHAR(birthdate, 'YYYY-MM-DD') birthdate, phone_number, location 
+	FROM mate
+	WHERE email = #{email} AND password =#{password}
+</select>
+
+<update id="update" parameterType="Mate">
+		UPDATE mate
+		<set>
+		<if test="name != null">name = #{name},</if>
+		<if test="password != null">password = #{password},</if>
+		<if test="gender != null">gender = #{gender},</if>
+		<if test="birthdate != null">birthdate = #{birthdate},</if>
+		<if test="phone_number != null">phone_number = #{phoneNumber},</if>
+		<if test="location != null">location = #{location}</if>
+		</set>
+		WHERE email = #{email}
+</update>
 <!--  
 <select id="findMateDetail" resultType="Mate">
 	SELECT email, name, gender, birthdate, phone_number, location 

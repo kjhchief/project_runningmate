@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{mate/layout :: mate(~{::title}, ~{::link}, ~{::section}, ~{::script})}">
+  th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
 
 <title>런닝 메이트 회원가입</title>
 
@@ -241,7 +241,7 @@
             <label for="address" style="font-size: 0.6rem;"><strong>주소</strong></label>
             <input type="text" class="form-control" id="address" name="address" readonly required/>
           </div>
-          <div class="form-group">ㄴ
+          <div class="form-group">
             <label for="addressDetail" style="font-size: 0.6rem;"><strong>상세
                 주소</strong></label> <input type="text" class="form-control" id="addressDetail"
               name="addressDetail" required/>

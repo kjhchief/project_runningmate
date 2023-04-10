@@ -1,7 +1,9 @@
-/**
- * 러닝메이트 회원가입 도시선택에 따라 동적으로 변하는 지역 설정 스크립트
- */
-
+//스페이스바 입력못하게 하는 코드
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode === 32) {
+    event.preventDefault();
+  }
+});
 
 //let emailChecked1 = false;
 let emailChecked = false;
@@ -112,7 +114,7 @@ document.querySelector("#phoneNumber-verify-button").addEventListener("click", (
 	
 	let inputPhoneNumber = document.querySelector("#phoneNumber").value;
 	
-	// 010으로 시작하고 뒤에8자리만 입력가능,(부트스트랩)input타입의 tel속성이 -(하이픈) 자동 생성해서 DB에 저장해주기때문에 숫자만입력하게 구현
+	// 010으로 시작하고 뒤에8자리만 입력가능
 	const phoneNumberRegex = /^010\d{8}$/;
 	
 	let messageDiv = document.getElementById("phoneNumber-check-message");
