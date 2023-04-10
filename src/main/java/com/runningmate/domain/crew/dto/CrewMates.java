@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class CrewMates {
 	private String name;
 	private String email;
-	private String title;
+	private String types;
 	private String crewId;
 	
 	

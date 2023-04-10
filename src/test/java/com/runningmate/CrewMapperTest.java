@@ -71,7 +71,7 @@ public class CrewMapperTest {
 	@Test
 	@Disabled
 	public void findAllTest() {
-		List<CrewMates> list = crewMapper.findByAll("139");
+		List<CrewMates> list = crewMapper.findByAll("50");
 		log.info("모임 멤버 리스트: {}", list);
 	};
 	
@@ -94,7 +94,7 @@ public class CrewMapperTest {
 	@Test
 //	@Disabled
 	void sessionMateTest() {
-		CrewList sessionMate = crewService.sessionMate("kjh3@naver.com");
+		CrewMates sessionMate = crewService.sessionMate("kjh2@naver.com");
 		log.info("sessionMate::::: {}", sessionMate);
 	}
 	

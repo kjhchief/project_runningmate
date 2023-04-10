@@ -76,7 +76,7 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public CrewList sessionMate(String email) {
+	public CrewMates sessionMate(String email) {
 		return crewMapper.sessionMate(email);
 	}
 

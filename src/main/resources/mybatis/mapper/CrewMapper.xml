@@ -29,16 +29,17 @@
 <!-- 조회 -->
 	<!-- 특정 모임에 참석하는 회원 리스트 -->
 	<select id="findByAll" parameterType="string" resultType="CrewMates">
-		SELECT m.name, m.email, c.title, c.crew_id
+		SELECT m.name, m.email, l.types, c.crew_id
 		FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
 		                JOIN mate m ON l.email = m.email
 		WHERE c.crew_id = #{value}
 	</select>
 	<!-- 이메일로 특정 회원 조회(crew_id조회 위함) -->
-	<select id="sessionMate" parameterType="string" resultType="CrewList">
-		SELECT *
-		FROM crewlist
-		WHERE email = #{value}
+	<select id="sessionMate" parameterType="string" resultType="CrewMates">
+		SELECT m.name, m.email, l.types, c.crew_id
+		FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+		                JOIN mate m ON l.email = m.email
+		WHERE m.email = #{value}
 	</select>
 	
 	

@@ -136,12 +136,12 @@ public class CrewController {
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);
 		
-		CrewList sessionMate = crewService.sessionMate(mate.getEmail()); // 지금 mate.getEmail로 로그인된 사용자의 email을 못 가져옴. 왜????
+		CrewMates sessionMate = crewService.sessionMate(mate.getEmail()); // 지금 mate.getEmail로 로그인된 사용자의 email을 못 가져옴(null로 가져옴). 왜????
 		log.info("sessionMate= {}", sessionMate);
-		if(sessionMate == null) {
-			return "mate/login";
+		if(sessionMate != null) {
+			model.addAttribute("sessionMateCrewId", sessionMate.getCrewId()); 
 		}
-		model.addAttribute("sessionMateCrewId", sessionMate.getCrewId());
+		
 		
 		
 		log.info("crewCreate= {}", crewCreate);
