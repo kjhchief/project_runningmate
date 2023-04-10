@@ -31,7 +31,7 @@
 <select id="getReview" parameterType="String">
 	SELECT author, content
 	FROM review
-	WHERE review_id = #{reviewId}
+	WHERE email = #{email}
 </select>
 
 </mapper>
