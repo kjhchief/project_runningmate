@@ -1,3 +1,6 @@
+--sesstionMate
+
+
 SELECT *
 FROM mate;
 
@@ -44,7 +47,7 @@ ALTER TABLE mate
         );
 --예시 데이터 추가        
 INSERT INTO mate (email, name, password, gender, birthdate, phone_number, location)
-VALUES ('kjh3@naver.com', '후니김3', '1111', 'M', '19940413', '010-2111-2223', '서울 노원구 띵띵동');
+VALUES ('kjhhhh@naver.com', '후니김4', '1111', 'M', '19940413', '010-2111-2224', '서울 노원구 띵띵동');
 
 
 --2. 모임 테이블
@@ -80,7 +83,7 @@ ALTER TABLE crew
 
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '테스트222', 
+VALUES (145, '테스트222', 
 SYSDATE, 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
@@ -91,7 +94,7 @@ commit;
 --SELECT title, crewdate, mate_count, crew_location, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 SELECT *
 FROM crew
-ORDER BY crew_id DESC;
+ORDER BY crew_id;
 
 
 --WHERE crew_id = '61';
@@ -126,10 +129,13 @@ ALTER TABLE crewlist
    CONSTRAINT crewlist_email_uk      UNIQUE(email)
    );
 --예시 데이터 추가
+--학원 컴터에서는 145로, 집에서는 50으로
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'kjhhhh@naver.com', 145);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjhhhh@naver.com', 50);
 INSERT INTO crewlist
-VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh@naver.com', 145);
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh@naver.com', 50);
+INSERT INTO crewlist
+VALUES (crewlist_seq.NEXTVAL, '참여', 'kjh2@naver.com', 50);
 
 
 --특정 회원들(목록)이 참석하는 특정 모임
@@ -137,6 +143,15 @@ SELECT m.email, m.name, c.crew_id, l.types
 FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
                 JOIN mate m ON l.email = m.email
 WHERE c.crew_id = '145';
+SELECT m.email, m.name, c.crew_id, l.types
+FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+                JOIN mate m ON l.email = m.email
+WHERE m.email = 'kjh@naver.com';
+SELECT m.email, m.name, c.crew_id, l.types
+FROM crewlist l JOIN crew c ON l.crew_id = c.crew_id
+                JOIN mate m ON l.email = m.email
+WHERE c.crew_id = '50';
+
 
 --특정 회원이 참석하는 특정 모임
 SELECT m.email, m.name, c.crew_id, l.types
@@ -146,15 +161,15 @@ WHERE m.email = 'kjhhhh@naver.com';
 
 SELECT *
 FROM crewlist
-WHERE crew_id = '145';
+WHERE crew_id = '50';
 SELECT *
 FROM crewlist
 WHERE email = 'kjhhhh@naver.com';
 
 DELETE FROM crewlist
-WHERE crew_id = '145';
+WHERE crew_id = '50';
 
-commit;
+COMMIT;
 
 --특정 모임에 참석중인 회원: 64번 모임에 참석중인 송진11호
 SELECT m.name, m.email, c.title, c.crewdate, c.mate_count, c.crew_location, c.crewlevel, c.course_leng, c.course_intro, c.weather_intro, c.etc_intro, c.description, c.crew_id
