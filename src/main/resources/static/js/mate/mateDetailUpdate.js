@@ -23,110 +23,52 @@ const updateButton = document.querySelector('#update-button');
 
 let passwordChecked = false;
 
-genderElement.addEventListener("keyup", () => { 
+//비밀번호 일치하는지 여부
+ newPasswordInput.addEventListener("keyup", () => {
+	let messageDiv = document.getElementById("new-password-message");
 	
-	let messageDiv = document.getElementById("gender-check-message");
+	// 최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 
+	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
 	
-	//남, 여만 입력 할 수 있는 정규표현식
-	const genderRegex = /^[남여]$/;
-	if(genderRegex(genderElement.value)){
-		if(genderElement.value === '남'){
-			genderElement.value ==='M';
-		}else{
-			genderElement.value ==='F';
-			
+	if (passwordRegex.test(newPasswordInput.value)) {
+		messageDiv.innerHTML = "비밀번호가 일치합니다.";
+				
+	} else if(newPasswordInput.length >= 6){
+		// newPasswordChecked1 = false;
+		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 비밀번호 형식 입니다.</span>";
+		
+	}else if(newPasswordInput.length < 6){
+		messageDiv.innerHTML = "";
 		}
-	}else{
-		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
-	}
 });
-
-
-//휴대폰번호형식 일치하는지
-phoneNumberElement.addEventListener("keyup", () => { 
-	
-	
-	// 010으로 시작하고 뒤에8자리만 입력가능
-	const phoneNumberRegex = /^010\d{8}$/;
-	
-	let messageDiv = document.getElementById("phoneNumber-check-message");
-		
-		
-	 if(phoneNumberRegex.test(inputPhoneNumber)){
-		 const formattedPhoneNumber = `${phoneNumberElement.value.slice(0, 3)}-${phoneNumberElement.value.slice(3, 7)}-${phoneNumberElement.value.slice(7)}`;
-  		 phoneNumberElement.value = formattedPhoneNumber;
-	}else{
-		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
-	}
-});
-
 
 //비밀번호 일치하는지 여부
-passwordCkInput.addEventListener("keyup", () => {
+newPasswordCKInput.addEventListener("keyup", () => {
 	
-	if (passwordInput.value === passwordCkInput.value) {
+	let messageDiv = document.getElementById("new-password-check-message");
+	
+	if (newPasswordInput.value === newPasswordCKInput.value) {
+		// newPassswordChecked2 = true;
 		messageDiv.innerHTML = "비밀번호가 일치합니다.";
-		sendPassword(emailInput.value, passwordInput.value);
 		
-		
-	} else if(passwordCkInput.value.length >= 6){
+	} else if(newPasswordCKInput.length >= 6){
+		// newPassswordChecked2 = false;
 		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
 		
-	}else if(passwordCkInput.value.length < 6){
+	}else if(newPasswordCKInput.length < 6){
 		messageDiv.innerHTML = "";
 		
 	}
 });
 
-
-function sendPassword(email, password) {
-	let option = {
-		method: "post",
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded"
-		},
-		body: `email=${email}&password=${password}` //서버로 전송할 데이터
-	};
-	fetch("/mate/password-check", option)
-		.then(respose => respose.json())
-		.then(result => passwordResultMessage(result))
-		.catch(error => console.log(error));
-}
-
-function passwordResultMessage(result){
-	if(result === true){
-		passwordChecked = true;
-	}else if(result === false){
-		passwordChecked = false;
-	}
+passwordForm.addEventListener("submit", () =>{
 	
-}
-
-  
-form.addEventListener("submit", (event) => {
-       event.preventDefault();
-       const isValid = form.checkValidity();
-
-    if (!isValid) {
-         form.classList.add('was-validated');
-    } else if(isValid && passwordChecked){
-		updateButtonForm.style.display = 'none';
-		saveButtonForm.style.display = 'block';
-		
-		nameInput.disabled=false;
-      	birthdateElement.disabled=false; 
-      	genderElement.disabled=false; 
-      	phoneNumberElement.disabled=false;
-      	locationElement.disabled=false;
-      	
-      	passwordInput.value='';
-      	passwordCkInput.value='';
-		messageDiv.innerHTML = "";
-    }else{
-		alert('비밀번호를 다시 입력해주세요.');
+	if(newPasswordChecked1 && newPasswordChecked2){
+		passwordForm.submit();
 	}
 	
 });
+
 
 
 

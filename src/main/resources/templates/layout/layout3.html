@@ -22,7 +22,7 @@
   <body>
     <div class="container mt-5 g-0">
       <!-- 헤더 -->
-      <header class="login">
+        <header class="login">
           <nav class="navbar navbar-expand-lg">
               <a class="navbar-brand align-items-md-center" href="#">
                 <h1 class="main_logo">러닝메이트</h1>
@@ -32,14 +32,13 @@
                     <input class="form-control p-sm-1 me-sm-2" type="search" placeholder="지역으로 찾기">
                     <button class="btn btn-light" type="submit">search</button>
                   </form>
-                   <div th:if="${mate == null}">
+                  <div th:if="${mate == null}">
                   <button class="nav-item btn btn-primary my-2 my-sm-0" type="login">login</button>
                   <button class="nav-item btn btn-primary ms-1 my-2 my-sm-0" type="join">join</button>
                   </div>
                   <div th:if="${mate != null}">
                   <button class="nav-item btn btn-primary my-2 my-sm-0" type="logout" id="logout">logout</button>
                   <a href="/mate/mypage"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_my.svg" alt="마이페이지"></a>
-                  </div>
                   </div>
                 </ul>
           </nav>

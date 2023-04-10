@@ -33,58 +33,14 @@ let passwordChecked = false;
 let newPasswordChecked1 = false;
 let newPasswordChecked2 = false;
 let genderChecked = '';
+let birthdateChecked = false;
+let phonenumberChecked = false;
 
 
 passwordInput.disabled=false;
 passwordCkInput.disabled=false;
 
 
-
-//비밀번호 일치하는지 여부
- newPasswordInput.addEventListener("keyup", () => {
-	let messageDiv = document.getElementById("new-password-message");
-	
-	// 최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 
-	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
-	
-	if (passwordRegex.test(newPasswordInput.value)) {
-		messageDiv.innerHTML = "비밀번호가 일치합니다.";
-				
-	} else if(newPasswordInput.length >= 6){
-		// newPasswordChecked1 = false;
-		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 비밀번호 형식 입니다.</span>";
-		
-	}else if(newPasswordInput.length < 6){
-		messageDiv.innerHTML = "";
-		}
-});
-
-//비밀번호 일치하는지 여부
-newPasswordCKInput.addEventListener("keyup", () => {
-	
-	let messageDiv = document.getElementById("new-password-check-message");
-	
-	if (newPasswordInput.value === newPasswordCKInput.value) {
-		// newPassswordChecked2 = true;
-		messageDiv.innerHTML = "비밀번호가 일치합니다.";
-		
-	} else if(newPasswordCKInput.length >= 6){
-		// newPassswordChecked2 = false;
-		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
-		
-	}else if(newPasswordCKInput.length < 6){
-		messageDiv.innerHTML = "";
-		
-	}
-});
-
-passwordForm.addEventListener("submit", () =>{
-	
-	if(newPasswordChecked1 && newPasswordChecked2){
-		passwordForm.submit();
-	}
-	
-});
 
 
 
@@ -151,6 +107,7 @@ form.addEventListener("submit", (event) => {
       	passwordCkInput.disabled=true;
       	
       
+      	passwordInput.value='';
       	passwordCkInput.value='';
       	let messageDiv = document.getElementById("password-check-message");
 		messageDiv.innerHTML = "";
@@ -160,15 +117,7 @@ form.addEventListener("submit", (event) => {
 	
 });
 
-//수정사항 서버로 제출
-updateFinshButton.addEventListener("click", () => {
-	genderElement.value = genderChecked;
-     form.submit();
-     
-     updateButtonForm.style.display = 'flex';
-	 saveButtonForm.style.display = 'none';
-	
-});
+
 
 //성별 바꾸기
 genderElement.addEventListener("keyup", () => { 
@@ -179,14 +128,14 @@ genderElement.addEventListener("keyup", () => {
 	if(genderRegex.test(genderElement.value)){
 		if(genderElement.value === '남'){
 			genderChecked ='M';
+		messageDiv.innerHTML = "";
 		}else if(genderElement.value === '여'){
 			genderChecked ='F';
-		}else{
-		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요1.</span>";
-			
+		messageDiv.innerHTML = "";
 		}
 	}else{
-		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요2.</span>";
+		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
+			genderChecked ='N';
 	}
 });
 
@@ -201,32 +150,52 @@ birthdateElement.addEventListener("keyup", () => {
 		
 	 if(birthRegex.test(birthdateElement.value)){
 		 const formattedBirthdate = `${birthdateElement.value.slice(0, 4)}-${birthdateElement.value.slice(4, 6)}-${birthdateElement.value.slice(6)}`;
+		 birthdateChecked = true;
   		 birthdateElement.value = formattedBirthdate;
-	}else if(birthdateElement.value.length >= 10){
+		messageDiv.innerHTML = "";
+	}else if(!(birthRegex.test(birthdateElement.value)) && birthdateElement.value.length >= 10){
+		birthdateChecked = false;
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
 	}else if(birthdateElement.value.length < 10){
 		messageDiv.innerHTML = "";
 	}
 });
 
+
+
 //휴대폰번호 수정
 phoneNumberElement.addEventListener("keyup", () => { 
-	
 	
 	// 010으로 시작하고 뒤에8자리만 입력가능
 	const phoneNumberRegex = /^010\d{8}$/;
 	
 	let messageDiv = document.getElementById("phoneNumber-check-message");
-		
+	
 		
 	 if(phoneNumberRegex.test(phoneNumberElement.value)){
 		 const formattedPhoneNumber = `${phoneNumberElement.value.slice(0, 3)}-${phoneNumberElement.value.slice(3, 7)}-${phoneNumberElement.value.slice(7)}`;
+		 phonenumberChecked = true;
   		 phoneNumberElement.value = formattedPhoneNumber;
-	}else if(phoneNumberElement.value.length >= 13){
+	}else if(!(phoneNumberRegex.test(phoneNumberElement.value)) && phoneNumberElement.value.length >= 13){
+		phonenumberChecked = false;
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
 	}else if(phoneNumberElement.value.length < 13){
 		messageDiv.innerHTML = "";
 	}
+});
+
+//수정사항 서버로 제출
+updateFinshButton.addEventListener("click", () => {
+	genderElement.value = genderChecked;
+     
+     
+     if(genderChecked && birthdateChecked && phonenumberChecked){
+		form.submit(); 
+	 }else{
+		 alert('입력 형식을 확인해주세요.');
+		 
+	 }
+     
 });
 
 

@@ -130,7 +130,6 @@ public class MateController {
 		
 		mate.setAddress();
 		mate.setAddressDetail();
-		mate.setPhoneNumber();
 		model.addAttribute("mate", mate);
 		log.info("mate : {}", mate);	
 		return "/mate/mateDetail";
@@ -139,8 +138,10 @@ public class MateController {
 	//mate정보 수정 기능 처리
 	@PostMapping("/mateDetail")
 	public String mateDatail(HttpSession session, Model model) {
+		
 		Mate mate = (Mate)session.getAttribute("mate");
 		model.addAttribute("mate", mate);
+		mate.setLocation();
 		mateService.update(mate);
 			
 		return "/mate/mateDetail";

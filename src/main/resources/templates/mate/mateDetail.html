@@ -18,31 +18,24 @@
     <div class="form-group row">
     <div class="col-8">
       <label for="name">이름</label> 
-      <input type="text" th:value=${mate.getName()} id="name" name="name" class="form-control" value="" disabled required>
+      <input type="text" th:value=${mate.getName()} id="name" name="name" class="form-control" value="" disabled>
     </div>
     <div class="col">
       <label for="gender">성별</label> 
-       <div th:if="${mate.getGender == 'M'}">
-      <input type="text" th:value="'남'" id="gender" name="gender" class="form-control" maxlength="1" value="" disabled required>
+      <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}" id="gender" name="gender" class="form-control" maxlength="1" disabled>
       <div id="gender-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
-      </div>
-       <div th:unless="${mate.getGender == 'M'}">
-      <input type="text" th:value="'여'" id="gender" name="gender" class="form-control" maxlength="1" value="" disabled required>
-    </div>
     </div>
     </div>
     <div class="form-group row">
     <div class="col">
       <label for="password">비밀번호</label> 
-      <input type="password" id="password" name="password" class="form-control" value="" disabled required>
-      <!--/*<div class="valid-feedback">Valid.</div>*/-->
+      <input type="password" id="password" name="password" class="form-control" value="" disabled>
       <div class="invalid-feedback">비밀번호를 입력하세요.</div>
       <div id="password-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div class="col">
       <label for="password-check">비밀번호 확인</label> 
       <input type="password" id="password-check" name="password-check" class="form-control" value="" disabled>
-      <!--/*<div class="valid-feedback">Valid.</div>*/-->
       <div id="password-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
      <div class="col">
@@ -55,21 +48,21 @@
     </div>
     <div>
       <label for="birthdate">생년월일</label> 
-      <input type="text" th:value=${mate.getBirthdate()} id="birthdate" name="birthdate" class="form-control" maxlength="10" value="" disabled required>
+      <input type="text" th:value=${mate.getBirthdate()} id="birthdate" name="birthdate" class="form-control" maxlength="10" value="" disabled>
       <div id="birthdate-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
       <label for="phoneNumber">전화번호</label> 
-      <input type="text" th:value=${mate.getPhoneNumber()} id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11" value="" disabled required>
+      <input type="text" th:value=${mate.getPhoneNumber()} id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11" value="" disabled>
       <div id="phoneNumber-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
       <label for="address">주소</label> 
-      <input type="text" th:value=${mate.getAddress()} id="address" name="address" class="form-control" value="" readonly disabled>
+      <input type="text" th:value=${mate.getAddress()} id="address" name="address" class="form-control" readonly disabled>
     </div>
      <div>
       <label for="address-detail">상세 주소</label> 
-      <input type="text" th:value=${mate.getAddressDetail()} id="address-detail" name="address-detail" class="form-control" value="" disabled required>
+      <input type="text" th:value=${mate.getAddressDetail()} id="address-detail" name="address-detail" class="form-control" disabled>
     </div>
    
       <div id="detail-update-list" class="row mt-4">
@@ -133,10 +126,24 @@
     </div>
     
   </section>
-  
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+  window.onload = function(){
+	    document.getElementById("address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("address").value = data.address; // 주소 넣기
+	                document.querySelector("input[name=address-detail]").focus(); //상세입력 포커싱
+	            }
+	        }).open();
+	    });
+	}
+
+  </script>
 
   
-  <script src="/js/mate/daumAddressAPI.js"></script>
+
   <script src="/js/mate/mateDetail.js" defer></script>
   <script src="/js/mate/logout.js"></script>
   
