@@ -22,7 +22,7 @@
 	<!-- 모임 신청 -->
 	<insert id="joinCrew" parameterType="CrewList2">
 		INSERT INTO crewlist
-		VALUES (crewlist_seq.NEXTVAL, '참여', #{email}, #{value})
+		VALUES (crewlist_seq.NEXTVAL, '참여', #{email}, #{crewId})
 	</insert>
 	
 	

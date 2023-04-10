@@ -76,7 +76,6 @@ public class CrewController {
 		CrewList2 crewList2 = new CrewList2();
 		crewList2.setCrewId(crewId);
 		
-		
 		return "redirect:/crew/join-result";
 	}
 	// 모임 신청 결과에 대한 메소드
