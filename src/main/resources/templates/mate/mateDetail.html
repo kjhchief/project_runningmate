@@ -22,7 +22,9 @@
     </div>
     <div class="col">
       <label for="gender">성별</label> 
-      <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}" id="gender" name="gender" class="form-control" maxlength="1" disabled>
+      <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}"  class="form-control" maxlength="1" disabled>
+      <input type="hidden" th:value="${mate.getGender()}" id="gender" name="gender" class="form-control" maxlength="1" disabled>
+      
       <div id="gender-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     </div>
@@ -144,7 +146,8 @@
 
   
 
-  <script src="/js/mate/mateDetail.js" defer></script>
+  <script src="/js/mate/mateDetail1.js" defer></script>
+  <script src="/js/mate/mateDetail2.js" defer></script>
   <script src="/js/mate/logout.js"></script>
   
 </html>

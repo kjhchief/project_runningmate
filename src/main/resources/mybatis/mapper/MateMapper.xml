@@ -33,7 +33,7 @@
 		<set>
 		<if test="name != null">name = #{name},</if>
 		<if test="password != null">password = #{password},</if>
-		<if test="gender != null">gender = #{gender},</if>
+		<if test="gender != null and (gender == 'M' or gender == 'F')">gender = #{gender},</if>
 		<if test="birthdate != null">birthdate = #{birthdate},</if>
 		<if test="phoneNumber != null">phone_number = #{phoneNumber},</if> <!-- <if test="phoneNumber != null"> dto타입임  -->
 		<if test="location != null">location = #{location}</if>

@@ -137,16 +137,32 @@ public class MateController {
 	
 	//mate정보 수정 기능 처리
 	@PostMapping("/mateDetail")
-	public String mateDatail(HttpSession session, Model model) {
+	public String mateDatail(HttpSession session, Model model, @ModelAttribute("mate") Mate mate) {
 		
-		Mate mate = (Mate)session.getAttribute("mate");
-		model.addAttribute("mate", mate);
+		log.info("mate : {}", mate);
+
+		
 		mate.setLocation();
 		mateService.update(mate);
+		mate = (Mate)session.getAttribute("mate");
+		model.addAttribute("mate", mate);
+		
 			
 		return "/mate/mateDetail";
 	}
 	
+	
+	/*
+	//mate정보 수정 기능 처리
+		@PostMapping("/mateDetailUpdate")
+		public String mateDatailUpdate(@ModelAttribute("mate") Mate mate) {
+			mate.setLocation();
+			mateService.update(mate);
+			log.info("업데이트야 제발 되그라 :{} ", mate);
+				
+			return "/mate/mateDetail";
+		}
+	*/
 	//비밀번호 확인
 	@PostMapping("/password-check")
 	@ResponseBody
