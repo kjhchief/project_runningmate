@@ -1,5 +1,7 @@
 package com.runningmate;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class CrewServiceTest {
 	private CrewService crewService;
 	
 	@Test
-//	@Disabled
+	@Disabled
 	void createCrewTest () {
 		CrewCreate crew = new CrewCreate();
 		crew.setTitle("테스트 모임333333333333333");

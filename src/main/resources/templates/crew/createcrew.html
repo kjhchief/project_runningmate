@@ -21,18 +21,15 @@
   
 <section>
   <div class="wrap">
-    <div class="container">
 
     <!-- 슬라이드 -->
-    <div class="container main_slide mb-5">
+     <div class="main_slide mb-5">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
             aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
             aria-label="Slide 2"></button>
-          <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button> -->
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="4000">
@@ -41,9 +38,7 @@
           <div class="carousel-item" data-bs-interval="4000">
             <img src="/img/2.jpg" class="d-block w-100" alt="...">
           </div>
-          <!-- <div class="carousel-item">
-            <img src="/img/3.jpg" class="d-block w-100" alt="...">
-          </div> -->
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
@@ -56,7 +51,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
+    </div> 
 
 
 
@@ -101,7 +96,7 @@
               <select class="form-select" id="level" name="crewLevel">
                 <option>선택</option>
                 <option>빨리 걷기</option>
-                <option>건강한 러닝</option>
+                <option>천천히 러닝</option>
                 <option>다소 강한 강도</option>
                 <option>고강도 러닝</option>
               </select>
@@ -128,10 +123,11 @@
           </div>
           <div class="form-group">
             <label for="exampleTextarea" class="form-label mt-4 formtitle">모임 소개글</label>
-            <textarea class="form-control" id="exampleTextarea" rows="10" placeholder="모임 취지, 평소 러닝 스타일, 지켜야할 규칙, 기피 대상, 매주 모임이 있는지(정규모임일 경우) 등" name="description"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="10" placeholder="모임 취지, 평소 러닝 스타일, 지켜야할 규칙, 기피 대상 등" name="description"></textarea>
           </div>
           <div class="form-group">
             <label for="formFile" class="form-label mt-4">사진 업로드</label>
+            <small id="uploadHelp" class="form-text text-muted">최대 3장까지 가능</small>
             <input class="form-control" type="file" id="formFile" name="uploadfiles" multiple >
           </div>
           <div class="text-center">
@@ -139,7 +135,6 @@
             <button type="submit" class="btn btn-primary mt-4 ms-4">&nbsp&nbsp취 소&nbsp&nbsp</button>
           </div>
          </form>
-</div>
 </div>
       
 </section>

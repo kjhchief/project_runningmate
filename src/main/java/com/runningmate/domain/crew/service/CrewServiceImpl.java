@@ -1,6 +1,9 @@
 package com.runningmate.domain.crew.service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +82,17 @@ public class CrewServiceImpl implements CrewService {
 	public CrewMates sessionMate(String email) {
 		return crewMapper.sessionMate(email);
 	}
+
+	@Override
+	public void leaveCrew(String email) {
+		crewMapper.leaveCrew(email);
+	}
+
+	@Override
+	public List<CrewCreate> allCrew() {
+		return crewMapper.allCrew();
+	}
+
 
 
 

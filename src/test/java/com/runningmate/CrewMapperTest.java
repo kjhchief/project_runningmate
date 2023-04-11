@@ -92,10 +92,16 @@ public class CrewMapperTest {
 	}
 	
 	@Test
-//	@Disabled
+	@Disabled
 	void sessionMateTest() {
 		CrewMates sessionMate = crewService.sessionMate("kjh2@naver.com");
 		log.info("sessionMate::::: {}", sessionMate);
+	}
+	
+	@Test
+//	@Disabled
+	void allCrewTest() {
+		List<CrewCreate> crewCreate = crewService.allCrew(); 	
 	}
 	
 	

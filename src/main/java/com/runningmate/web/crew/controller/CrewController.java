@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
@@ -59,14 +60,11 @@ public class CrewController {
 	// 모임 등록
 	@PostMapping
 	public String register(@ModelAttribute CrewCreate crewCreate) throws IOException {
-		
-		
 		crewService.createCrew(crewCreate);
-		
-		
 		log.info("crew= {}", crewCreate);
 		return "redirect:/crew/result";
 	}
+	
 	// 모임 등록 결과에 대한 메소드
 	@GetMapping("/result")
 	public String registerResult() {
@@ -75,24 +73,31 @@ public class CrewController {
 	
 	// 모임 신청
 	@PostMapping("/{crewId}")
-	public String joinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
+	public String joinCrew(@PathVariable String crewId, HttpSession httpSession, Model model, @RequestParam("submit_button") String submit) {
+		// 로그인한 회원 객체 세션에서 받아오기
 		Mate mate = (Mate)httpSession.getAttribute("mate");
 		model.addAttribute("mateEmail", mate.getEmail());
 	    log.info("모임신청mate : {}", mate);
 	    
-	    List<CrewMates> crewMates = crewService.getCrews(crewId);
-	    
+
 		CrewList crewList = new CrewList();
 		crewList.setCrewId(crewId);
 		crewList.setEmail(mate.getEmail());
 		log.info("crewList: {}", crewList);
-		crewService.joinCrew(crewList);
-		
-		
+
+		// 신청or취소 버튼 분기
+		if(submit.equals("y")) {
+		    // 모임 신청
+			crewService.joinCrew(crewList);
+		}else {
+			// 모임 탈퇴
+			crewService.leaveCrew(mate.getEmail());			
+		}
 		
 		return "redirect:/crew/{crewId}";
 	}
-	// 모임 신청 결과에 대한 메소드 (작동 안 됨)
+	
+	// 모임 신청 결과에 대한 메소드
 	@GetMapping("/joincrew")
 	public String joinCrewResult() {
 		return "crew/join";
@@ -118,6 +123,7 @@ public class CrewController {
 	// 특정 모임의 모임 참석 화면 보여주기
 	@GetMapping("/{crewId}")
 	public String JoinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
+		// 로그인한 회원 객체 세션에서 받아오기
 		Mate mate = (Mate)httpSession.getAttribute("mate");
 		if(mate==null) {
 			return "mate/login";
@@ -125,30 +131,30 @@ public class CrewController {
 		log.info("재훈모임mate= {}", mate);
 		model.addAttribute("crewId", crewId);
 		log.info("crewId= {}", crewId);
+		// DB에 등록된 모임 정보를 뷰로 보내기
 		CrewCreate crewCreate = crewService.getCrew(crewId);
 		LocalDateTime localDateTime = LocalDateTime.parse(crewCreate.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 		model.addAttribute("crewCreate", crewCreate);
 		model.addAttribute("crewdate", localDateTime);
-		
+		// 사진 보여주기
 		List<CrewPhoto> crewPhotos = crewService.getPhotos(crewId);
 		model.addAttribute("photos", crewPhotos);
-		
+		// 모임에 참석한 멤버 리스트
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
 		model.addAttribute("crewMates", crewMates);
-		
-		CrewMates sessionMate = crewService.sessionMate(mate.getEmail()); // 지금 mate.getEmail로 로그인된 사용자의 email을 못 가져옴(null로 가져옴). 왜????
+		// 모임에 참석한 회원,안 한 회원 분류하여 신청버튼 보이기,숨기기
+		CrewMates sessionMate = crewService.sessionMate(mate.getEmail()); 
 		log.info("sessionMate= {}", sessionMate);
 		if(sessionMate != null) {
 			model.addAttribute("sessionMateCrewId", sessionMate.getCrewId()); 
 		}
-		
-		
 		
 		log.info("crewCreate= {}", crewCreate);
 		log.info("photo= {}", crewPhotos);
 		log.info("crewMates= {}", crewMates);
 		
 		return "crew/crewJoin";
+//		return "redirect:/crew/{crewId}";
 		
 	}
 	

@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script} ,~{::section})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout :: layout(~{::title}, ~{::section})}">
 
     <title>메인화면 </title>
 
@@ -63,24 +63,57 @@
       <div class=" run_list">
         <table class="table table-hover text-center">
           <tbody>
-            <tr th:each="cr : ${crew}">
-              <th scope="row" th:text="${cr.crewdate}">16:00</th>
-              <td colspan="2"><span th:text="${cr.title}">남산 공원</span> 
+            <tr>
+              <th scope="row">16:00</th>
+              <td colspan="2">남산 공원 
                 <div class="prop">
-                  <span th:text="${cr.courseIntro}">남성 전용</span>
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
                 </div>
               </td>
-              <td>
-               <a th:href="@{${'/crew/' + cr.crewId}}">
-                 <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
-               </a>
-              </td>
+              <td>Column content</td>
+              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
             </tr>
-            
+            <tr>
+              <th scope="row text-start">20:00</th>
+              <td colspan="2">석촌 호수 <br>
+                <div class="prop">
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                </div>
+              </td>
+              <td>Column content</td>
+              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
+            </tr>
+            <tr>
+              <th scope="row text-start">20:00</th>
+              <td colspan="2">석촌 호수 <br>
+                <div class="prop">
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                </div>
+              </td>
+              <td>Column content</td>
+              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
+            </tr>
+            <tr>
+              <th scope="row text-start">20:00</th>
+              <td colspan="2">석촌 호수 <br>
+                <div class="prop">
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                  <span>남성 전용</span>
+                </div>
+              </td>
+              <td>Column content</td>
+              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
+            </tr>
           </tbody>
         </table>
       </div>
 
     </section>
-    <script src="/js/mate/logout.js"></script>
 </html>
