@@ -91,6 +91,9 @@ SYSDATE, 5,
 SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 FROM crew;
 
+DELETE FROM crew
+WHERE crew_id BETWEEN '132' AND '141';
+
 commit;
 
 -- 특정 모임 선택(select)
