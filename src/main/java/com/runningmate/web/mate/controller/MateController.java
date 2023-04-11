@@ -65,7 +65,7 @@ public class MateController {
 	@PostMapping
 	public String register(@ModelAttribute("mate") Mate mate) {
 		mate.setBirthdate();
-		mate.setLocation();
+		mate.setLocation(mate.getAddress(), mate.getAddressDetail());
 		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
@@ -127,9 +127,8 @@ public class MateController {
 	@GetMapping("/mateDetail")
 	public String mateDatailForm(HttpSession session, Model model) {
 		Mate mate = (Mate)session.getAttribute("mate");
-		
-		mate.setAddress();
-		mate.setAddressDetail();
+		mate.setAddress(mate.getLocation());
+		mate.setAddressDetail(mate.getLocation());
 		model.addAttribute("mate", mate);
 		log.info("mate : {}", mate);	
 		return "/mate/mateDetail";
@@ -138,27 +137,23 @@ public class MateController {
 	//mate정보 수정 기능 처리
 	@PostMapping("/mateDetail")
 	public String mateDatail(HttpSession session, Model model, @ModelAttribute("mate") Mate mate) {
-		
-		log.info("mate : {}", mate);
-
-		
-		mate.setLocation();
-		mateService.update(mate);
-		mate = (Mate)session.getAttribute("mate");
-		model.addAttribute("mate", mate);
+		log.info("제발제발 : {}", mate);
+		mate.setLocation(mate.getAddress(), mate.getAddressDetail());
+		Mate updatedMate = mateService.update(mate); // 1. update된 Mate 객체를 반환
+		session.setAttribute("mate", updatedMate); // session에도 update된 Mate 객체를 저장
+		model.addAttribute("mate", updatedMate); // 3. model.addAttribute에 새로운 Mate 객체를 저장
+		log.info("업데이트야 제발 되그라 :{} ", mate);
 		
 			
 		return "/mate/mateDetail";
 	}
 	
 	
-	/*
+/*	
 	//mate정보 수정 기능 처리
 		@PostMapping("/mateDetailUpdate")
 		public String mateDatailUpdate(@ModelAttribute("mate") Mate mate) {
-			mate.setLocation();
 			mateService.update(mate);
-			log.info("업데이트야 제발 되그라 :{} ", mate);
 				
 			return "/mate/mateDetail";
 		}

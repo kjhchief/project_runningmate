@@ -22,8 +22,8 @@
     </div>
     <div class="col">
       <label for="gender">성별</label> 
-      <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}"  class="form-control" maxlength="1" disabled>
-      <input type="hidden" th:value="${mate.getGender()}" id="gender" name="gender" class="form-control" maxlength="1" disabled>
+      <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}" id="visibility-gender" class="form-control" maxlength="1" disabled>
+      <input type="hidden" th:value="${mate.getGender()}" id="hidden-gender" name="gender" class="form-control" maxlength="1">
       
       <div id="gender-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
@@ -102,6 +102,11 @@
       
       <div class="modal-body">
         <div class="col">
+      <label for="present-password">현재 비밀번호</label> 
+      <input type="password" id="present-password" name="present-password" class="form-control" value="" required>
+      <div class="mt-1 text-success" id="present-password-message" style="font-size: 0.6rem;"></div>
+    </div>
+        <div class="col">
       <label for="new-password">새 비밀번호</label> 
       <input type="password" id="new-password" name="new-password" class="form-control" value="" required>
       <div class="mt-1 text-success" id="new-password-message" style="font-size: 0.6rem;"></div>
@@ -148,6 +153,7 @@
 
   <script src="/js/mate/mateDetail1.js" defer></script>
   <script src="/js/mate/mateDetail2.js" defer></script>
+  <script src="/js/mate/mateDetail3.js" defer></script>
   <script src="/js/mate/logout.js"></script>
   
 </html>

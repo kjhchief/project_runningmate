@@ -22,4 +22,7 @@ public interface MateMapper {
 	
 	//회원 정보 수정
 	public void update(Mate mate);
+	
+	//업데이트결과 가져오기
+	public Mate get(String email);
 }

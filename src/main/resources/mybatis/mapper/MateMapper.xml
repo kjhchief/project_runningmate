@@ -33,13 +33,21 @@
 		<set>
 		<if test="name != null">name = #{name},</if>
 		<if test="password != null">password = #{password},</if>
-		<if test="gender != null and (gender == 'M' or gender == 'F')">gender = #{gender},</if>
+		<if test="gender != null">gender = #{gender},</if>
 		<if test="birthdate != null">birthdate = #{birthdate},</if>
 		<if test="phoneNumber != null">phone_number = #{phoneNumber},</if> <!-- <if test="phoneNumber != null"> dto타입임  -->
 		<if test="location != null">location = #{location}</if>
 		</set>
 		WHERE email = #{email}
 </update>
+
+<!--업데이트후 바로 화면에 적용하기위한-->
+<select id="get" parameterType="string" resultType="Mate">
+    SELECT email, name, gender, TO_CHAR(birthdate, 'YYYY-MM-DD') birthdate, phone_number, location  
+    FROM mate 
+    WHERE email = #{email}
+  </select>
+
 <!--  
 <select id="findMateDetail" resultType="Mate">
 	SELECT email, name, gender, birthdate, phone_number, location 

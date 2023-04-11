@@ -16,7 +16,7 @@ let phonenumberChecked = true;
 
 const emailBeforeUpdate = emailInput.value;
 const nameBeforeUpdate = nameInput.value;
-const genderBeforeUpdate = genderElement.value;
+const genderBeforeUpdate = genderVisibility.value;
 const birthdateBeforeUpdate = birthdateElement.value;
 const phoneNumberBeforeUpdate = phoneNumberElement.value;
 const addressBeforeUpdate = addressElement.value;
@@ -43,22 +43,23 @@ addressDetailElement.addEventListener("change", () =>{
 
 
 //성별 바꾸기
-genderElement.addEventListener("change", () => { 
+genderVisibility.addEventListener("change", () => { 
 	let messageDiv = document.getElementById("gender-check-message");
-	genderAfterUpdate = genderElement.value;
+	genderAfterUpdate = genderVisibility.value;
 	//남, 여만 입력 할 수 있는 정규표현식
 	const genderRegex = /^[남여]$/;
 	if(genderRegex.test(genderAfterUpdate)){
 		if(genderAfterUpdate === '남'){
-			genderChecked ='M';
-			messageDiv.innerHTML = "";
+			genderHidden.value ='M';
+		messageDiv.innerHTML = "";
 		}else if(genderAfterUpdate === '여'){
-			genderChecked ='F';
+			genderHidden.value ='F';
 			messageDiv.innerHTML = "";
 		}
+		messageDiv.innerHTML = "";
 	}else{
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
-			genderChecked ='N';
+			genderHidden.value ='N';
 	}
 });
 
@@ -70,16 +71,16 @@ birthdateElement.addEventListener("change", () => {
 	birthdateAfterUpdate = birthdateElement.value;
 	let messageDiv = document.getElementById("birthdate-check-message");
 		
+		 let formattedBirthdate = `${birthdateAfterUpdate.slice(0, 4)}-${birthdateAfterUpdate.slice(4, 6)}-${birthdateAfterUpdate.slice(6)}`;
+  		 birthdateAfterUpdate = formattedBirthdate;
 		
 	 if(birthRegex.test(birthdateAfterUpdate)){
-		 const formattedBirthdate = `${birthdateAfterUpdate.slice(0, 4)}-${birthdateAfterUpdate.slice(4, 6)}-${birthdateAfterUpdate.slice(6)}`;
 		 birthdateChecked = true;
-  		 birthdateAfterUpdate = formattedBirthdate;
 		messageDiv.innerHTML = "";
-	}else if(!(birthRegex.test(birthdateAfterUpdate)) && birthdateAfterUpdate.length >= 10){
+	}else if(birthdateAfterUpdate.length >= 8){
 		birthdateChecked = false;
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
-	}else if(birthdateAfterUpdate.length < 10){
+	}else if(birthdateAfterUpdate.length < 8){
 		messageDiv.innerHTML = "";
 	}
 });
@@ -97,10 +98,11 @@ phoneNumberElement.addEventListener("change", () => {
 	
 		
 	 if(phoneNumberRegex.test(phonenumberAfterUpdate)){
-		 const formattedPhoneNumber = `${phonenumberAfterUpdate.slice(0, 3)}-${phonenumberAfterUpdate.slice(3, 7)}-${phonenumberAfterUpdate.slice(7)}`;
+		 let formattedPhoneNumber = `${phonenumberAfterUpdate.slice(0, 3)}-${phonenumberAfterUpdate.slice(3, 7)}-${phonenumberAfterUpdate.slice(7)}`;
   		 phonenumberAfterUpdate = formattedPhoneNumber;
 		 phonenumberChecked = true;
-	}else if(!(phoneNumberRegex.test(phonenumberAfterUpdate)) && phonenumberAfterUpdate.length >= 13){
+		messageDiv.innerHTML = "";
+	}else if(phonenumberAfterUpdate.length >= 13){
 		phonenumberChecked = false;
 		messageDiv.innerHTML = "<span style='color:red'>형식에 맞게 입력해주세요.</span>";
 	}else if(phonenumberAfterUpdate.length < 13){
@@ -111,7 +113,7 @@ phoneNumberElement.addEventListener("change", () => {
 //수정사항 서버로 제출
 updateFinshButton.addEventListener("click", () => {
    
-   if(!(genderChecked ==='M' || genderChecked ==='F') || !birthdateChecked || !phonenumberChecked){		
+   if(!(genderHidden.value ==='M' || genderHidden.value ==='F') || !birthdateChecked || !phonenumberChecked){		
 		 alert('입력 형식을 확인해주세요.');
      }else{
 		 
@@ -120,8 +122,8 @@ updateFinshButton.addEventListener("click", () => {
 			   form.append('name', nameAfterUpdate);
 			 }   
 			if (genderAfterUpdate !== genderBeforeUpdate) {
-				alert(genderChecked);
-			   form.append('gender', genderChecked);
+			   form.append('gender', genderHidden.value);
+				alert(genderHidden.value)
 			 }
 			if (birthdateAfterUpdate !== birthdateBeforeUpdate) {
 			  form.append('birthdate', birthdateAfterUpdate);
@@ -137,6 +139,7 @@ updateFinshButton.addEventListener("click", () => {
 			}
 			//이메일값 무조건 전송
 			form.append('email', emailBeforeUpdate);
+				alert(emailBeforeUpdate);
 			// 서버로 전송
 			form.submit();
   

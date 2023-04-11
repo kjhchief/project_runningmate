@@ -45,11 +45,13 @@ public class MateServiceImpl implements MateService {
 	}
 
 	@Override
-	public void update(Mate mate) {
+	public Mate update(Mate mate) {
 		mateMapper.update(mate);
+		return mateMapper.get(mate.getEmail());
 	}
 
-	
+  
+ 
 	
 	
 }
