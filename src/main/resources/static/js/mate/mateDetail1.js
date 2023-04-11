@@ -12,6 +12,7 @@ saveButtonForm.style.display = 'none';
 
 let form = document.querySelector('#detail-form');
 let passwordForm = document.querySelector('#new-password-form');
+
 let emailInput = document.querySelector('#email'); 
 let nameInput = document.querySelector('#name'); 
 let passwordInput = document.querySelector('#password'); 
@@ -22,6 +23,7 @@ let birthdateElement = document.querySelector('#birthdate');
 let phoneNumberElement = document.querySelector('#phoneNumber');
 let addressElement = document.querySelector('#address');
 let addressDetailElement = document.querySelector('#address-detail');
+
 let updateButton = document.querySelector('#update-button');
 let updateFinshButton = document.querySelector('#update-finsh-button');
 
@@ -29,62 +31,12 @@ let updateFinshButton = document.querySelector('#update-finsh-button');
 let presentPassword = document.querySelector('#present-password'); 
 let newPassword = document.querySelector('#new-password'); 
 let newPasswordCheck = document.querySelector('#new-password-check'); 
-let newPasswordChecked1 = false;
-let newPasswordChecked2 = false;
-let newPasswordChecked3 = false;
 
 
 let passwordChecked = false;
 
 passwordInput.disabled=false;
 passwordCkInput.disabled=false;
-
-
-
-newPassword.addEventListener("keyup", () => {
-	
-	// 최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 
-	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
-	
-	let messageDiv = document.getElementById("new-password-message");
-	
-	if (passwordRegex.test(newPassword.value)){
-		messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";	
-			newPasswordChecked1 = true;
-	} else if(newPassword.value.length >= 6){
-		messageDiv.innerHTML = "<span style='color:red'>유효하지 않은 비밀번호 형식 입니다.</span>";
-		
-	}else if(newPassword.value.length < 6){
-		messageDiv.innerHTML = "";
-		
-	}
-});
-
-newPasswordCheck.addEventListener("keyup", () => {
-	
-	let messageDiv = document.getElementById("new-password-check-message");
-	
-	if (newPassword.value === newPasswordCheck.value) {
-		messageDiv.innerHTML = "비밀번호가 일치합니다.";
-			newPasswordChecked2 = true;
-		
-	} else if(newPasswordCheck.value.length >= 6){
-		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
-		
-	}else if(newPasswordCheck.value.length < 6){
-		messageDiv.innerHTML = "";
-		
-	}
-});
-
-passwordForm.addEventListener("submit", () =>{
-	if(newPasswordChecked1&&newPasswordChecked2){
-		passwordForm.submit();
-		
-	}else{
-		alert('다시 입력 해주세요.');
-	}
-});
 
 
 //비밀번호 일치하는지 여부
@@ -143,12 +95,15 @@ form.addEventListener("submit", (event) => {
 		nameInput.disabled=false;
       	birthdateElement.disabled=false; 
       	genderVisibility.disabled=false; 
-      	//genderHidden.disabled=false;
       	phoneNumberElement.disabled=false;
       	addressElement.disabled=false;
       	addressDetailElement.disabled=false;
       	passwordInput.disabled=true;
       	passwordCkInput.disabled=true;
+      	
+      	presentPassword.disabled=false; 
+      	newPassword.disabled=false; 
+      	newPasswordCheck.disabled=false; 
       	
       
       	passwordInput.value='';

@@ -39,17 +39,13 @@ public class Mate {
  
  
  public void setAddress(String location) {
-	    int lastCommaIndex = location.lastIndexOf(",");
-	    if (lastCommaIndex >= 0) {
-	        this.address = location.substring(0, lastCommaIndex).trim();
-	    } else {
-	        this.address = location.trim();
-	    }
+	 String[] splitLocation = getLocation().split(",");
+	 this.address = splitLocation[0];
  }
  
  public void setAddressDetail(String location) {
 	 String[] splitLocation = getLocation().split(",");
-	 this.addressDetail = splitLocation[1].trim();
+	 this.addressDetail = splitLocation[1];
  }
  
  public void setPhoneNumber() {

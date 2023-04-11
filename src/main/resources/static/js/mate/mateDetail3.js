@@ -1,12 +1,17 @@
+let newPasswordChecked1 = false;
+let newPasswordChecked2 = false;
+let newPasswordChecked3 = false;
+let newPasswordButton = document.querySelector('#new-password-button');
+let password= '';
 
 //현재 비밀번호 일치하는지 여부
 presentPassword.addEventListener("keyup", () => {
-sendPassword(emailInput.value, presentPassword.value)
+presentSendPassword(emailInput.value, presentPassword.value)
 
 });
 
 //비밀번호 확인
-function sendPassword(email, password) {
+function presentSendPassword(email, password) {
 	let option = {
 		method: "post",
 		headers: {
@@ -23,10 +28,10 @@ function sendPassword(email, password) {
 function presentPasswordResultMessage(result){
 		let messageDiv = document.getElementById("present-password-message");
 	if(result === true){
-		passwordChecked1 = true;
+		newPasswordChecked1 = true;
 		messageDiv.innerHTML = "비밀번호가 확인되었습니다.";
 	}else if(result === false){
-		passwordChecked1 = false;
+		newPasswordChecked1 = false;
 		messageDiv.innerHTML = "<span style='color:red'>존재하지 않는 비밀번호 입니다.</span>";
 	}
 	
@@ -43,8 +48,9 @@ newPassword.addEventListener("keyup", () => {
 	
 	if (passwordRegex.test(newPassword.value)){
 		if(newPassword.value !== presentPassword.value){
-			messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";	
+			//password = newPassword.value;
 			newPasswordChecked2 = true;
+			messageDiv.innerHTML = "사용 가능한 비밀번호 입니다.";	
 		}else{
 			messageDiv.innerHTML = "<span style='color:blue'>현재 비밀번호랑 동일합니다.</span>";	
 		}
@@ -62,8 +68,8 @@ newPasswordCheck.addEventListener("keyup", () => {
 	let messageDiv = document.getElementById("new-password-check-message");
 	
 	if (newPassword.value === newPasswordCheck.value) {
-		messageDiv.innerHTML = "비밀번호가 일치합니다.";
 			newPasswordChecked3 = true;
+		messageDiv.innerHTML = "비밀번호가 일치합니다.";
 		
 	} else if(newPasswordCheck.value.length >= 6){
 		messageDiv.innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
@@ -73,10 +79,19 @@ newPasswordCheck.addEventListener("keyup", () => {
 		
 	}
 });
-
-passwordForm.addEventListener("submit", (event) =>{
-	if(newPasswordChecked1&& newPasswordChecked2 && newPasswordChecked3){
+/*
+passwordInput.addEventListener("change", () =>{
+	passwordAfterUpdate= passwordInput.value;
+});
+*/
+newPasswordButton.addEventListener("click", (event) =>{
+	if(newPasswordChecked1 && newPasswordChecked2 && newPasswordChecked3){
+		
+		passwordForm.append('email', emailInput);
+		passwordForm.append('password', newPassword.value);
+		alert(emailInput + " : " + newPassword.value);
 		passwordForm.submit();
+		alert("비밀번호가 변경되었습니다. 다시 로그인 해주세요");
 		
 	}else{
 		alert('다시 입력 해주세요.');

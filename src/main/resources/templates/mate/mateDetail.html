@@ -13,7 +13,7 @@
     <form id="detail-form" class="needs-validation" method="post">
     <div>
       <label for="email">이메일</label> 
-      <input type="text" th:value=${mate.getEmail()} id="email" name="email" class="form-control" value="" readonly>
+      <input type="text" th:field="${mate.email}" class="form-control" readonly>
     </div>
     <div class="form-group row">
     <div class="col-8">
@@ -103,23 +103,23 @@
       <div class="modal-body">
         <div class="col">
       <label for="present-password">현재 비밀번호</label> 
-      <input type="password" id="present-password" name="present-password" class="form-control" value="" required>
+      <input type="password" id="present-password" name="present-password" class="form-control" value="" required disabled>
       <div class="mt-1 text-success" id="present-password-message" style="font-size: 0.6rem;"></div>
     </div>
         <div class="col">
       <label for="new-password">새 비밀번호</label> 
-      <input type="password" id="new-password" name="new-password" class="form-control" value="" required>
+      <input type="password" id="new-password" name="new-password" class="form-control" required disabled>
       <div class="mt-1 text-success" id="new-password-message" style="font-size: 0.6rem;"></div>
     </div>
     <div class="col">
       <label for="new-password-check">새 비밀번호 확인</label> 
-      <input type="password" id="new-password-check" name="new-password-check" class="form-control" value="" required>
+      <input type="password" id="new-password-check" name="new-password-check" class="form-control" value="" required disabled>
       <div class="mt-1 text-success" id="new-password-check-message" style="font-size: 0.6rem;"></div>
     </div>    
       </div>
       
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+        <button type="button" class="btn btn-primary" id="new-password-button">비밀번호 변경</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
