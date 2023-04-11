@@ -29,4 +29,6 @@ public interface CrewService {
 	public List<CrewCreate> allCrew();
 	// 요일 계산
 	public DayOfweeks calculDay(int num);
+	// 날짜로 모임 리스트 검색
+	public List<CrewCreate> findBydate(String date);
 }

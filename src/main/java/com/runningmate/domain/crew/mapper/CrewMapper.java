@@ -26,6 +26,8 @@ public interface CrewMapper {
 	public void leaveCrew(String email);
 	// 등록된 모든 모임 불러오기
 	public List<CrewCreate> allCrew();
+	// 날짜로 모임 리스트 검색
+	public List<CrewCreate> findBydate(String date);
 	
 	public void update(CrewCreate crewCreate);
 	

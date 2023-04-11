@@ -52,12 +52,17 @@
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
 	</select> 
-	
 	<!-- 특정 모임 사진 정보 -->
 	<select id="getPhotos" parameterType="string" resultType="CrewPhoto">
 		select photo_id, photo_name, crew_id
 		from photo
 		WHERE crew_id = #{value}
+	</select>
+	<!-- 날짜로 불러오는 모임 전체 정보 -->
+	<select id="findBydate" parameterType="string" resultType="CrewCreate">
+		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE crewdate LIKE '%' || #{value} || '%'
 	</select>
 
 <!-- 삭제 -->

@@ -27,13 +27,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MainController {
 
-
 	@Autowired
 	private CrewService crewService;
 
+	// 메인화면 보여주기 메소드
 	@GetMapping
 	public String mainView(HttpSession httpSession, Model model) {
-		// 모임 정보 보여주기
+		crewListDays(model);
+		
+		return "main";
+	}
+	
+	// 모임 리스트 정보 보여주기
+	@GetMapping("/runlist")
+	public String ajaxCrewList(HttpSession httpSession, Model model) {
+		crewListDays(model);
+		
 		List<CrewCreate> crewCreate = crewService.allCrew(); 
 		for (CrewCreate crewCreate2 : crewCreate) {
 			String originDate = crewCreate2.getCrewdate();  
@@ -41,9 +50,24 @@ public class MainController {
 			crewCreate2.setCrewdate(end);
 		}
 		model.addAttribute("crew", crewCreate);
+		
+		List<CrewCreate> onlyDays = crewService.allCrew(); 
+		for (CrewCreate crewCreate2 : onlyDays) {
+			String onlyDaysOriginDate = crewCreate2.getCrewdate();  
+			String onlyDaysEnd = onlyDaysOriginDate.substring(8,10);
+			crewCreate2.setCrewdate(onlyDaysEnd);
+		}
+		model.addAttribute("dates", onlyDays);
+		
 		log.info("crews= {}", crewCreate);
 		
-		// 날짜별 모임 리스트 보여주기 기능
+		return "runList";
+	}
+
+	
+	
+	// 헬퍼메소드: 날짜별 모임 리스트 보여주기 기능
+	private void crewListDays(Model model) {
 		List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
 		for (int i = 0; i < 7; i++) {
 			DayOfweeks dayOfweeks2 = crewService.calculDay(i);
@@ -51,10 +75,6 @@ public class MainController {
 		}
 		log.info("날짜, 요일 배열: {}", dayOfweeks);
 		model.addAttribute("days", dayOfweeks);
-
-
-		return "main";
 	}
-
 
 }

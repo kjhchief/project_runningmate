@@ -112,6 +112,11 @@ public class CrewServiceImpl implements CrewService {
 		return dayOfweeks;
 	}
 
+	@Override
+	public List<CrewCreate> findBydate(String date) {
+		return crewMapper.findBydate(date);
+	}
+
 
 
 

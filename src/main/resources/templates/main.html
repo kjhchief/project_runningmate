@@ -49,37 +49,23 @@
         <!-- 일자 버튼 -->
         <div class="day_button mb-3">
           <div class="row mx-1">
-            <button type="button" class="col btn btn-light mx-1" th:each="day : ${days}">
+            <button type="button" th:id="'but'+${day.dayofMonth}" class="col btn btn-light mx-1" th:each="day : ${days}">
               <span th:text="${day.dayofMonth}">15 </span><br>
-              <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
-              <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
-              <span th:if="${day.dayofweek == '일'}" style="color:red">일</span>
+              <strong>
+                <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
+                <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
+                <span th:if="${day.dayofweek == '일'}" style="color:red">일</span>
+              </strong>
             </button>
           </div>
         </div>
 
       <!-- 리스트 -->
-      <div class=" run_list">
-        <table class="table table-hover text-center">
-          <tbody>
-            <tr th:each="cr : ${crew}">
-              <th scope="row" th:text="${cr.crewdate}">16:00</th>
-              <td colspan="2"><span th:text="${cr.title}">남산 공원</span> 
-                <div class="prop">
-                  <span th:text="${cr.courseIntro}">남성 전용</span>
-                </div>
-              </td>
-              <td>
-               <a th:href="@{${'/crew/' + cr.crewId}}">
-                 <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
-               </a>
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
+      <div id="message">
+
       </div>
 
     </section>
-    <script src="/js/mate/logout.js"></script>
+    <script src="/js/main.js"></script>
+<!--     <script src="/js/mate/logout.js"></script> -->
 </html>
