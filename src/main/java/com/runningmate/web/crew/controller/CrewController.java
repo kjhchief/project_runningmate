@@ -53,7 +53,12 @@ public class CrewController {
 
 	// 모임 만들기 화면 요청 처리 메소드
 	@GetMapping
-	public String createcrew() {
+	public String createcrew(HttpSession httpSession) {
+		Mate mate = (Mate)httpSession.getAttribute("mate");
+		if(mate==null) {
+			return "mate/login";
+		}
+		
 		return "crew/createcrew";
 	}
 	

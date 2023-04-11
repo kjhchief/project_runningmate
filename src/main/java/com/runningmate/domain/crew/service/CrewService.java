@@ -6,6 +6,7 @@ import java.util.List;
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
+import com.runningmate.domain.crew.dto.DayOfweeks;
 import com.runningmate.domain.manage.dto.CrewList;
 
 
@@ -26,4 +27,6 @@ public interface CrewService {
 	public void leaveCrew(String email);
 	// 등록된 모든 모임 불러오기
 	public List<CrewCreate> allCrew();
+	// 요일 계산
+	public DayOfweeks calculDay(int num);
 }

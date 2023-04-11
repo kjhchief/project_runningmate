@@ -1,10 +1,11 @@
 package com.runningmate.domain.crew.service;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
+import com.runningmate.domain.crew.dto.DayOfweeks;
 import com.runningmate.domain.crew.mapper.CrewMapper;
 import com.runningmate.domain.manage.dto.CrewList;
 import com.runningmate.web.crew.controller.FileStore;
@@ -91,6 +93,23 @@ public class CrewServiceImpl implements CrewService {
 	@Override
 	public List<CrewCreate> allCrew() {
 		return crewMapper.allCrew();
+	}
+
+	@Override
+	public DayOfweeks calculDay(int num) {
+		// 날짜별 모임 리스트 보여주기 기능
+		LocalDateTime now = LocalDateTime.now();
+		DayOfWeek dayOfWeek = now.getDayOfWeek();
+		int dayOfMonth = now.getDayOfMonth() + num;
+		
+		LocalDateTime nextday = now.plusDays(num);
+		String day = nextday.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+			
+		DayOfweeks dayOfweeks = new DayOfweeks();
+		dayOfweeks.setDayofMonth(dayOfMonth);
+		dayOfweeks.setDayofweek(day);
+		
+		return dayOfweeks;
 	}
 
 

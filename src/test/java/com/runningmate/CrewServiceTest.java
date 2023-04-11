@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.runningmate.domain.crew.dto.CrewCreate;
+import com.runningmate.domain.crew.dto.DayOfweeks;
 import com.runningmate.domain.crew.service.CrewService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +41,13 @@ public class CrewServiceTest {
 		crewService.createCrew(crew);
 		
 		log.info("모임 및 사진 등록 완료 : {}", crew);
+	}
+	
+	@Test
+//	@Disabled
+	void dayCalculTest() {
+		DayOfweeks dayOfweeks = crewService.calculDay(1);
+		log.info("날짜 {}", dayOfweeks);
 	}
 	
 }
