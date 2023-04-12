@@ -54,8 +54,18 @@
 	WHERE email = #{email}
 </delete>
 
-
-
+<!-- 아이디 찾기 -->
+<select id="findEmail" parameterType="String" resultType="Mate">
+	SELECT email 
+	FROM mate
+	WHERE name = #{name} AND password =#{password}
+</select>
+<!-- 비밀번호 찾기 -->
+<select id="findPassword" parameterType="String" resultType="Mate">
+	SELECT password 
+	FROM mate
+	WHERE email = #{email} AND name =#{name}
+</select>
 
 
 </mapper>                        

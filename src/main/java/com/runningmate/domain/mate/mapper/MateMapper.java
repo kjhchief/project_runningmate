@@ -29,7 +29,7 @@ public interface MateMapper {
 	//회원정보 삭제
 	public int mateInfoDelete(String email);
 	//아이디 찾기
-	public int findByEmail(@Param("name") String name, @Param("password")String  password);
+	public String findEmail(@Param("name") String name, @Param("password")String  password);
 	//비밀번호 찾기
-	public int findByPassword(@Param("email") String email, @Param("name")String  name);
+	public String findPassword(@Param("email") String email, @Param("name")String  name);
 }

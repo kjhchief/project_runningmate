@@ -60,6 +60,18 @@ public class MateServiceImpl implements MateService {
 		
 	}
 
+	@Override
+	public String findEmail(String name, String password) {
+		String email = mateMapper.findEmail(name, password);
+		return email;
+	}
+
+	@Override
+	public String findPassword(String email, String name) {
+		String password = mateMapper.findEmail(email, name);
+		return password;
+	}
+
   
  
 	

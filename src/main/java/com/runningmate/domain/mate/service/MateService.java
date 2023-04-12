@@ -1,5 +1,7 @@
 package com.runningmate.domain.mate.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.runningmate.domain.mate.dto.Mate;
 
 /**
@@ -20,5 +22,9 @@ public interface MateService {
 	public Mate update(Mate mate);
 	//회원 정보 삭제
 	public boolean isDelete(String email);
+	//아이디 찾기
+	public String findEmail(String name, String  password);
+	//비밀번호 찾기
+	public String findPassword(String email, String  name);
 	
 }

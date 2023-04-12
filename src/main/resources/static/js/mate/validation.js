@@ -43,7 +43,7 @@ function sendEmail(email) {
 		},
 		body: `email=${email}` //서버로 전송할 데이터
 	};
-	fetch("/mate/email-check", option)
+	fetch("/email-check", option)
 		.then(respose => respose.json())
 		.then(result => emailResultMessage(result))
 		.catch(error => console.log(error));

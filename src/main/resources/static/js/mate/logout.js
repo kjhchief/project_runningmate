@@ -1,9 +1,9 @@
 
 const logout = document.getElementById('logout');  
 
-logout.addEventListener('click', () =>{
+logout.addEventListener('click', () => {
 	
-	location.href='/mate/login';
+	location.href='/mate/newLogin';
  
 });
 

@@ -69,7 +69,7 @@ public class MateController {
 		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
-		return "/mate/main";
+		return "/";
 	}
 	
 	//로그인 처리 메소드
@@ -112,7 +112,7 @@ public class MateController {
 	model.addAttribute("mate", mate);
 		log.info("mate : {}", mate);
 		
-		return "/mate/main";
+		return "/";
 	}
 	
 	@GetMapping("/mypage")
@@ -185,10 +185,31 @@ public class MateController {
 			 return "/mate/login"; // 비밀번호 변경 후 로그인 페이지로 이동
 		}
 		
-		//mate정보 수정 기능 처리
+		//이메일,비밀번호 찾기 화면 처리
 		@GetMapping("/findEmailPassword")
-		public String findEmailPassword() {
+		public String findEmailPasswordForm() {
+			
 		return "/mate/findEmailPassword"; 
 		}
+		//이메일, 비밀번호 찾기 기능 처리
+		@PostMapping("/findEmailPassword")
+		@ResponseBody
+		public String findEmailPassword(@RequestParam(required=false) String email, @RequestParam String name, @RequestParam(required=false) String password) {
+		if(email != null ) {
+			String reault = mateService.findEmail(name, password);
+			if(reault != null) {
+				return "true";
+			}else {
+				return "false";
+			}
+		}else {
+			String reault = mateService.findPassword(email, name);
+			if(reault != null) {
+				return "true";
+			}else {
+				return "false";
+			}
+		}
+	}
 			
 }

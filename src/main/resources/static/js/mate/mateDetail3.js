@@ -19,7 +19,7 @@ function presentSendPassword(email, password) {
 		},
 		body: `email=${email}&password=${password}` //서버로 전송할 데이터
 	};
-	fetch("/mate/password-check", option)
+	fetch("/password-check", option)
 		.then(respose => respose.json())
 		.then(result => presentPasswordResultMessage(result))
 		.catch(error => console.log(error));
