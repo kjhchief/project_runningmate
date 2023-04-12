@@ -184,5 +184,11 @@ public class MateController {
 			 session.invalidate(); // 세션 삭제
 			 return "/mate/login"; // 비밀번호 변경 후 로그인 페이지로 이동
 		}
-	
+		
+		//mate정보 수정 기능 처리
+		@GetMapping("/findEmailPassword")
+		public String findEmailPassword() {
+		return "/mate/findEmailPassword"; 
+		}
+			
 }

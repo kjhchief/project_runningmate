@@ -47,10 +47,15 @@
     FROM mate 
     WHERE email = #{email}
   </select>
+  
 <!-- 회원 삭제 delete문은 int타입 1,0 반환 -->
 <delete id="mateInfoDelete" parameterType="string">
 	DELETE FROM mate
 	WHERE email = #{email}
 </delete>
+
+
+
+
 
 </mapper>                        

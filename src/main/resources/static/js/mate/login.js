@@ -51,7 +51,7 @@ function sendEmailPassword(email, password, saveEmail){
 
 function loginResultMessage(result){
 	if(result){
-		location.href='/mate/main';
+		location.href='/main';
 	}else{
 		alert("이메일, 비밀번호를 다시 입력 해주세요.");
 	}

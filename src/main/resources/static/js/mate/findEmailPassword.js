@@ -5,44 +5,15 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-const updateButtonForm = document.querySelector('#detail-update-list');
-const saveButtonForm = document.querySelector('#detail-save-cancel-delete');
 
-saveButtonForm.style.display = 'none';
 
-const form = document.querySelector('#detail-form');
-const passwordForm = document.querySelector('#new-password-form');
-const emailInput = document.querySelector('#email'); 
+const emailInput1 = document.querySelector('#find-email-name'); 
+const emailInput2 = document.querySelector('#find-password-name'); 
 const nameInput = document.querySelector('#name'); 
 const passwordInput = document.querySelector('#password'); 
-const passwordCkInput = document.querySelector('#password-check'); 
-const genderElement = document.querySelector('#gender'); 
-const birthdateElement = document.querySelector('#birthdate');
 const phoneNumberElement = document.querySelector('#phoneNumber');
-const addressElement = document.querySelector('#address');
-const addressDetailElement = document.querySelector('#address-detail');
-const updateButton = document.querySelector('#update-button');
-const updateFinshButton = document.querySelector('#update-finsh-button');
-
-
-const newPasswordInput = document.querySelector('#new-password'); 
-const newPasswordCKInput = document.querySelector('#new-password-check'); 
-
-
-let passwordChecked = false;
-let newPasswordChecked1 = false;
-let newPasswordChecked2 = false;
-let genderChecked = '';
-let birthdateChecked = false;
-let phonenumberChecked = false;
-
-
-passwordInput.disabled=false;
-passwordCkInput.disabled=false;
-
-
-
-
+const findButton1 = document.querySelector('#find-email-button');
+const findButton2= document.querySelector('#find-password-button');
 
 //비밀번호 일치하는지 여부
 passwordCkInput.addEventListener("keyup", () => {
@@ -62,22 +33,22 @@ passwordCkInput.addEventListener("keyup", () => {
 	}
 });
 
-//비밀번호 확인
-function sendPassword(email, password) {
+//아이디 비밀번호 찾기
+function sendPassword(email, name, password) {
 	let option = {
 		method: "post",
 		headers: {
-			"Content-Type": "application/x-www-form-urlencoded"
+			"Content-Type": "application/json"
 		},
-		body: `email=${email}&password=${password}` //서버로 전송할 데이터
+		body: `email=${email}&name=${name}&password=${password}`
 	};
 	fetch("/mate/password-check", option)
 		.then(respose => respose.json())
-		.then(result => passwordResultMessage(result))
+		.then(result => findResultMessage(result))
 		.catch(error => console.log(error));
 }
 
-function passwordResultMessage(result){
+function findResultMessage(result){
 	if(result === true){
 		passwordChecked = true;
 	}else if(result === false){
