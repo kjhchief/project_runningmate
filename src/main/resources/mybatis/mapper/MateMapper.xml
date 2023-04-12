@@ -47,12 +47,10 @@
     FROM mate 
     WHERE email = #{email}
   </select>
-
-<!--  
-<select id="findMateDetail" resultType="Mate">
-	SELECT email, name, gender, birthdate, phone_number, location 
-	FROM mate
-</select>
--->
+<!-- 회원 삭제 delete문은 int타입 1,0 반환 -->
+<delete id="mateInfoDelete" parameterType="string">
+	DELETE FROM mate
+	WHERE email = #{email}
+</delete>
 
 </mapper>                        

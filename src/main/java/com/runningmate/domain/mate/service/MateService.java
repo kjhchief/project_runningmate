@@ -18,5 +18,7 @@ public interface MateService {
 	public Mate getLoginInfo(String email, String password);
 	//회원 정보 수정
 	public Mate update(Mate mate);
+	//회원 정보 삭제
+	public boolean isDelete(String email);
 	
 }

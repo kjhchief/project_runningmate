@@ -65,7 +65,7 @@ public class MateController {
 	@PostMapping
 	public String register(@ModelAttribute("mate") Mate mate) {
 		mate.setBirthdate();
-		mate.setLocation(mate.getAddress(), mate.getAddressDetail());
+		mate.setLocation();
 		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
@@ -127,8 +127,8 @@ public class MateController {
 	@GetMapping("/mateDetail")
 	public String mateDatailForm(HttpSession session, Model model) {
 		Mate mate = (Mate)session.getAttribute("mate");
-		mate.setAddress(mate.getLocation());
-		mate.setAddressDetail(mate.getLocation());
+		mate.setAddress();
+		mate.setAddressDetail();
 		model.addAttribute("mate", mate);
 		log.info("mate : {}", mate);	
 		return "/mate/mateDetail";
@@ -138,11 +138,13 @@ public class MateController {
 	@PostMapping("/mateDetail")
 	public String mateDatail(HttpSession session, Model model, @RequestParam(name="new-password", required=false) String newPassword, @ModelAttribute("mate") Mate mate) {
 		log.info("제발제발 : {}", mate);
-		mate.setLocation(mate.getAddress(), mate.getAddressDetail());
+		mate.setLocation();
 		mate.setPassword(newPassword);
 		
 		Mate updatedMate = mateService.update(mate); // 1. update된 Mate 객체를 반환
 		session.setAttribute("mate", updatedMate); // session에도 update된 Mate 객체를 저장
+		mate.setAddress();
+		mate.setAddressDetail();
 		model.addAttribute("mate", updatedMate); // 3. model.addAttribute에 새로운 Mate 객체를 저장
 		log.info("업데이트야 제발 되그라 :{} ", mate);
 	
@@ -155,39 +157,6 @@ public class MateController {
 	    
 	}
 	
-	
-	
-	/*
-	@PostMapping("/mateDetail")
-	public String mateDatail(HttpSession session, Model model, @RequestParam(name="new-password", required=false) String newPassword, @ModelAttribute("mate") Mate mate) {
-	    log.info("기존 mate 정보: {}", session.getAttribute("mate"));
-	    mate.setLocation(mate.getAddress(), mate.getAddressDetail());
-	    
-	    Mate updatedMate = mateService.update(mate);
-	    session.setAttribute("mate", updatedMate); // 업데이트된 mate 객체를 다시 세션에 저장
-
-	    // 비밀번호를 수정한 경우에만 처리
-	    if (newPassword != null) {
-	        updatedMate.setPassword(newPassword);
-	        session.setAttribute("mate", updatedMate); // 업데이트된 mate 객체를 다시 세션에 저장
-	        return "redirect:/mate/login";
-	    }
-	    
-	    model.addAttribute("mate", updatedMate);
-	    log.info("업데이트된 mate 정보: {}", updatedMate);
-	    
-	    return "redirect:/mate/mateDetail";
-	}
-	*/
-/*	
-	//mate정보 수정 기능 처리
-		@PostMapping("/mateDetailUpdate")
-		public String mateDatailUpdate(@ModelAttribute("mate") Mate mate) {
-			mateService.update(mate);
-				
-			return "/mate/mateDetail";
-		}
-	*/
 	//비밀번호 확인
 	@PostMapping("/password-check")
 	@ResponseBody
@@ -198,5 +167,22 @@ public class MateController {
 			return "false";
 		}
 	}
+	
+	//회원탈퇴
+		@PostMapping("/delete")
+		@ResponseBody
+		public String mateDelete(@RequestParam String email) {
+			if (mateService.isDelete(email)) {
+				return "true";
+			} else {
+				return "false";
+			}
+		}
+		//mate정보 수정 기능 처리
+		@GetMapping("/newLogin")
+		public String deleteSuccess(HttpSession session) {
+			 session.invalidate(); // 세션 삭제
+			 return "/mate/login"; // 비밀번호 변경 후 로그인 페이지로 이동
+		}
 	
 }

@@ -33,17 +33,17 @@ public class Mate {
 	 this.birthdate  = getYear() + "." + getMonth() + "." + getDate();
  }
  
- public void setLocation(String address, String addressDetail) {
+ public void setLocation() {
 	 this.location  = getAddress() + "," + getAddressDetail();
  } 
  
  
- public void setAddress(String location) {
+ public void setAddress() {
 	 String[] splitLocation = getLocation().split(",");
 	 this.address = splitLocation[0];
  }
  
- public void setAddressDetail(String location) {
+ public void setAddressDetail() {
 	 String[] splitLocation = getLocation().split(",");
 	 this.addressDetail = splitLocation[1];
  }

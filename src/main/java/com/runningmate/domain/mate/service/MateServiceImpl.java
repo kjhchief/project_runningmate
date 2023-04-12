@@ -50,6 +50,16 @@ public class MateServiceImpl implements MateService {
 		return mateMapper.get(mate.getEmail());
 	}
 
+	@Override
+	public boolean isDelete(String email) {
+		if(mateMapper.mateInfoDelete(email) == 1) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
   
  
 	

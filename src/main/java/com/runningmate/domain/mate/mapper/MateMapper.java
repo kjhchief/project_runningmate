@@ -25,4 +25,7 @@ public interface MateMapper {
 	
 	//업데이트결과 가져오기
 	public Mate get(String email);
+	
+	//회원정보 삭제
+	public int mateInfoDelete(String email);
 }

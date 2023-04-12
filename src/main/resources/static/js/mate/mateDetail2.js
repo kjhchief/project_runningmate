@@ -1,10 +1,11 @@
+/*
 //스페이스바 입력못하게 하는 코드
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 32) {
     event.preventDefault();
   }
 });
-
+*/
 
 /*
 let newPasswordChecked1 = false;
@@ -15,12 +16,6 @@ let birthdateChecked = true;
 let phonenumberChecked = true;
 
 const emailBeforeUpdate = emailInput.value;
-const nameBeforeUpdate = nameInput.value;
-const genderBeforeUpdate = genderVisibility.value;
-const birthdateBeforeUpdate = birthdateElement.value;
-const phoneNumberBeforeUpdate = phoneNumberElement.value;
-const addressBeforeUpdate = addressElement.value;
-const addressDetailBeforeUpdate = addressDetailElement.value;
 
 let nameAfterUpdate ='';
 let genderAfterUpdate ='';
@@ -71,8 +66,8 @@ birthdateElement.addEventListener("change", () => {
 	birthdateAfterUpdate = birthdateElement.value;
 	let messageDiv = document.getElementById("birthdate-check-message");
 		
-		 let formattedBirthdate = `${birthdateAfterUpdate.slice(0, 4)}-${birthdateAfterUpdate.slice(4, 6)}-${birthdateAfterUpdate.slice(6)}`;
-  		 birthdateAfterUpdate = formattedBirthdate;
+		// let formattedBirthdate = `${birthdateAfterUpdate.slice(0, 4)}-${birthdateAfterUpdate.slice(4, 6)}-${birthdateAfterUpdate.slice(6)}`;
+  		// birthdateAfterUpdate = formattedBirthdate;
 		
 	 if(birthRegex.test(birthdateAfterUpdate)){
 		 birthdateChecked = true;
@@ -98,8 +93,8 @@ phoneNumberElement.addEventListener("change", () => {
 	
 		
 	 if(phoneNumberRegex.test(phonenumberAfterUpdate)){
-		 let formattedPhoneNumber = `${phonenumberAfterUpdate.slice(0, 3)}-${phonenumberAfterUpdate.slice(3, 7)}-${phonenumberAfterUpdate.slice(7)}`;
-  		 phonenumberAfterUpdate = formattedPhoneNumber;
+		// let formattedPhoneNumber = `${phonenumberAfterUpdate.slice(0, 3)}-${phonenumberAfterUpdate.slice(3, 7)}-${phonenumberAfterUpdate.slice(7)}`;
+  		// phonenumberAfterUpdate = formattedPhoneNumber;
 		 phonenumberChecked = true;
 		messageDiv.innerHTML = "";
 	}else if(phonenumberAfterUpdate.length >= 13){
@@ -123,7 +118,7 @@ updateFinshButton.addEventListener("click", () => {
 			 }   
 			if (genderAfterUpdate !== genderBeforeUpdate) {
 			   form.append('gender', genderHidden.value);
-				alert(genderHidden.value)
+				alert(genderHidden.value);
 			 }
 			if (birthdateAfterUpdate !== birthdateBeforeUpdate) {
 			  form.append('birthdate', birthdateAfterUpdate);
@@ -145,6 +140,32 @@ updateFinshButton.addEventListener("click", () => {
   
    }  
      
+});
+
+deleteButton.addEventListener("click", () =>{
+	let option = {
+		method: "post",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		body: `email=${emailInput.value}` //서버로 전송할 데이터
+	};
+	fetch("/mate/delete", option)
+		.then(respose => respose.json())
+		.then(result => deleteMessage(result))
+		.catch(error => console.log(error));
+
+	function deleteMessage(result){
+	if(result === true){
+		alert('탈퇴가 정상적으로 이루어졌습니다.');
+		location.href='/mate/newLogin';
+	}else if(result === false){
+		alert('탈퇴 실패.');
+		
+	}
+	
+}	
+	
 });
 
 

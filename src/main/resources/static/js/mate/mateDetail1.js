@@ -1,10 +1,11 @@
+/*
 //스페이스바 입력못하게 하는 코드
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 32) {
     event.preventDefault();
   }
 });
-
+*/
 let updateButtonForm = document.querySelector('#detail-update-list');
 let saveButtonForm = document.querySelector('#detail-save-cancel-delete');
 
@@ -22,16 +23,24 @@ let genderHidden = document.querySelector('#hidden-gender');
 let birthdateElement = document.querySelector('#birthdate');
 let phoneNumberElement = document.querySelector('#phoneNumber');
 let addressElement = document.querySelector('#address');
-let addressDetailElement = document.querySelector('#address-detail');
+let addressDetailElement = document.querySelector('#addressDetail');
 
 let updateButton = document.querySelector('#update-button');
 let updateFinshButton = document.querySelector('#update-finsh-button');
+let deleteButton = document.querySelector('#leave-button');
 
 
 let presentPassword = document.querySelector('#present-password'); 
 let newPassword = document.querySelector('#new-password'); 
 let newPasswordCheck = document.querySelector('#new-password-check'); 
 
+
+const nameBeforeUpdate = nameInput.value;
+const genderBeforeUpdate = genderVisibility.value;
+const birthdateBeforeUpdate = birthdateElement.value;
+const phoneNumberBeforeUpdate = phoneNumberElement.value;
+const addressBeforeUpdate = addressElement.value;
+const addressDetailBeforeUpdate = addressDetailElement.value;
 
 let passwordChecked = false;
 
