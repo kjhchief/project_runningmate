@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.DayOfweeks;
 import com.runningmate.domain.crew.service.CrewService;
+import com.runningmate.domain.mate.dto.Mate;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +37,8 @@ public class MainController {
 	// 메인화면 보여주기 메소드
 	@GetMapping
 	public String mainView(HttpSession httpSession, Model model) {
-		
+		Mate mate = (Mate)httpSession.getAttribute("mate");
+		model.addAttribute("mate", mate);
 		return "main";
 	}
 	
