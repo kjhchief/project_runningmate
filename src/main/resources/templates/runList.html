@@ -1,5 +1,20 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+        <!-- 일자 버튼 -->
+        <div class="day_button mb-3">
+          <div class="row mx-1">
+            <button type="button" class="col btn btn-light mx-1" th:each="day, loopStat : ${days}" th:id="'b' + ${day.monthDay}" onclick="fetchRequest(this.id)">
+              <span th:text="${day.dayofMonth}">15 </span><br>
+              <span th:text="${day.monthDay}" style="display:none"></span>
+              <strong>
+                <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
+                <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
+                <span th:if="${day.dayofweek == '일'}" style="color:red">일</span>
+              </strong>
+            </button>
+          </div>
+        </div>
+
 <!--       <div class="run_list" >
         <table class="table table-hover text-center">
           <tbody>
