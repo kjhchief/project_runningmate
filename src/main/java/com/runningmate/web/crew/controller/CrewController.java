@@ -84,7 +84,6 @@ public class CrewController {
 		model.addAttribute("mateEmail", mate.getEmail());
 	    log.info("모임신청mate : {}", mate);
 	    
-
 		CrewList crewList = new CrewList();
 		crewList.setCrewId(crewId);
 		crewList.setEmail(mate.getEmail());

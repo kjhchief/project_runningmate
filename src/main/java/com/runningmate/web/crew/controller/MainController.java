@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,23 +36,18 @@ public class MainController {
 	// 메인화면 보여주기 메소드
 	@GetMapping
 	public String mainView(HttpSession httpSession, Model model) {
-		crewListDays(model);
 		
 		return "main";
 	}
 	
-	private String forButtonDate(int i) {
-		DayOfweeks dayOfweeks = new DayOfweeks();
-		dayOfweeks = crewService.calculDay(i);
-		return dayOfweeks.getMonthDay();
-	}
 	
 	// 모임 리스트 정보 보여주기
-	@GetMapping("/runlist")
-	public String ajaxCrewList(HttpSession httpSession, Model model) {
+	@GetMapping("/runlist/{but}")
+	public String ajaxCrewList(@PathVariable String but, HttpSession httpSession, Model model) {
 		crewListDays(model);
 		
 		// 모든 모임 리스트
+		/*
 		List<CrewCreate> crewCreate = crewService.allCrew(); 
 		for (CrewCreate crewCreate2 : crewCreate) {
 			String originDate = crewCreate2.getCrewdate();  
@@ -59,9 +55,17 @@ public class MainController {
 			crewCreate2.setCrewdate(end);
 		}
 		model.addAttribute("crew", crewCreate);
+		*/
 		
 		// 특정 날짜 모임 리스트
-		List<CrewCreate> dateCrews = crewService.findBydate("04/07");
+		String butDate = but.substring(1, but.length());
+		log.info("butDate: {}", butDate);
+		List<CrewCreate> dateCrews = crewService.findBydate(butDate);
+		for (CrewCreate crewCreate2 : dateCrews) {
+			String originDate = crewCreate2.getCrewdate();  
+			String end = originDate.substring(11,16);
+			crewCreate2.setCrewdate(end);
+		}
 		model.addAttribute("dateCrews", dateCrews);
 		
 //		특정 날짜 모임 리스트 => 매개변수 못 불러옴 순서가 잘 못 된듯.
@@ -80,7 +84,7 @@ public class MainController {
 		
 		
 		
-		log.info("crews= {}", crewCreate);
+		log.info("crews= {}", dateCrews);
 		
 		return "runList";
 	}
@@ -94,7 +98,6 @@ public class MainController {
 			DayOfweeks dayOfweeks2 = crewService.calculDay(i);
 			dayOfweeks.add(i, dayOfweeks2);
 		}
-		log.info("날짜, 요일 배열: {}", dayOfweeks);
 		model.addAttribute("days", dayOfweeks);
 	}
 

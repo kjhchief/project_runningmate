@@ -1,19 +1,15 @@
 let today = new Date();
-let date = today.getDate();
+let month = String(today.getMonth() + 1).padStart(2, '0');
+let date = String(today.getDate()).padStart(2, '0');
+// 추출한 월과 일을 '_'로 연결하여 문자열을 생성
+let formattedDate = `${month}_${date}`;
 
-for(let i=0 ; i < 7; i++){
-	if(i === 0){
-		fetchRequest();
-	}else{
-		document.querySelector(`#but${i}`).addEventListener("click", () => {
-		fetchRequest();
-		});
-	}
-}
+fetchRequest(`b${formattedDate}`);
 
+function fetchRequest(buttonId){
 
-function fetchRequest(){
-  fetch("http://localhost/runlist")
+	
+  fetch(`http://localhost/runlist/${buttonId}`)
   .then(response => response.text())
   .then(message =>  showMessage(message)) 
   .catch(error => {

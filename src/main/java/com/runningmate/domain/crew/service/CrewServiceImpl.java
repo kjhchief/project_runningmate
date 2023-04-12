@@ -106,7 +106,7 @@ public class CrewServiceImpl implements CrewService {
 		
 		LocalDateTime nowPlusDays = now.plusDays(num);
 		
-		String monthDay = nowPlusDays.format(DateTimeFormatter.ofPattern("MM/dd"));
+		String monthDay = nowPlusDays.format(DateTimeFormatter.ofPattern("MM_dd"));
 		
 		LocalDateTime nextday = now.plusDays(num);
 		String day = nextday.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
