@@ -7,7 +7,7 @@ import com.runningmate.domain.mate.dto.Mate;
 
 
 @Mapper
-public interface MateMapper { //다시push할게요
+public interface MateMapper { //다시push할게요dydydyd
 	//회원 가입
 	public void create(Mate mate);
 	
