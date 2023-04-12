@@ -150,7 +150,7 @@ deleteButton.addEventListener("click", () =>{
 		},
 		body: `email=${emailInput.value}` //서버로 전송할 데이터
 	};
-	fetch("/delete", option)
+	fetch("/mate/delete", option)
 		.then(respose => respose.json())
 		.then(result => deleteMessage(result))
 		.catch(error => console.log(error));

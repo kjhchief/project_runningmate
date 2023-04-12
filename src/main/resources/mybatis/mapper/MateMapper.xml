@@ -23,7 +23,7 @@
 </select>
 
 <select id="findByEmailAndPassword" parameterType="String" resultType="Mate">
-	SELECT email, name, gender, TO_CHAR(birthdate, 'YYYY-MM-DD') birthdate, phone_number, location 
+	SELECT email, name, gender, TO_CHAR(birthdate, 'YYYY-MM-DD') birthdate, phone_number, location, kakaoacc_yn, mate_class, manner_temp
 	FROM mate
 	WHERE email = #{email} AND password =#{password}
 </select>

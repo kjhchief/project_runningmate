@@ -3,7 +3,7 @@ const detailButton = document.getElementById('detail');
 
 detailButton.addEventListener('click', () => {
 	
-	location.href='/mateDetail';
+	location.href='/mate/mateDetail';
 	
 	
 	
