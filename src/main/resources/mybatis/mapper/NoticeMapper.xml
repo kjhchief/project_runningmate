@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.runningmate.domain.board.mapper.INoticeMapper">	
+
+<resultMap id="NoticeDtoResultMap" type="com.runningmate.domain.board.dto.NoticeDto">
+    <result column="notice_id" property="noticeId"/>
+    <result column="notice_title" property="noticeTitle"/>
+    <result column="notice_content" property="noticeContent"/>
+    <result column="notice_date" property="noticeDate"/>
+    <result column="notice_hit" property="noticeHit"/>
+</resultMap>
+
+<!-- 공지사항 리스트  -->
+<select id="list" resultType="com.runningmate.domain.board.dto.NoticeDto">
+select * from notice order by notice_date desc
+</select>
+
+<!-- 공지사항 글쓰기 -->
+<insert id="write">
+  insert into notice(notice_id, notice_title, notice_content, notice_date)
+   values(notice_seq.nextval,#{param1}, #{param2},sysdate)
+</insert>
+
+<!-- 공지사항 글 보기 -->
+<select id="viewDto" resultType="com.runningmate.domain.board.dto.NoticeDto">
+   select * from notice where notice_id = #{param1}
+</select>
+
+<!-- 공지사항 글 수정  -->
+<update id="updateDto">
+update notice set notice_title=#{param2},notice_content=#{param3}
+ where notice_id=#{param1}
+</update>
+
+<!-- 공지사항 글 지우기 -->
+<delete id="deleteDto">
+delete from notice where notice_id=#{param1}
+</delete>
+
+<!-- 공지사항 게시물 조회수 -->
+<update id="hit">
+update notice set notice_hit = notice_hit+1 where notice_id=#{param1}
+</update>
+
+
+
+<!-- 이전 글의 noticeId를 가져오는 쿼리 -->
+<select id="getPrevNoticeId" parameterType="String" resultType="String">
+    SELECT notice_id
+    FROM (
+        SELECT notice_id
+        FROM notice
+        WHERE notice_id <![CDATA[<]]> #{noticeId}
+        ORDER BY notice_id DESC
+    )
+    WHERE ROWNUM = 1
+</select>
+
+
+<!-- 다음 글의 noticeId를 가져오는 쿼리 -->
+<select id="getNextNoticeId" parameterType="String" resultType="String">
+    SELECT notice_id
+    FROM (
+        SELECT notice_id
+        FROM notice
+        WHERE notice_id <![CDATA[>]]> #{noticeId}
+        ORDER BY notice_id ASC
+    )
+    WHERE ROWNUM = 1
+</select>
+
+
+<!-- 총 게시물 수를 가져오는 쿼리 -->
+<select id="getTotalCount" resultType="int">
+    SELECT COUNT(*) FROM notice
+</select>
+
+
+
+
+<!-- 페이징 처리 -->
+<select id="findAllWithPaging" resultMap="NoticeDtoResultMap">
+    SELECT *
+    FROM (
+        SELECT temp.*, ROWNUM row_num
+        FROM (
+            SELECT notice_id, notice_title, notice_content, notice_date, notice_hit
+            FROM notice
+            ORDER BY notice_date DESC
+        ) temp
+        WHERE ROWNUM &lt;= #{offset} + #{limit}
+    )
+    WHERE row_num > #{offset}
+</select>
+
+
+
+<!-- 제목, 내용 별 검색 -->
+<select id="searchWithPaging" resultMap="NoticeDtoResultMap">
+    SELECT *
+    FROM (
+        SELECT temp.*, ROWNUM row_num
+        FROM (
+            SELECT notice_id, notice_title, notice_content, notice_date, notice_hit
+            FROM notice
+            WHERE
+                CASE #{searchType}
+                    WHEN '제목' THEN notice_title
+                    WHEN '내용' THEN notice_content
+                    WHEN '작성자' THEN '작성자 정보' -- 작성자 정보를 어떻게 처리할지에 따라 변경해야 합니다.
+                END
+            LIKE '%' || #{searchKeyword} || '%'
+            ORDER BY notice_date DESC
+        ) temp
+        WHERE ROWNUM &lt;= #{offset} + #{limit}
+    )
+    WHERE row_num > #{offset}
+</select>
+
+<!-- 검색된 게시물의 수 -->
+<select id="getSearchCount" resultType="int">
+    SELECT COUNT(*)
+    FROM notice
+    WHERE
+        CASE #{searchType}
+            WHEN '제목' THEN notice_title
+            WHEN '내용' THEN notice_content
+            WHEN '작성자' THEN '작성자 정보' -- 작성자 정보를 어떻게 처리할지에 따라 변경해야 합니다.
+        END
+    LIKE '%' || #{searchKeyword} || '%'
+</select>
+
+
+
+
+
+
+</mapper>
+
