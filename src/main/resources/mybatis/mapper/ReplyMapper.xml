@@ -9,9 +9,16 @@
     <result column="reply_id" property="replyId" />
     <result column="reply_content" property="replyContent" />	
     <result column="reply_name" property="replyName" />
+    <result property="email" column="email"/>
     <result column="reply_date" property="replyDate" />
     <result column="reply_notice_id" property="replyNoticeId" />
   </resultMap>
+  
+  
+
+  
+  
+  
 
 
 <select id="replyList" resultType="com.runningmate.domain.board.dto.ReplyDto">
@@ -20,9 +27,11 @@ select * from reply where reply_notice_id=#{param1} order by reply_date desc
 
 <!-- 댓글 달기  -->
 <insert id="replyWrite">
-  insert into reply (reply_id,  reply_content, reply_date, reply_notice_id)
-   values(reply_seq.nextval,  #{param1}, sysdate, #{param2} )
+  insert into reply (reply_id, email, reply_content, reply_date, reply_notice_id)
+   values(reply_seq.nextval, #{email}, #{replyContent}, sysdate, #{replyNoticeIndex})
 </insert>
+
+
 
 
 <!-- 댓글 삭제 -->
@@ -35,6 +44,19 @@ delete from reply where reply_id=#{param1}
 <select id="getReplyCount" resultType="int">
     SELECT COUNT(*) FROM reply WHERE reply_notice_id=#{noticeId}
   </select>
+
+
+<!-- mate테이블 name 가져오기 -->
+<select id="getRepliesByNoticeId" resultType="com.runningmate.domain.board.dto.ReplyDto">
+   SELECT r.reply_id, m.name, m.email, r.reply_content, r.reply_date, r.reply_notice_id
+FROM reply r
+JOIN mate m ON r.email = m.email
+WHERE r.reply_notice_id = :notice_id
+ORDER BY r.reply_date ASC;
+</select>
+
+
+
 
 
 

@@ -26,8 +26,8 @@ public class ReplyServiceImpl implements IReplyService {
 	}
 
 	@Override
-	public int replyWrite(String replyContent, int replyNoticeIndex) {
-	    int result = ireplydao.replyWrite(replyContent, replyNoticeIndex);
+	public int replyWrite(String email, String replyContent, int replyNoticeIndex) {
+	    int result = ireplydao.replyWrite(email,replyContent, replyNoticeIndex);
 	    return result > 0 ? 1 : 0;
 	}
 

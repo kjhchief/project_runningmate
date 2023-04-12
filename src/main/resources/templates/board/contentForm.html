@@ -41,9 +41,14 @@
   <div class="container mt-3">
   
   
-    <form th:action="@{/writeReplyAction}" method="post">
-  <input type="hidden" name="replyNoticeIndex" th:value="${dto.noticeId}">
-  <div class="container mt-3">
+   
+  
+  <!-- 
+  <form th:action="@{/writeReplyAction}" method="post">
+    <input type="hidden" name="replyNoticeIndex" th:value="${dto.noticeId}">
+    <input type="hidden" name="email" th:value="${session.email}"> <!-- 이메일 input 추가 -->
+      <!--  
+      <div class="container mt-3">
     <label for="exampleTextarea" class="form-label">댓글 작성</label>
     <div class="d-flex">
       <textarea class="form-control" name="replyContent" id="exampleTextarea" rows="1"></textarea>
@@ -51,25 +56,39 @@
     </div>
     <br>
 <p th:text="'댓글 ' + ${replyCount} + '개'">댓글 0개</p>
+</form>
+  </div>
+      -->
+
+  
+
+
+
+<form th:action="@{/writeReplyAction}" method="post">
+  <input type="hidden" name="email" th:value="${session.email}">
+  <input type="hidden" name="replyNoticeIndex" th:value="${dto.noticeId}">
+  <div class="container mt-3">
+    <label for="exampleTextarea" class="form-label">댓글 작성</label>
+    <div class="d-flex">
+      <textarea class="form-control" name="replyContent" id="exampleTextarea" rows="1"></textarea>
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">작성</button>
+    </div>
   </div>
 </form>
 
-
     
- <div th:if="${not #lists.isEmpty(replyList)}">
-  <div class="container" th:each="reply_dto : ${replyList}">
-  <hr>
-    <div class="form-group">
-      <label for="content" th:text="'사용자 : ' + ${reply_dto.replyName}"></label>
-      ㅣ
-      <span th:text="${#dates.format(reply_dto.replyDate, 'MM.dd HH:mm')}"></span><br><br>
-      <label for="content" th:text="${reply_dto.replyContent}">댓글 내용: </label>
-<a th:href="@{/deleteReplyAction(replyId=${reply_dto.replyId}, noticeId=${dto.noticeId})}">
-  <button type="submit" class="btn btn-primary btn-sm">댓글삭제</button>
-</a>
-      </a>
+<div th:if="${not #lists.isEmpty(replyList)}">
+    <div class="container" th:each="reply_dto : ${replyList}">
+        <hr>
+        <div class="form-group">
+            <label for="content" th:text="'사용자 : ' + ${reply_dto.email}"></label>
+            <span th:text="${#dates.format(reply_dto.replyDate, 'MM.dd HH:mm')}"></span><br><br>
+            <label for="content" th:text="${reply_dto.replyContent}">댓글 내용: </label>
+            <a th:href="@{/deleteReplyAction(replyId=${reply_dto.replyId}, noticeId=${dto.noticeId})}">
+                <button type="submit" class="btn btn-primary btn-sm">댓글삭제</button>
+            </a>
+        </div>
     </div>
-  </div>
 </div>
   </div>
   </div>

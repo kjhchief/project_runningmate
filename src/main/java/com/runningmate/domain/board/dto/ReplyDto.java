@@ -13,13 +13,14 @@ import lombok.Data;
 //			);
  
 @Data
-
 public class ReplyDto {
 	private int replyId;
 	private String replyContent;
 	private String replyName;
     private Date replyDate;
     private int replyNoticeId;
+    private String email; // 이메일 필드 추가
+
     
     public ReplyDto() {}
     
@@ -41,6 +42,7 @@ public class ReplyDto {
 	public void setReplyId(int replyId) {
 		this.replyId = replyId;
 	}
+	
 
 	public String getReplyContent() {
 		return replyContent;
@@ -73,4 +75,7 @@ public class ReplyDto {
 	public void setReplyName(String replyName) {
 		this.replyName = replyName;
 	}
+	
+	
+	
 }

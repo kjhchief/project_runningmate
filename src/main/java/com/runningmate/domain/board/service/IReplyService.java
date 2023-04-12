@@ -8,7 +8,7 @@ public interface IReplyService {
 	
     public List<ReplyDto> replyList(String replyNoticeIndex);
     
-    public int replyWrite(String replyContent, int replyNoticeIndex);
+    public int replyWrite(String email, String replyContent, int replyNoticeIndex);
     
     public int replyDeleteDto(int replyId);
     
