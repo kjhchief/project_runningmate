@@ -2,7 +2,7 @@
 function saveComment(count) {
 	let comment = {
 		author: sessionStorage.getItem('mate'),
-		email: document.querySelector(`#email${count}`).value,
+		email: document.querySelector(`#email${count}`).textContent,
 		comment: document.querySelector(`#collapse${count} #commentTextarea`).value
 	};
 
