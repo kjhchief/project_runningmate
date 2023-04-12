@@ -49,8 +49,9 @@
         <!-- 일자 버튼 -->
         <div class="day_button mb-3">
           <div class="row mx-1">
-            <button type="button" th:id="'but'+${day.dayofMonth}" class="col btn btn-light mx-1" th:each="day : ${days}">
+            <button type="button" class="col btn btn-light mx-1" th:each="day : ${days}">
               <span th:text="${day.dayofMonth}">15 </span><br>
+              <span th:text="${day.monthDay}" style="display:none" value="monthDay"></span>
               <strong>
                 <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
                 <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
@@ -67,5 +68,5 @@
 
     </section>
     <script src="/js/main.js"></script>
-<!--     <script src="/js/mate/logout.js"></script> -->
+    <script src="/js/mate/logout.js"></script>
 </html>

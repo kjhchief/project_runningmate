@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 public class DayOfweeks {
 	private int dayofMonth;
 	private String dayofweek;
+	private String monthDay;
 }
 
 

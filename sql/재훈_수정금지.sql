@@ -83,14 +83,14 @@ ALTER TABLE crew
 
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '4월 14일 모임_1', 
-'23/4/14', 5, 
+VALUES (crew_seq.NEXTVAL, '4월 12일 모임_3', 
+'23/4/12', 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '건강한 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
 
 SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 FROM crew
-WHERE crewdate LIKE '%4/13%';
+WHERE crewdate LIKE '%04/12%';
 
 
 DELETE FROM crew

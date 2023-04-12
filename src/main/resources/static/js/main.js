@@ -5,7 +5,7 @@ for(let i=0 ; i < 7; i++){
 	if(i === 0){
 		fetchRequest();
 	}else{
-		document.querySelector(`#but${date + i}`).addEventListener("click", () => {
+		document.querySelector(`#but${i}`).addEventListener("click", () => {
 		fetchRequest();
 		});
 	}

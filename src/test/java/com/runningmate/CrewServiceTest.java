@@ -46,7 +46,7 @@ public class CrewServiceTest {
 	@Test
 //	@Disabled
 	void dayCalculTest() {
-		DayOfweeks dayOfweeks = crewService.calculDay(1);
+		DayOfweeks dayOfweeks = crewService.calculDay(20);
 		log.info("날짜 {}", dayOfweeks);
 	}
 	

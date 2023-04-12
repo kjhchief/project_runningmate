@@ -2,7 +2,9 @@ package com.runningmate.domain.crew.service;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
@@ -102,12 +104,17 @@ public class CrewServiceImpl implements CrewService {
 		DayOfWeek dayOfWeek = now.getDayOfWeek();
 		int dayOfMonth = now.getDayOfMonth() + num;
 		
+		LocalDateTime nowPlusDays = now.plusDays(num);
+		
+		String monthDay = nowPlusDays.format(DateTimeFormatter.ofPattern("MM/dd"));
+		
 		LocalDateTime nextday = now.plusDays(num);
 		String day = nextday.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
 			
 		DayOfweeks dayOfweeks = new DayOfweeks();
 		dayOfweeks.setDayofMonth(dayOfMonth);
 		dayOfweeks.setDayofweek(day);
+		dayOfweeks.setMonthDay(monthDay);
 		
 		return dayOfweeks;
 	}

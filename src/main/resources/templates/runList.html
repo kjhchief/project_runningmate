@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-      <div class=" run_list" >
+<!--       <div class="run_list" >
         <table class="table table-hover text-center">
           <tbody>
             <tr th:each="cr : ${crew}">
@@ -12,6 +12,27 @@
               </td>
               <td>
                <a th:href="@{${'/crew/' + cr.crewId}}">
+                 <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
+               </a>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>  -->
+      
+             <div class="run_list" >
+        <table class="table table-hover text-center">
+          <tbody>
+            <tr th:each="dateCrew : ${dateCrews}">
+              <th scope="row" th:text="${dateCrew.crewdate}">16:00</th>
+              <td colspan="2"><span th:text="${dateCrew.title}">남산 공원</span> 
+                <div class="prop">
+                  <span th:text="${dateCrew.courseIntro}">남성 전용</span>
+                </div>
+              </td>
+              <td>
+               <a th:href="@{${'/crew/' + dateCrew.crewId}}">
                  <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
                </a>
               </td>
