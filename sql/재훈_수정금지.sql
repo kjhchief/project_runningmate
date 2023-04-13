@@ -1,6 +1,5 @@
 --sesstionMate
 
-
 SELECT *
 FROM mate;
 

@@ -37,6 +37,7 @@ public class MainController {
 	// 메인화면 보여주기 메소드
 	@GetMapping
 	public String mainView(HttpSession httpSession, Model model) {
+		crewListDays(model);
 		Mate mate = (Mate)httpSession.getAttribute("mate");
 		model.addAttribute("mate", mate);
 		return "main";

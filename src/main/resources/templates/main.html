@@ -45,7 +45,22 @@
             </button>
           </div>
         </div>
-
+        
+        <!-- 일자 버튼 -->
+        <div class="day_button mb-3">
+          <div class="row mx-1">
+            <button type="button" class="butt col btn btn-light mx-1" th:each="day, loopStat : ${days}" th:id="'b' + ${day.monthDay}" onclick="fetchRequest(this.id); change_btn(event);">
+              <span th:text="${day.dayofMonth}">15 </span><br>
+              <span th:text="${day.monthDay}" style="display:none"></span>
+              <strong>
+                <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
+                <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
+                <span th:if="${day.dayofweek == '일'}" style="color:red">일</span>
+              </strong>
+            </button>
+          </div>
+        </div>
+        
       <!-- 리스트 -->
       <div id="message">
 
@@ -53,4 +68,19 @@
 
     </section>
     <script src="/js/main.js"></script>
+    <script src="/js/mate/logout.js"></script>
+     <script>
+     function change_btn(e) {
+         let btns = document.querySelectorAll(".butt");
+         btns.forEach(function (btn, i) {
+           if (e.currentTarget == btn) {
+             btn.classList.add("active");
+           } else {
+             btn.classList.remove("active");
+           }
+         });
+       }
+      
+      
+    </script> 
 </html>

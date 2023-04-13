@@ -7,8 +7,8 @@ let formattedDate = `${month}_${date}`;
 fetchRequest(`b${formattedDate}`);
 
 function fetchRequest(buttonId){
-
-	
+  
+  
   fetch(`http://localhost/runlist/${buttonId}`)
   .then(response => response.text())
   .then(message =>  showMessage(message)) 

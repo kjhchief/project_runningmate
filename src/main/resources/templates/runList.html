@@ -1,41 +1,8 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-        <!-- 일자 버튼 -->
-        <div class="day_button mb-3">
-          <div class="row mx-1">
-            <button type="button" class="col btn btn-light mx-1" th:each="day, loopStat : ${days}" th:id="'b' + ${day.monthDay}" onclick="fetchRequest(this.id)">
-              <span th:text="${day.dayofMonth}">15 </span><br>
-              <span th:text="${day.monthDay}" style="display:none"></span>
-              <strong>
-                <span th:text="${day.dayofweek}" th:unless="${day.dayofweek == '토'}" th:if="${day.dayofweek != '일'}">월</span>
-                <span th:if="${day.dayofweek == '토'}" style="color:blue">토</span>
-                <span th:if="${day.dayofweek == '일'}" style="color:red">일</span>
-              </strong>
-            </button>
-          </div>
-        </div>
+        
 
-<!--       <div class="run_list" >
-        <table class="table table-hover text-center">
-          <tbody>
-            <tr th:each="cr : ${crew}">
-              <th scope="row" th:text="${cr.crewdate}">16:00</th>
-              <td colspan="2"><span th:text="${cr.title}">남산 공원</span> 
-                <div class="prop">
-                  <span th:text="${cr.courseIntro}">남성 전용</span>
-                </div>
-              </td>
-              <td>
-               <a th:href="@{${'/crew/' + cr.crewId}}">
-                 <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
-               </a>
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>  -->
-      
+<!-- 일자버튼 하단 모임 목록 -->
              <div class="run_list" >
         <table class="table table-hover text-center">
           <tbody>
@@ -43,7 +10,7 @@
               <th scope="row" th:text="${dateCrew.crewdate}">16:00</th>
               <td colspan="2"><span th:text="${dateCrew.title}">남산 공원</span> 
                 <div class="prop">
-                  <span th:text="${dateCrew.courseIntro}">남성 전용</span>
+                  <span th:text="${dateCrew.crewLocation}">위치 주소</span>
                 </div>
               </td>
               <td>
@@ -56,5 +23,4 @@
           </tbody>
         </table>
       </div>
-
 </html>
