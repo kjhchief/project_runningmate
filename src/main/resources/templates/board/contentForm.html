@@ -22,8 +22,9 @@
       <h7 class="d-flex p-2 border-bottom text-primary mb-4">공지사항</h7>
     </div>
     <div class="container mt-1 border-bottom">
-      <h5 class="mb-4" th:text="${dto.noticeTitle}"></h5>
-      <p th:text="${dto.noticeContent}"></p>
+<h4 class="mb-4" th:text="'&nbsp;' + ${dto.noticeTitle}"></h4>
+      <br>
+      <pre th:text="${dto.noticeContent}"></pre>
     </div>
     <br>
     <div class="container mt-1">
@@ -41,8 +42,9 @@
         </div>
         <br>
         <div>
-          <a th:href="@{updateForm(noticeId=${dto.noticeId})}"><button class="btn btn-secondary" type="button">수정하기</button></a>
-          &nbsp;<a href="listForm"><button class="btn btn-secondary" type="button" value="목록보기">목록보기</button></a>
+<a th:if="${mate != null}" th:href="@{updateForm(noticeId=${dto.noticeId})}"><button class="btn btn-primary" type="button">수정하기</button></a>
+          
+          <a href="listForm"><button class="btn btn-secondary" type="button" value="목록보기">목록보기</button></a>
         </div>
       </div>
     </div>
@@ -80,9 +82,10 @@
             <label for="content" th:text="${reply_dto.email}"></label>  ㅣ
             <span th:text="${#dates.format(reply_dto.replyDate, 'MM.dd HH:mm')}"></span><br><br>
             <label for="content" th:text="${reply_dto.replyContent}">댓글 내용: </label>
-            <a th:href="@{/deleteReplyAction(replyId=${reply_dto.replyId}, noticeId=${dto.noticeId})}">
-                <button type="submit" class="btn btn-primary btn-sm">댓글삭제</button>
-            </a>
+            
+            <a th:if="${mate != null}" th:href="@{/deleteReplyAction(replyId=${reply_dto.replyId}, noticeId=${dto.noticeId})}">
+    <button type="submit" class="btn btn-danger btn-sm">댓글삭제</button>
+</a>
         </div>
     </div>
 </div>

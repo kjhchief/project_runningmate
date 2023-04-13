@@ -36,6 +36,7 @@ public class NoticeController {
 	@Autowired
 	private HttpServletRequest request;
 
+	
 //	private Object totalPosts;
 
 
@@ -268,19 +269,6 @@ public class NoticeController {
 //		}
 //	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
