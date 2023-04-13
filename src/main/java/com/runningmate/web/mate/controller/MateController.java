@@ -194,19 +194,29 @@ public class MateController {
 		//이메일, 비밀번호 찾기 기능 처리
 		@PostMapping("/findEmailPassword")
 		@ResponseBody
-		public String findEmailPassword(@RequestParam(required=false) String email, @RequestParam String name, @RequestParam(required=false) String password) {
-		if(email != null ) {
-			String reault = mateService.findEmail(name, password);
-			if(reault != null) {
+		public String findEmailPassword(@RequestParam(required=false) String email, 
+										@RequestParam String name, @RequestParam(required=false) String password,
+										HttpSession session, Model model) {
+		if(email == null ) {
+			String emailResult = mateService.findEmail(name, password);
+			if(emailResult != null) {
+				session.setAttribute("email", emailResult);
+				model.addAttribute("email", emailResult);
+				log.info("email : {}", email);	
 				return "true";
 			}else {
+				log.info("email : {}", email);	
 				return "false";
 			}
 		}else {
-			String reault = mateService.findPassword(email, name);
-			if(reault != null) {
+			String passwordReault = mateService.findPassword(name, email);
+			if(passwordReault != null) {
+				session.setAttribute("password", passwordReault);
+				model.addAttribute("password", passwordReault);
+				log.info("password : {}", password);	
 				return "true";
 			}else {
+				log.info("password : {}", password);	
 				return "false";
 			}
 		}

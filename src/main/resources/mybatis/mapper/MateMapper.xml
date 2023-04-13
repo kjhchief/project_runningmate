@@ -55,16 +55,16 @@
 </delete>
 
 <!-- 아이디 찾기 -->
-<select id="findEmail" parameterType="String" resultType="Mate">
+<select id="findEmail" parameterType="string" resultType="string">
 	SELECT email 
 	FROM mate
-	WHERE name = #{name} AND password =#{password}
+	WHERE name = #{name} AND password = #{password}
 </select>
 <!-- 비밀번호 찾기 -->
-<select id="findPassword" parameterType="String" resultType="Mate">
+<select id="findPassword" parameterType="string" resultType="string">
 	SELECT password 
 	FROM mate
-	WHERE email = #{email} AND name =#{name}
+	WHERE name = #{name} AND email = #{email}
 </select>
 
 

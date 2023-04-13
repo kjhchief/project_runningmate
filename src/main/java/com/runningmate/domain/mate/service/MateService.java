@@ -25,6 +25,6 @@ public interface MateService {
 	//아이디 찾기
 	public String findEmail(String name, String  password);
 	//비밀번호 찾기
-	public String findPassword(String email, String  name);
+	public String findPassword(String name, String  email);
 	
 }
