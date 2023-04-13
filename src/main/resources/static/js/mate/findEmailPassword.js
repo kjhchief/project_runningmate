@@ -64,7 +64,7 @@ findButton2.addEventListener("click",() =>{
 		let passwordValueDiv = document.querySelector('#password-value');
 		sendEmailPassword(nameInput2.value, emailInput.value);
 		if(emailPasswordChecked){
-			alert("존재함");
+			alert("존재함  ");
 			passwordValueDiv.innerHTML="존재함."
 		}else{
 			alert("존재안함");
