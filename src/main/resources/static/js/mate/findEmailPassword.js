@@ -39,11 +39,12 @@ function findResultMessage(result){
 	
 	if(result){
 			alert("true받음");
+			passwordValueDiv.innerHTML="emailResult"
 		emailPasswordChecked = true;
-		location.href='/mate/findEmailPassword';
-		return true;
+		//location.href='/mate/findEmailPassword';
+		//return true;
 	}else if(result === false){
-			alert("false받음");
+			//alert("false받음");
 		location.href='/mate/findEmailPassword';
 		emailPasswordChecked = false;
 		return false;
@@ -59,13 +60,14 @@ function findResultMessage(result){
 }
 
 
-findEmailForm.addEventListener("submit", (event) =>{
+findButton1.addEventListener("click", (event) =>{
 		event.preventDefault();
 		
 		// 서버 결과 화면
 		let emailValueDiv = document.querySelector('#email-value');
 		
-		sendEmailPassword(nameInput1.value, passwordInput.value).then((result) => {
+		sendEmailPassword(nameInput1.value, passwordInput.value);
+		/*
 		if(result){
 			alert("존재함");
 			emailValueDiv.innerHTML ="존재함."
@@ -73,7 +75,7 @@ findEmailForm.addEventListener("submit", (event) =>{
 			alert("존재안함");
 			emailValueDiv.innerHTML ="<span style='color:red'>일치하는 이름과, 비밀번호가 없습니다.</span>"
 		}
-	});
+		*/
 });
 
 
@@ -81,14 +83,12 @@ findPasswordForm.addEventListener("submit", (event) =>{
 		event.preventDefault();	
 		
 		let passwordValueDiv = document.querySelector('#password-value');
-		sendEmailPassword(nameInput2.value, emailInput.value).then((result) => {
+		sendEmailPassword(nameInput2.value, emailInput.value);
 			//location.href='/mate/findEmailPassword';
 		if(result){
 			alert("존재함");
-			passwordValueDiv.innerHTML="존재함."
 		}else{
 			alert("존재안함");
 			passwordValueDiv.innerHTML="<span style='color:red'>일치하는 이름과, 이메일이 없습니다.</span>"
 		}
-	});
 });
