@@ -17,23 +17,21 @@
     <input type="hidden" name="noticeId" th:value="${dto.noticeId}">
     <div class="container mt-5 g-0">
         <h5 class="p-3 mb-2 bg-primary text-white rounded mb-4">공지 사항 게시글 수정</h5>
-            <div class="form-group">
-        <div class="row">
-            <label class="form-label mt-4 formtitle">제목</label>
-            <input type="text" name="noticeTitle" class="form-control" id="title" th:value="${dto.noticeTitle}" required="required">
-        </div>
+          <div class="form-group">
+    <label class="form-label mt-4 formtitle">제목</label>
+    <input type="text" name="noticeTitle" class="form-control" id="title" th:value="${dto.noticeTitle}" required="required">
+</div>
 
-        <div class="form-group">
-            <label for="contents" class="form-label mt-4 formtitle">내용</label>
-            <textarea class="form-control" name="noticeContent" id="summernote" rows="10" th:text="${dto.noticeContent}" required="required"></textarea>
-        </div>
+<div class="form-group">
+    <label for="contents" class="form-label mt-4 formtitle">내용</label>
+    <textarea class="form-control" name="noticeContent" id="summernote" rows="10" th:text="${dto.noticeContent}" required="required"></textarea>
+</div>
 
         <div class="text-center">
             <button type="submit" class="btn btn-primary mt-4 cen">&nbsp;&nbsp;수정완료&nbsp;&nbsp;</button>
-            <a th:href="@{/deleteAction(noticeId=${dto.noticeId})}"><button class="btn btn-secondary" type="button" value="삭제하기">삭제하기</button></a>&nbsp;&nbsp;
+            <a th:href="@{/deleteAction(noticeId=${dto.noticeId})}"><button class="btn btn-danger mt-4 cen" type="button" value="삭제하기">삭제하기</button></a>&nbsp;&nbsp;
         </div>
     </div>
-</div>
         </form>
 <!-- Bootstrap JS -->
 <!-- 

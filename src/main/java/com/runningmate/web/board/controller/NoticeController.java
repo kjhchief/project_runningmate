@@ -38,10 +38,7 @@ public class NoticeController {
 
 //	private Object totalPosts;
 
-	@RequestMapping("/")
-	public String root() {
-		return "redirect:board/listForm";
-	}
+
 
 	// 페이징처리 + 리스트 표시
 
