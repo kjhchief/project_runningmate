@@ -22,7 +22,7 @@
         <div class="d-grid gap-2 d-md-block btn-primar">
         
         
-         <!-- 이전 글 버ddd튼 -->
+         <!-- asd이전 글 버ddd튼 -->
 <a th:href="@{/contentForm(noticeId=${prevNoticeId})}" class="btn btn-outline-secondary" th:if="${prevNoticeId != null}">&lt; 이전글</a>
 <button class="btn btn-outline-secondary" type="button" th:if="${prevNoticeId == null}" disabled>&lt; 이전글</button>
 
@@ -55,10 +55,10 @@
       <button class="btn btn-primary my-2 my-sm-0" type="submit">작성</button>
     </div>
     <br>
+      -->
 <p th:text="'댓글 ' + ${replyCount} + '개'">댓글 0개</p>
 </form>
   </div>
-      -->
 
   
 
@@ -81,7 +81,7 @@
     <div class="container" th:each="reply_dto : ${replyList}">
         <hr>
         <div class="form-group">
-            <label for="content" th:text="'사용자 : ' + ${reply_dto.email}"></label>
+            <label for="content" th:text="${reply_dto.email}"></label>  ㅣ
             <span th:text="${#dates.format(reply_dto.replyDate, 'MM.dd HH:mm')}"></span><br><br>
             <label for="content" th:text="${reply_dto.replyContent}">댓글 내용: </label>
             <a th:href="@{/deleteReplyAction(replyId=${reply_dto.replyId}, noticeId=${dto.noticeId})}">
