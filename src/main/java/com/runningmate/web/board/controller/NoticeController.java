@@ -36,7 +36,7 @@ public class NoticeController {
 	@Autowired
 	private HttpServletRequest request;
 
-	private Object totalPosts;
+//	private Object totalPosts;
 
 	@RequestMapping("/")
 	public String root() {
@@ -187,6 +187,8 @@ public class NoticeController {
 		}
 
 	}
+	
+	
 
 	@RequestMapping("/deleteAction")
 	@ResponseBody
@@ -204,38 +206,75 @@ public class NoticeController {
 		}
 	}
 
+
+	
 	@RequestMapping("/writeReplyAction")
-	@ResponseBody
 	public String writeReplyAction(@RequestParam("replyContent") String replyContent, @RequestParam("replyNoticeIndex") int replyNoticeIndex, Model model, HttpSession session) {
 
-		Mate mate = (Mate) session.getAttribute("mate");
-		String email = mate.getEmail();
+	    Mate mate = (Mate) session.getAttribute("mate");
 
-		log.info("이메일 : {}", email);
+	    // mate 객체가 null인 경우 로그인 페이지로 이동
+	    if (mate == null) {
+	        return "redirect:/mate/login";
+	    }
 
+	    String email = mate.getEmail();
+	    log.info("이메일 : {}", email);
 
-		// 이메일을 사용하여 댓글 작성 처리
+	    // 이메일을 사용하여 댓글 작성 처리
+	    int result = ireplyservice.replyWrite(email, replyContent, replyNoticeIndex);
 
-		int result = ireplyservice.replyWrite(email, replyContent, replyNoticeIndex);
-		String response = null;
+	    // 댓글 추가 후 댓글 갯수 다시 조회해서 전달
+	    String replyNoticeIndexString = String.valueOf(replyNoticeIndex);
+	    int replyCount = ireplyservice.getReplyCount(replyNoticeIndexString);
+	    model.addAttribute("replyCount", replyCount);
 
-		if (result == 1) {
-			System.out.println("댓글달기 성공했습니다..");
-			response = "<script>alert('댓글달기 성공!!');location.href= '/contentForm?noticeId=" + replyNoticeIndex
-					+ "';</script>";
-		} else {
-			System.out.println("댓글달기 실패했습니다..");
-			response = "<script>alert('댓글달기 실패');location.href= '/contentForm?noticeId=" + replyNoticeIndex
-					+ "';</script>";
-		}
+	    model.addAttribute("mate", mate);
 
-		// 댓글 추가 후 댓글 갯수 다시 조회해서 전달
-		String replyNoticeIndexString = String.valueOf(replyNoticeIndex);
-		int replyCount = ireplyservice.getReplyCount(replyNoticeIndexString);
-		model.addAttribute("replyCount", replyCount);
-		return response;
+	    if (result == 1) {
+	        System.out.println("댓글달기 성공했습니다..");
+	        return "redirect:/contentForm?noticeId=" + replyNoticeIndex;
+	    } else {
+	        System.out.println("댓글달기 실패했습니다..");
+	        return "redirect:/contentForm?noticeId=" + replyNoticeIndex;
+	    }
 	}
+	
+	
+	
 
+//	@RequestMapping("/writeForm")
+//	public String writeForm(HttpSession session, Model model) {
+//		Mate mate = (Mate) session.getAttribute("mate");
+//		log.info("Mate : {}", mate);
+//
+//		if (mate == null) {
+//			// 로그인 화면 이동
+//			return "/mate/login";
+//		} else {
+//			model.addAttribute("mate", mate);
+//			return "board/writeForm";
+//		}
+//	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/deleteReplyAction")
 	@ResponseBody
 	public String deleteReplyAction(@RequestParam("replyId") int replyId, @RequestParam("noticeId") int noticeId,

@@ -14,11 +14,6 @@
     <result column="reply_notice_id" property="replyNoticeId" />
   </resultMap>
   
-  
-
-  
-  
-  
 
 
 <select id="replyList" resultType="com.runningmate.domain.board.dto.ReplyDto">
@@ -31,20 +26,15 @@ select * from reply where reply_notice_id=#{param1} order by reply_date desc
    values(reply_seq.nextval, #{email}, #{replyContent}, sysdate, #{replyNoticeIndex})
 </insert>
 
-
-
-
 <!-- 댓글 삭제 -->
 <delete id="replyDeleteDto">
 delete from reply where reply_id=#{param1}
 </delete>
 
-
 <!-- 댓글 총 갯수 -->
 <select id="getReplyCount" resultType="int">
     SELECT COUNT(*) FROM reply WHERE reply_notice_id=#{noticeId}
   </select>
-
 
 <!-- mate테이블 name 가져오기 -->
 <select id="getRepliesByNoticeId" resultType="com.runningmate.domain.board.dto.ReplyDto">
@@ -54,9 +44,6 @@ JOIN mate m ON r.email = m.email
 WHERE r.reply_notice_id = :notice_id
 ORDER BY r.reply_date ASC;
 </select>
-
-
-
 
 
 

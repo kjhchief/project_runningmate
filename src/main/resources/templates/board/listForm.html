@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!-- 
-<html xmlns:th="http://www.thymeleaf.org">
- -->
+
  <html xmlns:th="http://www.thymeleaf.org"
       xmlns:util="urn:java.util"
       xmlns:numbers="http://www.thymeleaf.org/extras/numbers" th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
@@ -12,10 +10,12 @@
 </head>
 <body>
 <section>
+<br>
     <div class="container-lg m">
         <h5 class="p-3 mb-2 bg-primary text-white rounded mb-4">공지사항</h5>
    <div class="d-flex justify-content-end">
     <div class="form-group me-2">
+    
     <form action="/listForm" method="GET">
         <select class="form-select" id="exampleSelect1" name="searchType">
             <option value="제목">제목</option>
@@ -27,7 +27,7 @@
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </div>
-        
+        <br>
       <div class="mb-3 ms-2" style="font-size: 1rem;">
      전체 <b class="text-primary" th:text="${totalPosts}"></b>건의 게시물이 있습니다(<b class="text-primary" th:text="${currentPage}"></b>/<b class="text-primary" th:text="${totalPages}"></b>)
 </div>
