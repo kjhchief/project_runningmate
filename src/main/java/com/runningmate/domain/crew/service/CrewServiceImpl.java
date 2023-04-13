@@ -9,6 +9,7 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -122,6 +123,16 @@ public class CrewServiceImpl implements CrewService {
 	@Override
 	public List<CrewCreate> findBydate(String date) {
 		return crewMapper.findBydate(date);
+	}
+
+	@Override
+	public List<CrewCreate> searchByLocation(String loca) {
+		return crewMapper.searchByLocation(loca);
+	}
+
+	@Override
+	public List<CrewCreate> findBydateAndLevel(@Param("date") String date, @Param("level")  String level) {
+		return crewMapper.findBydateAndLevel(date, level);
 	}
 
 

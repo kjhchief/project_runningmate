@@ -41,28 +41,40 @@
 		                JOIN mate m ON l.email = m.email
 		WHERE m.email = #{value}
 	</select>
-	<!-- crew_id통해 불러오는 모임 전체 정보 -->
+	<!-- crew_id통해 불러오는 모임 전체 리스트 -->
  	<select id="findById" parameterType="string" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
 		WHERE crew_id = #{value}
 	</select> 
-	<!-- 등록된 모든 모임 정보 -->
+	<!-- 등록된 모든 모임 리스트 -->
 	<select id="allCrew" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
 	</select> 
-	<!-- 특정 모임 사진 정보 -->
+	<!-- 특정 모임 사진 리트스 -->
 	<select id="getPhotos" parameterType="string" resultType="CrewPhoto">
 		select photo_id, photo_name, crew_id
 		from photo
 		WHERE crew_id = #{value}
 	</select>
-	<!-- 날짜로 불러오는 모임 전체 정보 -->
+	<!-- 날짜로 불러오는 모임 전체 리스트 -->
 	<select id="findBydate" parameterType="string" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
 		WHERE REPLACE(crewdate, '/', '_') LIKE '%' || #{value} || '%'
+	</select>
+	<!-- 지역 키워드 검색 -->
+	<select id="searchByLocation" parameterType="string" resultType="CrewCreate">
+		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE crew_location LIKE '%' || #{value} || '%'
+	</select> 
+	<!-- 날짜 + 수준별 모임 리스트 -->
+	<select id="findBydateAndLevel" parameterType="string" resultType="CrewCreate">
+		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE REPLACE(crewdate, '/', '_') LIKE '%' || #{date} || '%' AND crewlevel = #{level}
 	</select>
 
 <!-- 삭제 -->

@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
+import com.runningmate.domain.crew.dto.DayOfweeks;
 import com.runningmate.domain.crew.service.CrewService;
 import com.runningmate.domain.manage.dto.CrewList;
 import com.runningmate.domain.mate.dto.Mate;
@@ -50,6 +52,27 @@ public class CrewController {
 	@Autowired
 	private FileStore fileStore;
 	
+	// 헬퍼메소드: 날짜별 모임 리스트 보여주기 기능
+	private void crewListDays(Model model) {
+		List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
+		for (int i = 0; i < 7; i++) {
+			DayOfweeks dayOfweeks2 = crewService.calculDay(i);
+			dayOfweeks.add(i, dayOfweeks2);
+		}
+		model.addAttribute("days", dayOfweeks);
+	}
+	
+	//이미지 출력 기능
+	@GetMapping("/images/{name}")
+	@ResponseBody
+	public ResponseEntity<Resource> showImage(@PathVariable String name) throws IOException {
+		Path path = Paths.get(location + "/" + name);
+		String contentType = Files.probeContentType(path);
+		Resource resource = new FileSystemResource(path);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+	}
 
 	// 모임 만들기 화면 요청 처리 메소드
 	@GetMapping
@@ -107,23 +130,6 @@ public class CrewController {
 		return "crew/join";
 	}
 	
-	
-	//이미지 출력
-	@GetMapping("/images/{name}")
-	@ResponseBody
-	public ResponseEntity<Resource> showImage(@PathVariable String name) throws IOException {
-		Path path = Paths.get(location + "/" + name);
-		String contentType = Files.probeContentType(path);
-		Resource resource = new FileSystemResource(path);
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.CONTENT_TYPE, contentType);
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-	}
-	
-	
-	
-
-	
 	// 특정 모임의 모임 참석 화면 보여주기
 	@GetMapping("/{crewId}")
 	public String JoinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
@@ -161,14 +167,72 @@ public class CrewController {
 //		return "redirect:/crew/{crewId}";
 		
 	}
+
+	// 모임 리스트 정보 보여주기
+	@GetMapping("/runlist/{but}")
+	public String ajaxCrewList(@PathVariable String but, HttpSession httpSession, Model model) {
+		crewListDays(model);
+		
+		// 날짜별 모임 리스트 ajax
+		String butDate = but.substring(1, but.length());
+		log.info("받은 날짜 키워드: {}", butDate);
+		List<CrewCreate> dateCrews = crewService.findBydate(butDate);
+		for (CrewCreate crewCreate2 : dateCrews) {
+			String originDate = crewCreate2.getCrewdate();  
+			String end = originDate.substring(11,16);
+			crewCreate2.setCrewdate(end);
+		}
+		model.addAttribute("dateCrews", dateCrews);	
+		log.info("날짜별crews= {}", dateCrews);
+		
+		return "runList";
+	}
 	
-	// 특정 모임의 회원 리스트 보여주기
-//	@GetMapping
-//	public String mates(Model model) {
-//		// 서비스 객체를 이용한 회원 목록
-//		
-//		return "member/list";
-//	}
+	// 지역별 모임 리스트 ajax
+	@GetMapping("/runlist2/{but}")
+	public String locationCrewList(@PathVariable String but, HttpSession httpSession, Model model) {
+		crewListDays(model);
+		
+		log.info("받은 지역 키워드: {}", but);
+		
+		List<CrewCreate> locaCrews = crewService.searchByLocation(but);
+		for (CrewCreate crewCreate2 : locaCrews) {
+			String originDate = crewCreate2.getCrewdate();  
+			String end = originDate.substring(11,16);
+			crewCreate2.setCrewdate(end);
+		}
+		model.addAttribute("locaCrews", locaCrews);
+		log.info("지역검색crews= {}", locaCrews);
+		
+		return "runList2";
+	}
+	
+	// 레벨별 매칭 페이지 화면 요청 처리 메소드
+	@GetMapping("/level")
+	public String LevelView(HttpSession httpSession, Model model) {
+		return "crew/levelMatchingPage";
+	}
+	
+	// 레벨 모임 리스트 ajax
+	@GetMapping("/runlist3/{but}")
+	public String levelCrewList(@PathVariable String but, HttpSession httpSession, Model model) {
+		crewListDays(model);
+		but = "b04_13";
+
+		// 날짜별 모임 리스트 ajax
+		String butDate = but.substring(1, but.length());
+		log.info("butDate: {}", butDate);
+		List<CrewCreate> dateCrews = crewService.findBydate(butDate);
+		for (CrewCreate crewCreate2 : dateCrews) {
+			String originDate = crewCreate2.getCrewdate();  
+			String end = originDate.substring(11,16);
+			crewCreate2.setCrewdate(end);
+		}
+		model.addAttribute("dateCrews", dateCrews);	
+		log.info("날짜별crews= {}", dateCrews);
+		
+		return "runList";
+	}
 
 
 }

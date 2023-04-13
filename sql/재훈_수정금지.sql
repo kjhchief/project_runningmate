@@ -89,7 +89,11 @@ VALUES (crew_seq.NEXTVAL, '4월 14일 모임_9',
 
 SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 FROM crew
-WHERE REPLACE(crewdate, '/', '_') LIKE '%04_12%';
+WHERE REPLACE(crewdate, '/', '_') LIKE '%04_13%' AND crewlevel = '건강한 러닝';
+
+SELECT crew_location, crew_location_dt
+FROM crew
+WHERE crew_location LIKE '%도봉%';
 
 
 DELETE FROM crew

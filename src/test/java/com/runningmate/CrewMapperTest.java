@@ -99,9 +99,23 @@ public class CrewMapperTest {
 	}
 	
 	@Test
-//	@Disabled
+	@Disabled
 	void allCrewTest() {
 		List<CrewCreate> crewCreate = crewService.allCrew(); 	
+	}
+	
+	@Test
+	@Disabled
+	void searchLocationTest() {
+		List<CrewCreate> crewLoc = crewService.searchByLocation("노원");
+		log.info("locations::::: {}", crewLoc);
+	}
+	
+	@Test
+//	@Disabled
+	void dateAndLevelTest() {
+		List<CrewCreate> crewDateLoc = crewService.findBydateAndLevel("04_13", "빨리 걷기");
+		log.info("crewDateLoc::::: {}", crewDateLoc);
 	}
 	
 	

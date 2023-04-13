@@ -3,6 +3,8 @@ package com.runningmate.domain.crew.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.runningmate.domain.crew.dto.CrewCreate;
 import com.runningmate.domain.crew.dto.CrewMates;
 import com.runningmate.domain.crew.dto.CrewPhoto;
@@ -31,4 +33,8 @@ public interface CrewService {
 	public DayOfweeks calculDay(int num);
 	// 날짜로 모임 리스트 검색
 	public List<CrewCreate> findBydate(String date);
+	// 지역으로 모임 검색
+	public List<CrewCreate> searchByLocation(String loca);
+	// 날짜와 수준으로 모임 리스트 불러오기
+	public List<CrewCreate> findBydateAndLevel(@Param("date") String date, @Param("level") String level);
 }

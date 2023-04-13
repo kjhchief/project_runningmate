@@ -26,9 +26,9 @@
                 <h1 class="main_logo">러닝메이트</h1>
               </a>
                 <ul class="collapse navbar-collapse navbar-nav justify-content-end" id="navbarSupportedContent">
-                  <form class="d-flex col-6 px-1">
-                    <input class="form-control p-sm-1 me-sm-2" type="search" placeholder="지역으로 찾기">
-                    <button class="btn btn-light" type="submit">search</button>
+                  <form class="d-flex col-6 px-1" method="post" onsubmit="handleSearch(event)">
+                    <input class="sear form-control p-sm-1 me-sm-2" type="search" placeholder="지역으로 찾기" name="searchWord">
+                    <button class="sear btn btn-light" id="search_by_loca" type="submit">search</button>
                   </form>
                   <div th:if="${mate == null}">
                   <button class="nav-item btn btn-primary my-2 my-sm-0" type="button" id="login-button" onclick="location.href='/mate/login';">login</button>
