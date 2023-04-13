@@ -15,7 +15,7 @@
   </resultMap>
   
 
-
+<!-- 공지사항 게시글의 댓글 리스트 -->
 <select id="replyList" resultType="com.runningmate.domain.board.dto.ReplyDto">
 select * from reply where reply_notice_id=#{param1} order by reply_date desc
 </select>
