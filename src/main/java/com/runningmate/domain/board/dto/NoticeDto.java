@@ -3,7 +3,10 @@ package com.runningmate.domain.board.dto;
 import java.util.Date;
 
 import lombok.Data;
+
+
 @Data
+
 public class NoticeDto {
     private int noticeId;
     private String noticeTitle;

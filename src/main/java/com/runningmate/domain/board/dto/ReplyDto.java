@@ -4,15 +4,9 @@ import java.util.Date;
 
 import lombok.Data;
 
-//	CREATE TABLE reply (
-//			   reply_id   NUMBER(4) PRIMARY KEY,
-//			   reply_name VARCHAR2(50),
-//			   reply_content VARCHAR2(4000),
-//			   reply_date   DATE DEFAULT SYSDATE,
-//			   reply_notice_id   NUMBER(4)  
-//			);
  
 @Data
+
 public class ReplyDto {
 	private int replyId;
 	private String replyContent;

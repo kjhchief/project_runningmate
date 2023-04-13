@@ -191,35 +191,67 @@ public class MateController {
 			
 		return "/mate/findEmailPassword"; 
 		}
+		
+		
 		//이메일, 비밀번호 찾기 기능 처리
 		@PostMapping("/findEmailPassword")
 		@ResponseBody
 		public String findEmailPassword(@RequestParam(required=false) String email, 
-										@RequestParam String name, @RequestParam(required=false) String password,
-										HttpSession session, Model model) {
-		if(email == null ) {
+										@RequestParam String name, @RequestParam(required=false) String password) {
+			// 이메일 찾기
+			if(email == null ) {
 			String emailResult = mateService.findEmail(name, password);
 			if(emailResult != null) {
-				session.setAttribute("email", emailResult);
-				model.addAttribute("email", emailResult);
-				log.info("email : {}", email);	
-				return "true";
+				log.info("email : {}", emailResult);	
+				return "{\"result\" : true, \"email\" : \""+emailResult+"\" }";
 			}else {
-				log.info("email : {}", email);	
+				log.info("email : {}", emailResult);	
 				return "false";
 			}
-		}else {
-			String passwordReault = mateService.findPassword(name, email);
-			if(passwordReault != null) {
-				session.setAttribute("password", passwordReault);
-				model.addAttribute("password", passwordReault);
-				log.info("password : {}", password);	
-				return "true";
+		}else {// 비빌번호 찾기
+			String passwordResult = mateService.findPassword(name, email);
+			if(passwordResult != null) {
+				log.info("password : {}", passwordResult);	
+				return "{\"result\" : true, \"email\" : \""+passwordResult+"\" }";
 			}else {
-				log.info("password : {}", password);	
+				log.info("password : {}", passwordResult);	
 				return "false";
 			}
 		}
+		
 	}
-			
+	
+		/*
+		//이메일, 비밀번호 찾기 기능 처리
+				@PostMapping("/findEmailPassword")
+				
+				public String findEmailPassword(@RequestParam(required=false) String email, 
+												@RequestParam String name, @RequestParam(required=false) String password,
+												HttpSession session, Model model) {
+				if(email == null ) {
+					String emailResult = mateService.findEmail(name, password);
+					if(emailResult != null) {
+						session.setAttribute("email", emailResult);
+						model.addAttribute("email", emailResult);
+						log.info("email : {}", emailResult);	
+						//return "true";
+					}else {
+						log.info("email : {}", emailResult);	
+						//return "false";
+					}
+				}else {
+					String passwordReault = mateService.findPassword(name, email);
+					if(passwordReault != null) {
+						session.setAttribute("password", passwordReault);
+						model.addAttribute("password", passwordReault);
+						log.info("password : {}", passwordReault);	
+						//return "true";
+					}else {
+						log.info("password : {}", passwordReault);	
+						//return "false";
+					}
+				}
+				return "/mate/findEmailPassword2"; 
+			}*/
+				
 }

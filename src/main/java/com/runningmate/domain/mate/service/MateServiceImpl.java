@@ -79,6 +79,7 @@ public class MateServiceImpl implements MateService {
 			System.out.println("서비스: "+password);
 			return password;
 		}else {
+			System.out.println("서비스: "+password);
 			return null;
 		}
 	}
