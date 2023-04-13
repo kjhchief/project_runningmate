@@ -50,7 +50,10 @@ public class NoticeController {
 			@RequestParam(name = "searchType", required = false) String searchType,
 			@RequestParam(name = "searchKeyword", required = false) String searchKeyword, Model model,
 			HttpSession session) {
-
+		
+		 Mate mate = (Mate) session.getAttribute("mate");
+		 model.addAttribute("mate", mate);
+		 
 		final int POSTS_PER_PAGE = 10;
 
 		// 검색어 디코딩
@@ -98,8 +101,11 @@ public class NoticeController {
 
 	@RequestMapping("/writeForm")
 	public String writeForm(HttpSession session, Model model) {
-		Mate mate = (Mate) session.getAttribute("mate");
+		 Mate mate = (Mate) session.getAttribute("mate");
+		 model.addAttribute("mate", mate);
 		log.info("Mate : {}", mate);
+		
+		
 
 		if (mate == null) {
 			// 로그인 화면 이동
@@ -128,7 +134,13 @@ public class NoticeController {
 	
 	// 댓글쓰기 화면
 	@RequestMapping("/contentForm")
-	public String contentForm(@RequestParam("noticeId")String noticeId, Model model, HttpServletRequest request) {
+	public String contentForm(@RequestParam("noticeId")String noticeId, Model model, HttpServletRequest request, HttpSession session) {
+		
+		//세션 추가
+		 Mate mate = (Mate) session.getAttribute("mate");
+		 model.addAttribute("mate", mate);
+		
+		
 		
 		// 조회수 증가
 		inoticeservice.hit(noticeId);
@@ -159,7 +171,9 @@ public class NoticeController {
 
 	// 수정 폼으로 이동
 	@RequestMapping("/updateForm")
-	public String updateForm(@RequestParam("noticeId") String noticeId, Model model) {
+	public String updateForm(@RequestParam("noticeId") String noticeId, Model model, HttpSession session) {
+		 Mate mate = (Mate) session.getAttribute("mate");
+		 model.addAttribute("mate", mate);
 		NoticeDto dto = inoticeservice.viewDto(noticeId);
 		model.addAttribute("dto", dto);
 		return "board/updateForm";
