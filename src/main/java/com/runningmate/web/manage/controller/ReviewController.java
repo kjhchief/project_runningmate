@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.runningmate.domain.manage.dto.Review;
+import com.runningmate.domain.manage.dto.goodBad;
 import com.runningmate.domain.manage.mapper.ReviewMapper;
 
 
@@ -24,11 +25,13 @@ public class ReviewController {
 		return "코멘트 저장 완료!";
 	}
 	
+	
 	@PostMapping("modal/save")
-	public void saveAction(@RequestParam("email") String email,
-			@RequestParam("options") List<String> selectedOptions) {
-		for (String option : selectedOptions) {
-			switch (option) {
+	public void saveAction(@RequestParam("options") List<goodBad> memberEv) {
+		for (goodBad json : memberEv) {
+			String value = json.getValue();
+			String email = json.getEmail();
+			switch (value) {
 			case "good":
 				reviewMapper.thumbsUp(email);
 				break;
