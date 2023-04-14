@@ -31,7 +31,7 @@ public class ReviewController {
 	@GetMapping()
 	public Model showModal(@PathVariable String crewId, Model model) {
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
-		model.addAttribute("crewMatesLists", crewMates);
+		model.addAttribute("crewMates", crewMates);
 		return model;
 	}
 	
