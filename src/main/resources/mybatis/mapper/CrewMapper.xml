@@ -74,8 +74,14 @@
 	<select id="findBydateAndLevelAll" parameterType="string" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
-		WHERE crewdate BETWEEN TO_DATE(#{startDate}, 'MM_DD') AND TO_DATE(#{endDate}, 'MM_DD')
+		WHERE crewdate BETWEEN TO_DATE(TO_CHAR(SYSDATE, 'MM/DD'), 'MM/DD') AND TO_DATE(TO_CHAR(SYSDATE+6, 'MM/DD'), 'MM/DD')
 	</select>
+	
+	<!-- <select id="findBydateAndLevelAll" parameterType="string" resultType="CrewCreate">
+		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+		FROM crew
+		WHERE crewdate BETWEEN TO_DATE(#{startDate}, 'MM_DD') AND TO_DATE(#{endDate}, 'MM_DD')
+	</select> -->
 
 <!-- 삭제 -->
 	<delete id="leaveCrew" parameterType="string">

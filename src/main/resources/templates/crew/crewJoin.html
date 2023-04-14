@@ -8,8 +8,8 @@
 
     <div class="container mt-5 g-0">
       
-       <!-- 슬라이드 -->
-    <div class="container main_slide mb-5">
+       <!-- 업로드한 이미지가 있을 경우 -->
+    <div class="container main_slide mb-5" th:if="${!#lists.isEmpty(photos)}">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -28,8 +28,9 @@
               <img th:src="@{${'/crew/images/' + photo.photoName}}" class="d-block w-100" alt="...">
             </div>
           </th:block>
-          
         </div>
+        
+        
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,6 +43,11 @@
         </button>
       </div>
     </div>
+    
+      <!-- 업로드한 이미지가 없을 경우 -->  
+      <div class="runner_place mb-3"  th:if="${#lists.isEmpty(photos)}">
+        <img class="w-100" src="/img/1.png" alt="장소사진"/>
+      </div>
  
 
       <!-- 정보 컨테이너 -->

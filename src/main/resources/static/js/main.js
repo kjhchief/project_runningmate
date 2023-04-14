@@ -36,17 +36,6 @@ function fetchRequest2(para){
 	});  
 }
 
-// 레벨별 매칭 페이지용...
-function fetchRequest3(para){
-
-	fetch(`http://localhost/crew/runlist3/${para}`)
-	.then(response => response.text())
-	.then(message =>  showMessage(message)) 
-	.catch(error => {
-	  showMessage(error)
-	});  
-}
-
 function showMessage(message){
   document.querySelector("#message").innerHTML = message;
 }

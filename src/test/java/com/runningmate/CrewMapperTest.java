@@ -114,7 +114,7 @@ public class CrewMapperTest {
 	@Test
 	@Disabled
 	void dateAndLevelTest() {
-		List<CrewCreate> crewDateLoc = crewService.findBydateAndLevelAll("04_17", "04_20");
+		List<CrewCreate> crewDateLoc = crewService.findBydateAndLevelAll();
 		log.info("crewDateLoc::::: {}", crewDateLoc);
 	}
 	

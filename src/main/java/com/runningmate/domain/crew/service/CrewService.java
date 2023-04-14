@@ -36,5 +36,5 @@ public interface CrewService {
 	// 지역으로 모임 검색
 	public List<CrewCreate> searchByLocation(String loca);
 	// 날짜와 수준으로 모임 리스트 불러오기
-	public List<CrewCreate> findBydateAndLevelAll(@Param("startDate") String startDate, @Param("endDate") String endDate);
+	public List<CrewCreate> findBydateAndLevelAll();
 }
