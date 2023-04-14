@@ -218,11 +218,11 @@ ALTER TABLE faq
 DROP TABLE notice;
 
 CREATE TABLE notice (
-   notice_id   VARCHAR2(50)  NOT NULL,
+   notice_id     NUMBER(4) NOT NULL,
    notice_title   VARCHAR2(300),  
    notice_content   VARCHAR2(4000),    
    notice_date   DATE DEFAULT SYSDATE,
-   notice_hit   NUMBER(7) DEFAULT 0,
+   notice_hit   NUMBER(4) DEFAULT 0,
    email	VARCHAR2(100)		NOT NULL
 );
 -- 제약조건 추가
@@ -270,11 +270,11 @@ ALTER TABLE review
 DROP TABLE reply;
 
 CREATE TABLE reply (
-    reply_id         VARCHAR2(50)         PRIMARY KEY,
+    reply_id         NUMBER(4)         PRIMARY KEY,
     email            VARCHAR2(100),    -- 이메일 칼럼 추가
     reply_content    VARCHAR2(4000),
     reply_date       DATE              DEFAULT SYSDATE,
-    reply_notice_id  VARCHAR2(50),
+    reply_notice_id  NUMBER(4),
     CONSTRAINT reply_mate_fk FOREIGN KEY (email) REFERENCES mate(email) -- 외래키 제약 조건 설정
 );
 
