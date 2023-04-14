@@ -131,8 +131,8 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public List<CrewCreate> findBydateAndLevel(@Param("date") String date, @Param("level")  String level) {
-		return crewMapper.findBydateAndLevel(date, level);
+	public List<CrewCreate> findBydateAndLevel(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("level") String level) {
+		return crewMapper.findBydateAndLevel(startDate,endDate, level);
 	}
 
 

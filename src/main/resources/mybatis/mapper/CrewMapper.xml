@@ -70,11 +70,11 @@
 		FROM crew
 		WHERE crew_location LIKE '%' || #{value} || '%'
 	</select> 
-	<!-- 날짜 + 수준별 모임 리스트 -->
+	<!-- 특정기간 수준별 모임 리스트 -->
 	<select id="findBydateAndLevel" parameterType="string" resultType="CrewCreate">
 		SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 		FROM crew
-		WHERE REPLACE(crewdate, '/', '_') LIKE '%' || #{date} || '%' AND crewlevel = #{level}
+		WHERE crewdate BETWEEN TO_DATE(#{startDate}, 'MM_DD') AND TO_DATE(#{endDate}, 'MM_DD') AND crewlevel = #{level}
 	</select>
 
 <!-- 삭제 -->

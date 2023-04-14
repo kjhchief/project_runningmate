@@ -32,7 +32,7 @@ public interface CrewMapper {
 	// 지역으로 모임 검색
 	public List<CrewCreate> searchByLocation(String loca);
 	// 날짜와 수준으로 모임 리스트 불러오기
-	public List<CrewCreate> findBydateAndLevel(@Param("date") String date, @Param("level") String level);
+	public List<CrewCreate> findBydateAndLevel(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("level") String level);
 	
 	public void update(CrewCreate crewCreate);
 	

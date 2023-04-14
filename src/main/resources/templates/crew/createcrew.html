@@ -60,7 +60,7 @@
          <form method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label class="form-label mt-4 formtitle">제목</label>
-            <input type="text" class="form-control" id="title" placeholder="모임 제목을 입력하세요 (20자 이내)" name="title">
+            <input type="text" class="form-control" id="title" placeholder="모임 제목을 입력하세요 (20자 이내)" name="title" required>
             <small id="titleHelp" class="form-text text-muted">매너있는 모임이 될 수 있게 합시다.</small>
           </div>
 
@@ -70,7 +70,7 @@
           
             <div class="row">
               <div class="col-9">
-                <label class="form-label mt-4 formtitle" for="inputDefault">모임 날짜</label>
+                <label class="form-label mt-4 formtitle" for="inputDefault" required>모임 날짜</label>
                 <input type="datetime-local" class="form-control" placeholder="Default input" id="inputDefault" name="crewdate">
               </div>
               <div class="col">
@@ -86,15 +86,14 @@
 
             <div class="form-group">
             <label class="form-label mt-4 formtitle">장소 선택</label>
-            <input type="text" class="form-control" id="placeSelect" name="crewLocation" placeholder="클릭하면 주소 검색">
-            <input type="text" class="form-control" placeholder="상세 주소 입력" name="crewLocationDt">
+            <input type="text" class="form-control" id="placeSelect" name="crewLocation" placeholder="클릭하면 주소 검색" required>
+            <input type="text" class="form-control" placeholder="상세 주소 입력" name="crewLocationDt" required>
           </div>
           
           <div class="row">
             <div class="col-4">
               <label class="form-label mt-4 formtitle">러닝 수준 선택</label>
               <select class="form-select" id="level" name="crewLevel">
-                <option>선택</option>
                 <option>빨리 걷기</option>
                 <option>천천히 러닝</option>
                 <option>건강한 러닝</option>
@@ -111,19 +110,19 @@
 
           <div class="form-group">
             <label class="form-label mt-4 formtitle">코스 간략 소개</label>
-            <input type="text" class="form-control" id="oneline1" placeholder="코스에 대한 간략 소개" name="courseIntro">
+            <input type="text" class="form-control" id="oneline1" placeholder="코스에 대한 간략 소개" name="courseIntro" required>
           </div>
           <div class="form-group">
             <label class="form-label mt-1 formtitle">날씨 정보</label>
-            <input type="text" class="form-control" id="oneline2" placeholder="당일 예상 날씨" name="weatherIntro">
+            <input type="text" class="form-control" id="oneline2" placeholder="당일 예상 날씨" name="weatherIntro" required>
           </div>
           <div class="form-group">
             <label class="form-label mt-1 formtitle">기타 추가 정보</label>
-            <input type="text" class="form-control" id="oneline3" placeholder="주변 주차장 정보 등" name="etcIntro">
+            <input type="text" class="form-control" id="oneline3" placeholder="주변 주차장 정보 등" name="etcIntro" required>
           </div>
           <div class="form-group">
             <label for="exampleTextarea" class="form-label mt-4 formtitle">모임 소개글</label>
-            <textarea class="form-control" id="exampleTextarea" rows="10" placeholder="모임 취지, 평소 러닝 스타일, 지켜야할 규칙, 기피 대상 등" name="description"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="10" placeholder="모임 취지, 평소 러닝 스타일, 지켜야할 규칙, 기피 대상 등" name="description" required></textarea>
           </div>
           <div class="form-group">
             <label for="formFile" class="form-label mt-4">사진 업로드</label>

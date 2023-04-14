@@ -208,31 +208,23 @@ public class CrewController {
 	}
 	
 	// 레벨별 매칭 페이지 화면 요청 처리 메소드
-	@GetMapping("/level")
+	@GetMapping("/levelall")
 	public String LevelView(HttpSession httpSession, Model model) {
-		return "crew/levelMatchingPage";
+		// 특정 기간(일주일로 해야함) 모임 불러오기
+		List<CrewCreate> levelCrews = crewService.findBydateAndLevel("SYSDATE", "04_17", "고강도 러닝");
+		log.info("레벨별매칭crews : {}", levelCrews);
+		List<LocalDateTime> times = new ArrayList<>();
+		for (CrewCreate levelCrew : levelCrews) {
+			LocalDateTime localDateTime = LocalDateTime.parse(levelCrew.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+			times.add(localDateTime);
+		}
+		
+		log.info("일주일 기간 : {}", times);
+		
+		return "crew/levelMatchingPageAll";
 	}
 	
-	// 레벨 모임 리스트 ajax
-	@GetMapping("/runlist3/{but}")
-	public String levelCrewList(@PathVariable String but, HttpSession httpSession, Model model) {
-		crewListDays(model);
-		but = "b04_13";
 
-		// 날짜별 모임 리스트 ajax
-		String butDate = but.substring(1, but.length());
-		log.info("butDate: {}", butDate);
-		List<CrewCreate> dateCrews = crewService.findBydate(butDate);
-		for (CrewCreate crewCreate2 : dateCrews) {
-			String originDate = crewCreate2.getCrewdate();  
-			String end = originDate.substring(11,16);
-			crewCreate2.setCrewdate(end);
-		}
-		model.addAttribute("dateCrews", dateCrews);	
-		log.info("날짜별crews= {}", dateCrews);
-		
-		return "runList";
-	}
 
 
 }
