@@ -229,17 +229,17 @@ CREATE TABLE notice (
    notice_title   VARCHAR2(300),  
    notice_content   VARCHAR2(4000),    
    notice_date   DATE DEFAULT SYSDATE,
-   notice_hit   NUMBER(4) DEFAULT 0,
-   email	VARCHAR2(100)		NOT NULL
+   notice_hit   NUMBER(4) DEFAULT 0
 );
 -- 제약조건 추가
-ALTER TABLE notice
-  ADD ( 
-        CONSTRAINT notice_id_pk   PRIMARY KEY(notice_id),
-        CONSTRAINT notice_email_fk FOREIGN KEY(email) REFERENCES mate(email)
-        );
    
 create sequence notice_seq;
+
+INSERT INTO notice
+VALUES (notice_seq.NEXTVAL, '공지사항', '내요오오오오오오오오옹',SYSDATE, 0);
+
+commit;
+
 
 --5. 장소 테이블
 DROP TABLE location;
