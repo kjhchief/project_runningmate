@@ -90,7 +90,7 @@ public class CrewController {
 	public String register(@ModelAttribute CrewCreate crewCreate) throws IOException {
 		crewService.createCrew(crewCreate);
 		log.info("crew= {}", crewCreate);
-		return "redirect:/crew/result";
+		return "redirect:/";
 	}
 	
 	// 모임 등록 결과에 대한 메소드
