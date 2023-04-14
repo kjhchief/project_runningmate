@@ -25,6 +25,7 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewMapper reviewMapper;
+	@Autowired
 	private CrewService crewService;
 	
 	@GetMapping()

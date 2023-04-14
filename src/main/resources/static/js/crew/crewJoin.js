@@ -31,7 +31,7 @@ function saveComment(count) {
 
 	console.log(comment);
 
-	fetch('/comment/save', {
+	fetch(`/${crewId}/modal/comment/save`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function saveComment(count) {
       userData.push({email:email, value:Ev});
     }
     
-  fetch('/modal/save',{
+  fetch(`/${crewId}/modal/save`,{
     method:'POST',
     headers: {
       'Content-Type': 'application/json',
