@@ -6,6 +6,12 @@
     <link th:href="@{/css/margin2.css}" rel="stylesheet}">    
   
   <section>
+    <style>
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+</style>
     <div class="container m">
       <div class="row">
         <div class="col me-4">
@@ -87,7 +93,7 @@
           <li class="breadcrumb-item active"><a th:href="@{/mate}">회원가입</a></li>
         </ol>
         <div class="d-grid gap-2 mt-5">
-        <button class="btn btn-lg" style="background-color:#FEE500;" type="button"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_kakao.svg"/> 카카오 로그인</button>
+        <button class="btn btn-lg" style="background-color:#FEE500;" type="button"> <a class="a" href="javascript:kakaoLogin();"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_kakao.svg"/> 카카오 로그인</a></button>
       </div>
       </form>
       
@@ -95,6 +101,45 @@
       
     </div>
     </div>
+   
 </section>
+  <script src="https:/developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+  	Kakao.init("aa8199074e37d9bc5cdfa4c9113b2091");
+  
+  function kakaoLogin(){
+	   Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  console.log(response)
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+		  }
+		//카카오로그아웃  
+		function kakaoLogout() {
+		    if (Kakao.Auth.getAccessToken()) {
+		      Kakao.API.request({
+		        url: '/v1/user/unlink',
+		        success: function (response) {
+		        	console.log(response)
+		        },
+		        fail: function (error) {
+		          console.log(error)
+		        },
+		      })
+		      Kakao.Auth.setAccessToken(undefined)
+		    }
+		  }  
+  </script>
   <script src="/js/mate/login.js"></script>
 </html>
