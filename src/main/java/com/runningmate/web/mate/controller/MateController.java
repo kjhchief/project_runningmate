@@ -69,7 +69,7 @@ public class MateController {
 		mate.setPhoneNumber();
 		log.info("mate {}", mate);
 		mateService.create(mate);
-		return "/";
+		return "/mate/login";
 	}
 	
 	//로그인 처리 메소드
@@ -196,62 +196,34 @@ public class MateController {
 		//이메일, 비밀번호 찾기 기능 처리
 		@PostMapping("/findEmailPassword")
 		@ResponseBody
-		public String findEmailPassword(@RequestParam(required=false) String email, 
-										@RequestParam String name, @RequestParam(required=false) String password) {
-			// 이메일 찾기
-			if(email == null ) {
+		public String findEmailPassword(@RequestParam String name,
+				                        @RequestParam(required=false) String email, 
+										@RequestParam(required=false) String password) {
+		log.info("이름: {}", name);
+		log.info("이멜: {}", email);
+		log.info("비번: {}", password);
+		// 이메일 찾기
+		if(email == null ) {
 			String emailResult = mateService.findEmail(name, password);
-			if(emailResult != null) {
+			if (emailResult != null) {
 				log.info("email : {}", emailResult);	
-				return "{\"result\" : true, \"email\" : \""+emailResult+"\" }";
+				return "{\"type\" : \"email\", \"result\" : true, \"email\" : \""+emailResult+"\" }"; //script에서 true는 "" 처리 안되있어서 true로 인식함
 			}else {
 				log.info("email : {}", emailResult);	
-				return "false";
+				return "{\"type\" : \"email\", \"result\" : false}";
 			}
 		}else {// 비빌번호 찾기
 			String passwordResult = mateService.findPassword(name, email);
 			if(passwordResult != null) {
 				log.info("password : {}", passwordResult);	
-				return "{\"result\" : true, \"email\" : \""+passwordResult+"\" }";
+				return "{\"type\" : \"password\", \"result\" : true, \"password\" : \""+passwordResult+"\" }";
 			}else {
 				log.info("password : {}", passwordResult);	
-				return "false";
+				return "{\"type\" : \"password\", \"result\" : false}";
 			}
 		}
 		
 	}
 	
-		/*
-		//이메일, 비밀번호 찾기 기능 처리
-				@PostMapping("/findEmailPassword")
-				
-				public String findEmailPassword(@RequestParam(required=false) String email, 
-												@RequestParam String name, @RequestParam(required=false) String password,
-												HttpSession session, Model model) {
-				if(email == null ) {
-					String emailResult = mateService.findEmail(name, password);
-					if(emailResult != null) {
-						session.setAttribute("email", emailResult);
-						model.addAttribute("email", emailResult);
-						log.info("email : {}", emailResult);	
-						//return "true";
-					}else {
-						log.info("email : {}", emailResult);	
-						//return "false";
-					}
-				}else {
-					String passwordReault = mateService.findPassword(name, email);
-					if(passwordReault != null) {
-						session.setAttribute("password", passwordReault);
-						model.addAttribute("password", passwordReault);
-						log.info("password : {}", passwordReault);	
-						//return "true";
-					}else {
-						log.info("password : {}", passwordReault);	
-						//return "false";
-					}
-				}
-				return "/mate/findEmailPassword2"; 
-			}*/
 				
 }

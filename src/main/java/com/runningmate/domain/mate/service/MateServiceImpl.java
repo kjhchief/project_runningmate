@@ -62,26 +62,13 @@ public class MateServiceImpl implements MateService {
 
 	@Override
 	public String findEmail(String name, String password) {
-		String email = mateMapper.findEmail(name, password);
-		if(email != null) {
-			System.out.println("서비스: "+email);
-			return email;
-		}else {
-			System.out.println("서비스: "+email);
-			return null;
-		}
+		return mateMapper.findEmail(name, password);
+		
 	}
 
 	@Override
 	public String findPassword(String name, String email) {
-		String password = mateMapper.findPassword(name, email);
-		if(password != null) {
-			System.out.println("서비스: "+password);
-			return password;
-		}else {
-			System.out.println("서비스: "+password);
-			return null;
-		}
+		return  mateMapper.findPassword(name, email);
 	}
 
   
