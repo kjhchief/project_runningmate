@@ -214,7 +214,7 @@ public class CrewController {
 	public String LevelView(HttpSession httpSession, Model model) {
 		crewListDays(model);
 		// 특정 기간(일주일로 해야함) 모임 불러오기
-		List<CrewCreate> levelCrews = crewService.findBydateAndLevelAll("04_14", "04_17");
+		List<CrewCreate> levelCrews = crewService.findBydateAndLevelAll("04_17", "04_18");
 		// 특정 기간 모임 중 날짜시간만 LocalDateTime으로 파싱하기
 		List<LocalDateTime> levelCrewTimes = new ArrayList<>();
 		for (CrewCreate levelCrew : levelCrews) {

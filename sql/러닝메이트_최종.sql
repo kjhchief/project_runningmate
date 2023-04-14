@@ -44,7 +44,7 @@ ALTER TABLE mate
         );
 --예시 데이터 추가        
 INSERT INTO mate (email, name, password, gender, birthdate, phone_number, location)
-VALUES ('kjh2@naver.com', '김재훈2', '1111', 'M', '19940413', '010-2521-2422', '서울시 중랑구 면목로1길 1-1');
+VALUES ('kjh3@naver.com', '김재훈3', '1111', 'M', '19940413', '010-2921-2422', '서울시 중랑구 면목로1길 1-1');
 
 --2. 모임 테이블
 SELECT *
@@ -82,8 +82,8 @@ ALTER TABLE crew
 
 -- 예시 데이터 추가
 INSERT INTO crew
-VALUES (crew_seq.NEXTVAL, '4월 21일 모임_1 사진X', 
-'23/4/21', 5, 
+VALUES (crew_seq.NEXTVAL, '4월 19일 모임_4 사진X', 
+'23/4/19 19:59', 5, 
 '서울시 도봉구 도봉동 무슨아파트 큰 공원','우리집 앞', '고강도 러닝', 10, '좋은 코스입니다 아주 좋아 아주아주 좋아', '날씨는 맑음. 가끔 흐려요. 눈과 우박도 내려요.',
 '기타 주절주절', '안녕하세요~ 우리 모임을 신청해주셔서감사합니다. 열심히 러닝하고 몸도 마음도 건강 튼튼. 비매너 사절. 러닝 외 다른 목적 사절. 적당한 운동은 건강에 아주 좋습니다', 3);
 
