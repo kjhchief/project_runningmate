@@ -96,15 +96,19 @@ SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, cr
 FROM crew
 WHERE crewdate BETWEEN SYSDATE AND SYSDATE+6 AND crewlevel = '°í°­µµ ·¯´×';
 
+SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+FROM crew
+WHERE crewdate BETWEEN TO_DATE('04_14', 'MM_DD') AND TO_DATE('04_17', 'MM_DD') AND crewlevel = '°í°­µµ ·¯´×';
 
 
-SELECT crew_location, crew_location_dt
+
+SELECT crew_id, crew_location, crew_location_dt, crewdate
 FROM crew
 WHERE crew_location LIKE '%µµºÀ%';
 
 
 DELETE FROM crew
-WHERE crew_id BETWEEN '132' AND '141';
+WHERE crew_id = '211';
 
 commit;
 

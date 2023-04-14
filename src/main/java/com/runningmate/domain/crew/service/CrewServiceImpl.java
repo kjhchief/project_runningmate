@@ -109,13 +109,13 @@ public class CrewServiceImpl implements CrewService {
 		
 		String monthDay = nowPlusDays.format(DateTimeFormatter.ofPattern("MM_dd"));
 		
-		LocalDateTime nextday = now.plusDays(num);
-		String day = nextday.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+		String day = nowPlusDays.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
 			
 		DayOfweeks dayOfweeks = new DayOfweeks();
 		dayOfweeks.setDayofMonth(dayOfMonth);
 		dayOfweeks.setDayofweek(day);
 		dayOfweeks.setMonthDay(monthDay);
+		dayOfweeks.setLocalDateTime(nowPlusDays);
 		
 		return dayOfweeks;
 	}
@@ -131,8 +131,8 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public List<CrewCreate> findBydateAndLevel(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("level") String level) {
-		return crewMapper.findBydateAndLevel(startDate,endDate, level);
+	public List<CrewCreate> findBydateAndLevelAll(@Param("startDate") String startDate, @Param("endDate") String endDate) {
+		return crewMapper.findBydateAndLevelAll(startDate,endDate);
 	}
 
 

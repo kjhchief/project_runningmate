@@ -61,6 +61,14 @@ public class CrewController {
 		}
 		model.addAttribute("days", dayOfweeks);
 	}
+	// 헬퍼메소드: 전체 날짜에서 시간만 추출하는 기능
+	private void onlyTimes0000(List<CrewCreate> crewList) {
+		for (CrewCreate crewCreate2 : crewList) {
+			String originDate = crewCreate2.getCrewdate();  
+			String end = originDate.substring(11,16);
+			crewCreate2.setCrewdate(end);
+		}
+	}
 	
 	//이미지 출력 기능
 	@GetMapping("/images/{name}")
@@ -177,11 +185,8 @@ public class CrewController {
 		String butDate = but.substring(1, but.length());
 		log.info("받은 날짜 키워드: {}", butDate);
 		List<CrewCreate> dateCrews = crewService.findBydate(butDate);
-		for (CrewCreate crewCreate2 : dateCrews) {
-			String originDate = crewCreate2.getCrewdate();  
-			String end = originDate.substring(11,16);
-			crewCreate2.setCrewdate(end);
-		}
+		onlyTimes0000(dateCrews);
+		
 		model.addAttribute("dateCrews", dateCrews);	
 		log.info("날짜별crews= {}", dateCrews);
 		
@@ -196,13 +201,10 @@ public class CrewController {
 		log.info("받은 지역 키워드: {}", but);
 		
 		List<CrewCreate> locaCrews = crewService.searchByLocation(but);
-		for (CrewCreate crewCreate2 : locaCrews) {
-			String originDate = crewCreate2.getCrewdate();  
-			String end = originDate.substring(11,16);
-			crewCreate2.setCrewdate(end);
-		}
-		model.addAttribute("locaCrews", locaCrews);
 		log.info("지역검색crews= {}", locaCrews);
+		onlyTimes0000(locaCrews);
+		
+		model.addAttribute("locaCrews", locaCrews);
 		
 		return "runList2";
 	}
@@ -210,16 +212,22 @@ public class CrewController {
 	// 레벨별 매칭 페이지 화면 요청 처리 메소드
 	@GetMapping("/levelall")
 	public String LevelView(HttpSession httpSession, Model model) {
+		crewListDays(model);
 		// 특정 기간(일주일로 해야함) 모임 불러오기
-		List<CrewCreate> levelCrews = crewService.findBydateAndLevel("SYSDATE", "04_17", "고강도 러닝");
-		log.info("레벨별매칭crews : {}", levelCrews);
-		List<LocalDateTime> times = new ArrayList<>();
+		List<CrewCreate> levelCrews = crewService.findBydateAndLevelAll("04_14", "04_17");
+		// 특정 기간 모임 중 날짜시간만 LocalDateTime으로 파싱하기
+		List<LocalDateTime> levelCrewTimes = new ArrayList<>();
 		for (CrewCreate levelCrew : levelCrews) {
 			LocalDateTime localDateTime = LocalDateTime.parse(levelCrew.getCrewdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
-			times.add(localDateTime);
+			levelCrewTimes.add(localDateTime);
 		}
+		model.addAttribute("levelCrewTimes", levelCrewTimes);
+		// 특정기간 모임들 시간만 00:00으로 추출하기
+		onlyTimes0000(levelCrews);
+
+		model.addAttribute("levelCrews", levelCrews);
 		
-		log.info("일주일 기간 : {}", times);
+		log.info("일주일 기간 : {}", levelCrewTimes);
 		
 		return "crew/levelMatchingPageAll";
 	}

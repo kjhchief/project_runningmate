@@ -10,147 +10,34 @@
 
       <!-- 이미지 -->
       <div class="image-container my-3">
-      
         <img src="/img/level.jpg" alt="대표 이미지" class="img-fluid">
       </div>
 
 
       <!-- 리스트 -->
-      <!-- 리스트 -->
-      <h5 >3월 24일 금요일</h5>
-  <div class="run_list" >
-    <table class="table table-hover text-center">
-      <tbody>
-        <tr th:each="dateCrew : ${dateCrews}">
-          <th scope="row" th:text="${dateCrew.crewdate}">16:00</th>
-          <td colspan="2"><span th:text="${dateCrew.title}">남산 공원</span> 
-            <div class="prop">
-              <span th:text="${dateCrew.crewLocation}">위치 주소</span>
-            </div>
-          </td>
-          <td>
-           <a th:href="@{${'/crew/' + dateCrew.crewId}}">
-             <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
-           </a>
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </div>
-
-    <div class=" run_list">
-        <h5 >3월 24일 금요일</h5>
-        <table class="table table-hover text-center">
-          <tbody>
-            <tr>
-              <th scope="row">16:00</th>
-              <td colspan="2">남산 공원 
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class=" run_list">
-        <h5 >3월 25일 토요일</h5>
-        <table class="table table-hover text-center">
-          <tbody>
-            <tr>
-              <th scope="row">16:00</th>
-              <td colspan="2">남산 공원 
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-            <tr>
-              <th scope="row text-start">20:00</th>
-              <td colspan="2">석촌 호수 <br>
-                <div class="prop">
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                  <span>남성 전용</span>
-                </div>
-              </td>
-              <td>Column content</td>
-              <td><button type="button" class="btn btn-warning btn-sm">Danger</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+      <th:block th:each="day : ${days}">
+        <h5 th:text="${#temporals.format(day.localDateTime, 'MM월 dd일 E요일')}">3월 24일 금요일</h5>
+        <div class="run_list" th:each="levelCrew : ${levelCrews}">
+          <table class="table table-hover text-center">
+            <tbody>
+              <tr>
+                <th scope="row" th:text="${levelCrew.crewdate}">16:00</th>
+                <td colspan="2"><span th:text="${levelCrew.title}">남산 공원</span> 
+                  <div class="prop">
+                    <span th:text="${levelCrew.crewLocation}">위치 주소</span>
+                  </div>
+                </td>
+                <td>
+                 <a th:href="@{${'/crew/' + levelCrew.crewId}}">
+                   <button type="button" class="btn btn-primary btn-sm">신청 하기</button>
+                 </a>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </th:block>
 
 
     </div>
