@@ -4,20 +4,36 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.runningmate.domain.crew.dto.CrewMates;
+import com.runningmate.domain.crew.service.CrewService;
 import com.runningmate.domain.manage.dto.Review;
 import com.runningmate.domain.manage.dto.goodBad;
 import com.runningmate.domain.manage.mapper.ReviewMapper;
 
 
 @Controller
+@RequestMapping("/{crewId}/modal")
 public class ReviewController {
 
 	@Autowired
-	ReviewMapper reviewMapper;
+	private ReviewMapper reviewMapper;
+	private CrewService crewService;
+	
+	@GetMapping()
+	public Model showModal(@PathVariable String crewId, Model model) {
+		List<CrewMates> crewMates = crewService.getCrews(crewId);
+		model.addAttribute("crewMatesLists", crewMates);
+		return model;
+	}
+	
 	
 	@PostMapping("comment/save")
 	public String commentSave(@RequestBody Review review){
@@ -26,7 +42,7 @@ public class ReviewController {
 	}
 	
 	
-	@PostMapping("modal/save")
+	@PostMapping("/save")
 	public void saveAction(@RequestParam("options") List<goodBad> memberEv) {
 		for (goodBad json : memberEv) {
 			String value = json.getValue();
