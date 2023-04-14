@@ -151,7 +151,7 @@ public class CrewController {
 		model.addAttribute("photos", crewPhotos);
 		// 모임에 참석한 멤버 리스트
 		List<CrewMates> crewMates = crewService.getCrews(crewId);
-		model.addAttribute("crewMates", crewMates);
+		model.addAttribute("crewMatesLists", crewMates);
 		// 모임에 참석한 회원,안 한 회원 분류하여 신청버튼 보이기,숨기기
 		CrewMates sessionMate = crewService.sessionMate(mate.getEmail()); 
 		log.info("sessionMate= {}", sessionMate);
