@@ -104,42 +104,6 @@
    
 </section>
   <script src="https:/developers.kakao.com/sdk/js/kakao.js"></script>
-  <script>
-  	Kakao.init("aa8199074e37d9bc5cdfa4c9113b2091");
-  
-  function kakaoLogin(){
-	   Kakao.Auth.login({
-		      success: function (response) {
-		        Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log(response)
-		          },
-		          fail: function (error) {
-		            console.log(error)
-		          },
-		        })
-		      },
-		      fail: function (error) {
-		        console.log(error)
-		      },
-		    })
-		  }
-		//카카오로그아웃  
-		function kakaoLogout() {
-		    if (Kakao.Auth.getAccessToken()) {
-		      Kakao.API.request({
-		        url: '/v1/user/unlink',
-		        success: function (response) {
-		        	console.log(response)
-		        },
-		        fail: function (error) {
-		          console.log(error)
-		        },
-		      })
-		      Kakao.Auth.setAccessToken(undefined)
-		    }
-		  }  
-  </script>
+  <script src="/js/mate/kakao.js"></script>
   <script src="/js/mate/login.js"></script>
 </html>
