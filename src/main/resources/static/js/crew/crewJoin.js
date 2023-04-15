@@ -23,11 +23,15 @@ let form = document.querySelector("#submit_form");
 
 //코멘트 저장
 function saveComment(count) {
-	let comment = {
-		author: sessionStorage.getItem('mate'),
-		email: document.querySelector(`#email${count}`).textContent,
-		comment: document.querySelector(`#collapse${count} .commentTextarea`).value
-	};
+  let author = sessionStorage.getItem('mate');
+  let emailD = document.querySelector(`#email${count}`);
+  let emailTN = Array.from(emailD.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+  let email = emailTN[0].textContent.trim();
+  let comment = {
+    author : sessionStorage.getItem('mate'),
+    email : email,
+    comment : document.querySelector(`#collapse${count} .commentTextarea`).value
+  };
 
 	console.log(comment);
 
