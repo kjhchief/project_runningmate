@@ -4,9 +4,11 @@
 
 <!-- 일자버튼 하단 모임 목록 -->
 <!-- 리스트 -->
-<th:block th:each="day : ${days}">
+  <th:block th:each="i : ${#numbers.sequence(0, 6)}">
+  
+        <th:block th:each="day : ${days}">
       <h5 th:text="${#temporals.format(day.localDateTime, 'MM월 dd일 E요일')}">3월 24일 금요일</h5>
-  <div class="run_list" th:each="levelCrew : ${levelCrews}">
+  <div class="run_list" th:each="levelCrew : ${levelCrews0}">
     <table class="table table-hover text-center">
       <tbody>
         <tr>
@@ -25,5 +27,7 @@
       </tbody>
     </table>
   </div>
+        </th:block>
+        
   </th:block>
 </html>

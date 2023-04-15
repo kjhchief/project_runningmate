@@ -131,8 +131,8 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public List<CrewCreate> findBydateAndLevelAll() {
-		return crewMapper.findBydateAndLevelAll();
+	public List<CrewCreate> findBydateCrews(int i) {
+		return crewMapper.findBydateCrews(i);
 	}
 
 

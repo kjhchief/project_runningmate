@@ -1,5 +1,3 @@
-console.log("자바스크립트 잘 읽어오나");
-
 fetchRequest3();
 
 // 레벨별 매칭 페이지용...

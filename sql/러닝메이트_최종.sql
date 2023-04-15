@@ -94,6 +94,10 @@ AND crewlevel = '°í°­µµ ·¯´×';
 
 SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
 FROM crew
+WHERE TRUNC(crewdate) = TRUNC(SYSDATE + 3);
+
+SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+FROM crew
 WHERE crewdate BETWEEN SYSDATE AND SYSDATE+6 AND crewlevel = '°í°­µµ ·¯´×';
 
 SELECT crew_id, title, crewdate, mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
