@@ -49,7 +49,9 @@ function saveComment(count) {
     let prefix = "email";
     for (var i = 0; i < radioGroups.length; i++) {
       let emailId = prefix + (i+1);
-      let email = document.getElementById(emailId).textContent.trim();
+      let emailDiv = document.getElementById(emailId);
+      let emailTextNode = Array.from(emailDiv.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+      let email = emailTextNode[0].textContent.trim();
       let Ev = radioGroups[i].value;
       userData.push({email:email, value:Ev});
     }
