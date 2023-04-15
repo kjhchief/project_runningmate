@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
+	
+	
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자주 묻는 질문</title>
+  
+  <link href="" rel="">
+  
+
+</head>
+<body>
+<section>
+  <div class="container-lg m">
+
+<h7 class="d-flex p-2 border-bottom text-primary mb-4">자주 묻는 질문</h7>
+
+</div>
+
+ <!-- 카테고리 -->
+   <div th:if="${question != null}">
+    <h5 class="mb-4">&nbsp;&nbsp;&nbsp;<span th:text="${question.questionTitle}"></span></h5>
+<pre>&nbsp;&nbsp;&nbsp;<span th:text="${question.questionContent}"></span></pre>
+</div>
+    
+    
+   
+     
+<!-- 자주 묻는 질문 -->
+ <div th:if="${dto != null}">
+    <h5 class="mb-4">&nbsp;&nbsp;&nbsp;<span th:text="${dto.questionTitle}"></span></h5>
+<pre>&nbsp;&nbsp;&nbsp;<span th:text="${dto.questionContent}"></span></pre>
+</div>
+
+
+
+    <hr>
+<div class="container-lg mt-1">
+  <div class="form-group m-3">
+    <label for="exampleTextarea" class="form-label">다른 키워드로 찾아보세요</label>
+    <form class="d-flex" action="/search" method="get">
+  <input type="search" class="form-control" name="keyword" placeholder="키워드로 질문하기">
+  <button type="submit" class="btn btn-primary ml-2">검색</button>
+</form>
+  </div>
+  <br>
+  <div class="d-flex justify-content-end">
+				<a href="/qdlistForm"><button class="btn btn-secondary"
+								type="	button" value="목록보기">메인으로</button></a></div>
+  </div>
+  
+  </section>
+</div>
+  
+  <script src=""></script>
+</body>
+</html>

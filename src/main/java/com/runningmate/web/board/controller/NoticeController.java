@@ -36,6 +36,7 @@ public class NoticeController {
 	@Autowired
 	private HttpServletRequest request;
 
+	
 	// 리스트 표시 + 페이징처리 + 옵션별 서치
 
 	@RequestMapping("/listForm")

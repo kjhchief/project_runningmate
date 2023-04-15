@@ -1,0 +1,73 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>리뷰 쓰기</title>
+    <link
+        href="">
+</head>
+
+<body>
+    <section>
+        <div class="wrap">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light mt-4 mb-3">
+                    <div class="collapse navbar-collapse " id="navbarColor03">
+                        <ul class="navbar-nav me-auto">
+                            <h5 class="" style="color: #007bff;">자주 묻는 질문</h5>
+                        </ul>
+                    </div>
+                </nav>
+                <hr style="width: 100%; margin: 8px 0;">
+            
+<div class="list-title"
+    style="background-color: #4582EC; color: white; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; margin-bottom: 20px;"
+    th:text="${keyword}">
+    
+</div>
+<!-- 검색 결과 목록 -->
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="list-group">
+            <table>
+                <tbody>
+                    <th:block th:each="question : ${searchResults}">
+                        <tr>
+                            <td>
+                                <a th:href="@{'/qdcontentForm/' + ${question.questionId}}"
+                                   th:text="${question.questionTitle}" style="text-decoration: none; color:black; margin-right: 1%">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br>
+            <div class="d-flex justify-content-end">
+                <a href="/qdlistForm"><button class="btn btn-secondary"
+                                type="button" value="목록보기">목록보기</button></a></div>
+                        </div>
+                    </div>
+            
+        <script
+            src=""></script>
+    </section>
+</body>
+
+</html>
+
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.runningmate.domain.board.mapper.IQuestionMapper">	
+
+<resultMap id="QuestionDtoResultMap" type="com.runningmate.domain.board.dto.QuestionDto">
+    <result column="question_id" property="questionId"/>
+    <result column="question_title" property="questionTitle"/>
+    <result column="question_content" property="questionContent"/>
+    <result column="category" property="category"/>
+</resultMap>
+
+
+
+
+
+<!-- 자주 묻는 질문 카테고리별 리스트 -->
+<select id="listByCategory" resultMap="QuestionDtoResultMap">
+  select * from question where category = #{category} order by question_id desc
+</select>
+
+
+
+<!-- 자주 묻는 질문 리스트 -->
+<select id="list" resultType="com.runningmate.domain.board.dto.QuestionDto">
+  select * from question order by question_id desc
+</select>
+
+
+
+
+
+<insert id="write2" parameterType="com.runningmate.domain.board.dto.QuestionDto">
+    INSERT INTO question (question_id, question_Title, question_content, category)
+    VALUES (question_seq.nextval, #{questionTitle}, #{questionContent}, #{category})
+</insert>
+ 
+
+
+
+<!-- 공지사항 글 보기 -->
+<select id="viewDto" resultMap="QuestionDtoResultMap">
+   select * from question where question_id = #{param1}
+</select>
+
+
+
+<!-- 공지사항 글 지우기 -->
+<delete id="deleteDto" parameterType="string">
+    DELETE FROM question WHERE question_id = #{param1}
+</delete>
+
+
+<!-- 서치 구현 -->
+    <select id="searchQuestions" resultType="com.runningmate.domain.board.dto.QuestionDto">
+    SELECT * FROM question
+    WHERE question_title LIKE '%' || #{keyword} || '%'
+</select>
+
+
+
+
+
+</mapper>
+

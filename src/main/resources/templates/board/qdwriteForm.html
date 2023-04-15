@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:numbers="http://www.thymeleaf.org/extras/numbers"
+	th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
+	
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자주 묻는 질문</title>
+  
+  <link href="" rel="stylesheet">
+  <style>
+    .m{margin-top: 4%;}
+  </style>
+
+</head>
+<body>
+	<section>
+		<!-- 공지사항 글 작성 액션 폼 
+		-->
+
+		<form action="#" th:action="@{/qdwriteAction}" method="post">
+		
+			<div class="container mt-5 g-0">
+				<h5 class="p-3 mb-2 bg-primary text-white rounded mb-4">자주 묻는 질문 작성란</h5>
+				
+				
+				
+				
+				
+				
+				
+				<div class="row">
+
+					<div class="col">
+						<div class="form-group">
+							<h5>
+								<label for="exampleSelect1" class="form-label mt-4 formtitle">작성
+									권한 : 관리자 회원</label>
+							</h5>
+						    
+						</div>
+					</div>
+				</div>
+				<br>
+							    <label for="category" style="margin-bottom: 0.8%;">작성 종류 선택</label>
+  <select id="category" name="category" class="form-select" required>
+  <option value="진행매너">카테고리-진행매너</option>
+  <option value="진행방식">카테고리-진행방식</option>
+  <option value="매치신청">카테고리-매치신청</option>
+  <option value="매치취소">카테고리-매치취소</option>
+  <option value="매너온도">카테고리-매너온도</option>
+  <option value="서비스&nbsp;">카테고리-서비스&nbsp;</option>
+  <option value="공지사항">카테고리-공지사항</option>
+  <option value="&nbsp;시설&nbsp;&nbsp;&nbsp;">카테고리-시설</option>
+  <option value="자주묻는질문">*자주 묻는 질문*</option>
+</select>
+				<!-- 공지사항 제목 내용 작성 -->
+				<div class="form-group">
+					<label for="title" class="form-label mt-4 formtitle">제목</label> <input
+						type="text" name="questionTitle" class="form-control" id="title"
+						placeholder="제목을 입력하세요." th:value="${questionTitle}"
+						required="required">
+				</div>
+				<div class="form-group">
+					<label for="contents" class="form-label mt-4 formtitle">내용</label>
+					<textarea type="text" name="questionContent" class="form-control"
+						rows="10" id="content" placeholder="내용을 입력하세요."
+						th:value="${questionContents}" required="required"></textarea>
+						
+						   
+						    
+    
+						
+						
+
+
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary mt-4 cen">&nbsp&nbsp저장하기&nbsp&nbsp</button>
+				</div>
+			</div>
+		</form>
+
+		
+
+		<script src=""></script>
+	</section>
+</body>
+</html>
