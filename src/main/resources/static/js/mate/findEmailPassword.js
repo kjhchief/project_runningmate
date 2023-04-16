@@ -3,13 +3,8 @@ const nameInput1 = document.querySelector('#find-email-name');
 const nameInput2 = document.querySelector('#find-password-name'); 
 const emailInput = document.querySelector('#email'); 
 const passwordInput = document.querySelector('#password'); 
-const phoneNumberElement = document.querySelector('#phoneNumber');
 const findButton1 = document.querySelector('#find-email-button');
 const findButton2 = document.querySelector('#find-password-button');
-const findEmailForm = document.querySelector('#find-email-form');
-const findPasswordForm = document.querySelector('#find-password-form');
-
-let emailPasswordChecked = false;
 
 let emailValueDiv = document.querySelector('#email-value');
 let passwordValueDiv = document.querySelector('#password-value');

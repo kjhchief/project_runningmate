@@ -1,11 +1,3 @@
-/*
-//스페이스바 입력못하게 하는 코드
-document.addEventListener('keydown', function(event) {
-  if (event.keyCode === 32) {
-    event.preventDefault();
-  }
-});
-*/
 
 /*
 let newPasswordChecked1 = false;
@@ -66,9 +58,6 @@ birthdateElement.addEventListener("change", () => {
 	birthdateAfterUpdate = birthdateElement.value;
 	let messageDiv = document.getElementById("birthdate-check-message");
 		
-		// let formattedBirthdate = `${birthdateAfterUpdate.slice(0, 4)}-${birthdateAfterUpdate.slice(4, 6)}-${birthdateAfterUpdate.slice(6)}`;
-  		// birthdateAfterUpdate = formattedBirthdate;
-		
 	 if(birthRegex.test(birthdateAfterUpdate)){
 		 birthdateChecked = true;
 		messageDiv.innerHTML = "";
@@ -91,10 +80,7 @@ phoneNumberElement.addEventListener("change", () => {
 	phonenumberAfterUpdate = phoneNumberElement.value;
 	let messageDiv = document.getElementById("phoneNumber-check-message");
 	
-		
 	 if(phoneNumberRegex.test(phonenumberAfterUpdate)){
-		// let formattedPhoneNumber = `${phonenumberAfterUpdate.slice(0, 3)}-${phonenumberAfterUpdate.slice(3, 7)}-${phonenumberAfterUpdate.slice(7)}`;
-  		// phonenumberAfterUpdate = formattedPhoneNumber;
 		 phonenumberChecked = true;
 		messageDiv.innerHTML = "";
 	}else if(phonenumberAfterUpdate.length >= 13){
@@ -118,7 +104,6 @@ updateFinshButton.addEventListener("click", () => {
 			 }   
 			if (genderAfterUpdate !== genderBeforeUpdate) {
 			   form.append('gender', genderHidden.value);
-				alert(genderHidden.value);
 			 }
 			if (birthdateAfterUpdate !== birthdateBeforeUpdate) {
 			  form.append('birthdate', birthdateAfterUpdate);
@@ -134,7 +119,6 @@ updateFinshButton.addEventListener("click", () => {
 			}
 			//이메일값 무조건 전송
 			form.append('email', emailBeforeUpdate);
-				alert(emailBeforeUpdate);
 			// 서버로 전송
 			form.submit();
   

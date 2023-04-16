@@ -43,9 +43,14 @@ public class MainController {
 			dayOfweeks.add(i, dayOfweeks2);
 		}
 		model.addAttribute("days", dayOfweeks);
-		
+		//로그인 회원 정보
 		Mate mate = (Mate)httpSession.getAttribute("mate");
 		model.addAttribute("mate", mate);
+		
+		//카카오로그인 회원 정보
+		Mate kakaoMate = (Mate)httpSession.getAttribute("kakaoMate");
+		model.addAttribute("kakaoMate", kakaoMate);
+		log.info("kakaoMate : {}", kakaoMate);
 		
 		// 모든 모임 리스트
 		CrewCreate Crew = new CrewCreate();

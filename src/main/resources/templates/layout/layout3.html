@@ -13,6 +13,12 @@
     <link th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap}" rel="stylesheet">
     <link th:href="@{https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap}" rel="stylesheet">
     
+        <style>
+        a{
+          text-decoration: none;
+          color: #000;
+         }
+        </style>
     <!-- 추가 -->
     <th:block th:replace="${links}" />
    
@@ -32,12 +38,16 @@
                     <input class="form-control p-sm-1 me-sm-2" type="search" placeholder="지역으로 찾기">
                     <button class="btn btn-light" type="submit">search</button>
                   </form>
-                  <div th:if="${mate == null}">
+                  <div th:if="${mate == null and kakaoMate == null}">
                   <button class="nav-item btn btn-primary my-2 my-sm-0" type="button" id="login-button" onclick="location.href='/mate/login';">login</button>
                   <button class="nav-item btn btn-primary ms-1 my-2 my-sm-0" type="button" id="join-button" onclick="location.href='/mate';">join</button>
                   </div>
                   <div th:if="${mate != null}">
                   <button class="nav-item btn btn-primary my-2 my-sm-0" type="button" id="logout-button" onclick="location.href='/mate/newLogin';">logout</button>
+                  <a href="/mate/mypage"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_my.svg" alt="마이페이지"></a>
+                  </div>
+                   <div th:if="${kakaoMate != null}">
+                  <button class="nav-item btn my-2 my-sm-0" type="button" id="logout-button" style="background-color:#FEE500;" onclick="location.href='/mate/newLogin';"><a class="a" href="javascript:kakaoLogout();">logout</a></button>
                   <a href="/mate/mypage"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_my.svg" alt="마이페이지"></a>
                   </div>
                 </ul>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.runningmate.domain.mate.dto.Mate;
 import com.runningmate.domain.mate.service.MateService;
@@ -78,10 +78,7 @@ public class MateController {
 	public String Login(@RequestParam String email, @RequestParam String password, 
 						@RequestParam(required = false) String saveEmail,
 						HttpSession session, HttpServletResponse response) {
-		log.info("email : {}", email);
-		log.info("password : {}", password);
 		
-		log.info("이메일저장 여부 : {}", saveEmail);
 		
 		// 회원인 경우
 		Mate mate = mateService.getLoginInfo(email, password); //변수처리안하고 if문에 넣으면 DB 두 번 갔다옴
@@ -99,27 +96,53 @@ public class MateController {
 				log.info("쿠키저장안됨");
 			}	
 			return "true";
+			
 		}else {// 회원이 아닌 경우
 			return "false";
 		}
 			
 	}
 	
+	   // 카카오 로그인 처리 메소드
+    @PostMapping("/kakaoLogin")
+    @ResponseBody
+    public String kakaoLogin(@ModelAttribute Mate kakaoMate, HttpSession session) {
+        if(kakaoMate != null) {
+    	session.setAttribute("kakaoMate", kakaoMate);
+    	kakaoMate.setKakaoaccYn("Y");
+    	log.info("kakaoMate : {}", kakaoMate);
+        return "true";
+        }else {
+        	return "false";
+        }
+    }
+
+	
+	
 	// 회원가입결과에 대한 메소드
 	@GetMapping("/main")
 	public String registerResult(HttpSession session, Model model) {
 	Mate mate = (Mate)session.getAttribute("mate");
+	String kakaoAccount = (String)session.getAttribute("kakaoAccount");
 	model.addAttribute("mate", mate);
+	model.addAttribute("kakaoAccount", kakaoAccount);
 		log.info("mate : {}", mate);
+		log.info("kakaoAccount : {}", kakaoAccount);
 		
 		return "/";
 	}
 	
+	//마이페이지
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
+		//일반로그인 세션
 		Mate mate = (Mate)session.getAttribute("mate");
 		model.addAttribute("mate", mate);
 			log.info("mate : {}", mate);
+		//카카오 세션	
+		Mate kakaoMate = (Mate)session.getAttribute("kakaoMate");
+		model.addAttribute("kakaoMate", kakaoMate);
+		log.info("kakaoMate : {}", kakaoMate);	
 		return "/mate/mypage" ;
 	}
 	
@@ -127,30 +150,39 @@ public class MateController {
 	@GetMapping("/mateDetail")
 	public String mateDatailForm(HttpSession session, Model model) {
 		Mate mate = (Mate)session.getAttribute("mate");
+		if(mate != null) {
 		mate.setAddress();
 		mate.setAddressDetail();
 		model.addAttribute("mate", mate);
 		log.info("mate : {}", mate);	
+		}else {
+		//카카오 세션
+		Mate kakaoMate = (Mate)session.getAttribute("kakaoMate");
+		model.addAttribute("kakaoMate", kakaoMate);
+		log.info("kakaoMate : {}", kakaoMate);	
+		}
 		return "/mate/mateDetail";
 	}
 	
 	//mate정보 수정 기능 처리
 	@PostMapping("/mateDetail")
-	public String mateDatail(HttpSession session, Model model, @RequestParam(name="new-password", required=false) String newPassword, @ModelAttribute("mate") Mate mate) {
+	public String mateDatail(HttpSession session, Model model, 
+							@RequestParam(name="new-password", required=false) String newPassword, 
+							@ModelAttribute("mate") Mate mate) {
 		log.info("제발제발 : {}", mate);
 		mate.setLocation();
 		mate.setPassword(newPassword);
 		
 		Mate updatedMate = mateService.update(mate); // 1. update된 Mate 객체를 반환
+		updatedMate.setAddress();
+		updatedMate.setAddressDetail();
 		session.setAttribute("mate", updatedMate); // session에도 update된 Mate 객체를 저장
-		mate.setAddress();
-		mate.setAddressDetail();
 		model.addAttribute("mate", updatedMate); // 3. model.addAttribute에 새로운 Mate 객체를 저장
 		log.info("업데이트야 제발 되그라 :{} ", mate);
 	
 		if(newPassword != null) {
 			
-			return "redirect:/mate/login"; // 비밀번호 변경 후 로그인 페이지로 이동
+			return "redirect:/mate/newLogin"; // 비밀번호 변경 후 로그인 페이지로 이동
 		}
 
 	        return "/mate/mateDetail"; // 기존의 mateDetail 페이지로 이동

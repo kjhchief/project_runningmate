@@ -13,8 +13,17 @@
         <div class="d-flex justify-content-between mt-4">
           <div class="container">
             <div class="row row-cols-1">
+              <div th:if="${mate != null}">
               <div class="col text-start"><h4 style="margin: 0%;" th:text=${mate.getName()}>송진호</h4></div>
-              <div class="col s-6 text-start" th:text=${mate.getEmail()}>thdx@naver.com<span class="badge rounded-pil text" style="background-color:#FEE500; color:#282B33; line-height: 0.5rem;">Kakao</span></div>
+              <div class="col s-6 text-start" th:text=${mate.getEmail()}>thdx@naver.com</div>
+              </div>
+              <div th:if="${kakaoMate != null}">
+              <div class="d-flex">  
+              <div class="col s-6 text-start" th:text=${kakaoMate.getEmail()}>thdx@naver.com</div>
+              <div><span class="badge rounded-pil text" style="background-color:#FEE500; color:#282B33; line-height: 0.5rem;">Kakao</span></div>
+              </div>
+              </div>
+          
             </div>
           </div>
       <button type="button" class="btn btn-outline-primary" id="detail" style="white-space: nowrap; height: 2.5rem;">프로필 보기</button>

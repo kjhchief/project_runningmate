@@ -92,10 +92,11 @@
           <li class="breadcrumb-item"><a th:href="@{/mate/findEmailPassword}">이메일/비밀번호 찾기</a></li>
           <li class="breadcrumb-item active"><a th:href="@{/mate}">회원가입</a></li>
         </ol>
-        <div class="d-grid gap-2 mt-5">
-        <button class="btn btn-lg" style="background-color:#FEE500;" type="button"> <a class="a" href="javascript:kakaoLogin();"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_kakao.svg"/> 카카오 로그인</a></button>
-      </div>
       </form>
+        <div class="d-grid gap-2 mt-5">
+        <button class="btn btn-lg" style="background-color:#FEE500;" type="button"> <a class="a" href="javascript:kakaoLogin();"><img src="https://plab-football.s3.amazonaws.com/static/img/ic_kakao.svg"/> 카카오 간편로그인</a></button>
+      </div>
+     
       
       </div>
       
@@ -104,6 +105,6 @@
    
 </section>
   <script src="https:/developers.kakao.com/sdk/js/kakao.js"></script>
-  <script src="/js/mate/kakao.js"></script>
+  <script src="/js/mate/kakaoLogin.js"></script>
   <script src="/js/mate/login.js"></script>
 </html>

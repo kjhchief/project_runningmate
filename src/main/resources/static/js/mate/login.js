@@ -22,15 +22,9 @@ form.addEventListener('submit', (event) =>{
     if ((!form.checkValidity())){
       form.classList.add('was-validated');
     }else{
-		if(saveEmail.checked){
-			saveEmail.value='on';
-			//console.log(saveEmail.value);
-			sendEmailPassword(email.value, password.value, saveEmail.value);
-		}else{
-			saveEmail.value='';
-			//console.log(saveEmail.value);
-		    sendEmailPassword(email.value, password.value, saveEmail.value);
-		}}
+		  saveEmail.value = saveEmail.checked ? 'on':'';
+		  sendEmailPassword(email.value, password.value, saveEmail.value);
+		}
 });
 
 

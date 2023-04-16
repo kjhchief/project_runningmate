@@ -13,18 +13,23 @@
     <form id="detail-form" class="needs-validation" method="post">
     <div>
       <label for="email">이메일</label> 
-      <input type="text" th:field="${mate.email}" class="form-control" readonly>
+      <input type="text" th:value="${mate != null ? mate.email : (kakaoMate != null ? kakaoMate.email : '')}" id="email" name="email" class="form-control" readonly>
     </div>
     <div class="form-group row">
     <div class="col-8">
       <label for="name">이름</label> 
-      <input type="text" th:value=${mate.getName()} id="name" name="name" class="form-control" value="" disabled>
+      <input type="text" th:value="${mate != null ? mate.name : (kakaoMate != null ? kakaoMate.name : '')}" id="name" name="name" class="form-control" value="" disabled>
     </div>
     <div class="col">
       <label for="gender">성별</label> 
+      <div th:if="${mate!=null}">
       <input type="text" th:value="${mate.getGender() == 'M' ? '남' : '여'}" id="visibility-gender" class="form-control" maxlength="1" disabled>
       <input type="hidden" th:value="${mate.getGender()}" id="hidden-gender" name="gender" class="form-control" maxlength="1">
-      
+      </div>
+      <div th:if="${kakaoMate!=null}">
+      <input type="text" th:value="${kakaoMate.getGender() == 'male' ? '남' : '여'}" id="visibility-gender" class="form-control" maxlength="1" disabled>
+      <input type="hidden" th:value="${kakaoMate.getGender()}" id="hidden-gender" name="gender" class="form-control" maxlength="1">
+      </div>
       <div id="gender-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     </div>
@@ -50,21 +55,21 @@
     </div>
     <div>
       <label for="birthdate">생년월일</label> 
-      <input type="text" th:value=${mate.getBirthdate()} id="birthdate" name="birthdate" class="form-control" maxlength="10" value="" disabled>
+      <input type="text" th:value="${mate != null ? mate.birthdate : (kakaoMate != null ? kakaoMate.birthdate : '')}" id="birthdate" name="birthdate" class="form-control" maxlength="10" value="" disabled>
       <div id="birthdate-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
       <label for="phoneNumber">전화번호</label> 
-      <input type="text" th:value=${mate.getPhoneNumber()} id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11" value="" disabled>
+      <input type="text" th:value="${mate != null ? mate.phoneNumber : (kakaoMate != null ? kakaoMate.phoneNumber : '')}" id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11" value="" disabled>
       <div id="phoneNumber-check-message" class="text-success mt-1" style="font-size: 0.6rem;"></div>
     </div>
     <div>
       <label for="address">주소</label> 
-      <input type="text" th:value=${mate.address} id="address" name="address" class="form-control" disabled>
+      <input type="text" th:value="${mate != null ? mate.address : (kakaoMate != null ? kakaoMate.address : '')}" id="address" name="address" class="form-control" disabled required>
     </div>
      <div>
       <label for="addressDetail">상세 주소</label> 
-      <input type="text" th:value=${mate.addressDetail} id="addressDetail" name="addressDetail" class="form-control" disabled>
+      <input type="text" th:value="${mate != null ? mate.addressDetail : (kakaoMate != null ? kakaoMate.addressDetail : '')}" id="addressDetail" name="addressDetail" class="form-control" disabled required>
     </div>
    
       <div id="detail-update-list" class="row mt-4">
