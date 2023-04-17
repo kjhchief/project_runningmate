@@ -30,7 +30,7 @@
                   <button 
 	                  th:data-bs-target="'#collapse'+${crewMatesStat.count}"
 	                  th:aria-controls="'collapse'+${crewMatesStat.count}"
-	                  type="button" class="btn btn-outline-primary comment_button ms-1" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+	                  type="button" class="btn btn-outline-primary comment_button ms-1" data-bs-toggle="collapse" aria-expanded="true">
 	                    코멘트
                   </button>
                   
@@ -63,7 +63,7 @@
                 
                 <!-- 코멘트 바디 -->
                 <div th:id="${'#collapse'+crewMatesStat.count}"
-                id="collapse1" class="accordion-collapse collapse member_comment" aria-labelledby="headingOne" style="">
+                class="accordion-collapse collapse member_comment" aria-labelledby="headingOne" style="">
                   <div class="accordion-body form-group">
                     <label for="commentTextarea" class="form-label mt-2"></label>
                     <textarea 
