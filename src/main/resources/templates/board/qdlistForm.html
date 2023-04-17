@@ -11,121 +11,128 @@
 
 </head>
 <body>
-<section>
-	
-<div class="container-fluid bg-primary my-4 middle" style="padding-top: 4rem; padding-bottom: 0rem;">
-  <h1 class="text-center mb-5 text-white">궁금증을 빠르게 해결하세요</h1>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <form th:action="@{/search}" method="get" class="d-flex justify-content-center mb-5">
-        <div class="search-container" style="width: 100%;">
-          <input type="search" name="keyword" class="form-control form-control-lg border-primary shadow-sm" placeholder="키워드로 질문하기 (환불, 인원 변경 등)" style="outline: none; width: 100%;">
-        </div>
-        <button type="submit" style="display: none;"></button>
-      </form>
-    </div>
-  </div>
-</div>
+	<section>
+
+		<div class="container-fluid bg-primary my-4 middle"
+			style="padding-top: 4rem; padding-bottom: 0rem;">
+			<h1 class="text-center mb-5 text-white">궁금증을 빠르게 해결하세요</h1>
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<form th:action="@{/search}" method="get"
+						class="d-flex justify-content-center mb-5">
+						<div class="search-container" style="width: 100%;">
+							<input type="search" name="keyword"
+								class="form-control form-control-lg border-primary shadow-sm"
+								placeholder="키워드로 질문하기 (매치정소, 인원변경 등)"
+								style="outline: none; width: 100%;">
+						</div>
+						<button type="submit" style="display: none;"></button>
+					</form>
+				</div>
+			</div>
+		</div>
 
 
 
 
-  
 
 
-<h5 class="Kategorie" style="position: relative;">카테고리
-  <span style="position: absolute; bottom: -12%; left: 0; width: 7.4%; height: 3px; background-color: orange;"></span>
-</h5>
-<br>
+
+		<h5 class="Kategorie" style="position: relative;">
+			카테고리 <span
+				style="position: absolute; bottom: -12%; left: 0; width: 7.4%; height: 3px; background-color: orange;"></span>
+		</h5>
+		<br>
 
 
 
 		<div class="btn-group w-100" role="group" aria-label="Button group">
 			<a th:href="@{/qdlistForm/진행매너}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">진행매너</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">진행매너</a>
 			<a th:href="@{/qdlistForm/진행방식}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">진행방식</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">진행방식</a>
 			<a th:href="@{/qdlistForm/매치신청}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">매치신청</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">매치신청</a>
 			<a th:href="@{/qdlistForm/매치취소}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">매치취소</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">매치취소</a>
 			<a th:href="@{/qdlistForm/매너온도}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">매너온도</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">매너온도</a>
 			<a th:href="@{/qdlistForm/서비스&nbsp;}"
-				class="btn btn-outline-black me-3 mb-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ;">&nbsp;서비스&nbsp;&nbsp;</a>
+				class="btn btn-outline-black me-3 mb-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">&nbsp;서비스&nbsp;&nbsp;</a>
 		</div>
 		<div class="btn-group w-100" role="group" aria-label="Button group">
-			<a th:href="@{/qdlistForm/공지사항}"
-				class="btn btn-outline-black me-3 " style="border: 1px solid #A9A9A9; border-radius: 4%; padding:1.3% 0% ;">공지사항</a>
-				
-				
+			<a th:href="@{/qdlistForm/공지사항}" class="btn btn-outline-black me-3"
+				style="border: 1px solid #A9A9A9; border-radius: 4%; padding: 1.3% 0%; font-size: 1.1rem;">공지사항</a>
 			<a th:href="@{/qdlistForm/공지사항1}"
 				class="btn btn-outline-black me-3 invisible"
-				style="border-radius: 4%; border: 1px solid black; padding:1.3% 0% ;">공지사항</a>
-				<a th:href="@{/qdlistForm/공지사항2}"
-			    class="btn btn-outline-black me-3 invisible"
-				style="border-radius: 4%; border: 1px solid black; padding:1.3% 0% ;">공지사항</a>
-				 <a th:href="@{/qdlistForm/공지사항3}"
+				style="border-radius: 4%; border: 1px solid black; padding: 1.3% 0%; font-size: 1.1rem;">공지사항</a>
+			<a th:href="@{/qdlistForm/공지사항2}"
 				class="btn btn-outline-black me-3 invisible"
-				style="border-radius: 4%; border: 1px solid black; padding:1.3% 0% ;">공지사항</a> 
-				<a th:href="@{/qdlistForm/공지사항4}"
+				style="border-radius: 4%; border: 1px solid black; padding: 1.3% 0%; font-size: 1.1rem;">공지사항</a>
+			<a th:href="@{/qdlistForm/공지사항3}"
 				class="btn btn-outline-black me-3 invisible"
-				style="border-radius: 4%; border: 1px solid black; padding:1.3% 0% ;">공지사항</a>
-				
-				
-				
-				 <a
-				th:href="@{/qdlistForm/&nbsp;시설&nbsp;&nbsp;&nbsp;}"
-				class="btn btn-outline-black me-3" style="border-radius: 4%; border: 1px solid #A9A9A9; padding:1.3% 0% ; ">&nbsp;&nbsp;&nbsp;시설&nbsp;&nbsp;&nbsp;</a>
+				style="border-radius: 4%; border: 1px solid black; padding: 1.3% 0%; font-size: 1.1rem;">공지사항</a>
+			<a th:href="@{/qdlistForm/공지사항4}"
+				class="btn btn-outline-black me-3 invisible"
+				style="border-radius: 4%; border: 1px solid black; padding: 1.3% 0%; font-size: 1.1rem;">공지사항</a>
+			<a th:href="@{/qdlistForm/&nbsp;시설&nbsp;&nbsp;&nbsp;}"
+				class="btn btn-outline-black me-3"
+				style="border-radius: 4%; border: 1px solid #A9A9A9; padding: 1.3% 0%; font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;시설&nbsp;&nbsp;&nbsp;</a>
 		</div>
- 
- <div class="list-group">
- <br>
- <hr>
-<p></p>
- 
-    <h5 class="Kategorie" style="position: relative;">자주 묻는 질문
-  <span style="position: absolute; bottom: -12%; left: 0; width: 12.4%; height: 3px; background-color: orange;"></span>
-</h5>
-    <p></p>
-    <p></p>
-    
-    
-<div>
-  <th:block th:each="question : ${frequentQuestions}">
-    <div class="d-flex align-items-center" style="margin-bottom: 20px;">
-      <div class="list-title" style="width: 85%; background-color: #4582EC; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; cursor: pointer;"
-           th:text="${question.questionTitle}"
-           th:onclick="'location.href=\'/qdcontentForm?questionId=' + ${question.questionId} + '\''">
-      </div>&nbsp;&nbsp;&nbsp;
+
+		<div class="list-group">
+			<br>
+			<hr>
+			<p></p>
+
+			<h5 class="Kategorie" style="position: relative;">
+				자주 묻는 질문 <span
+					style="position: absolute; bottom: -12%; left: 0; width: 12.4%; height: 3px; background-color: orange;"></span>
+			</h5>
+			<p></p>
+			<p></p>
+
+
+			<div>
+				<th:block th:each="question : ${frequentQuestions}">
+					<div class="list-title"
+						style="width: 85%; background-color: #E8E8E8; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; cursor: pointer;"
+						onmouseover="this.style.backgroundColor='#4582EC'; this.style.color='#FFFFFF'"
+						onmouseout="this.style.backgroundColor='#E8E8E8'; this.style.color='#000000'"
+						th:text="${question.questionTitle}"
+						th:onclick="'location.href=\'/qdcontentForm?questionId=' + ${question.questionId} + '\''">
+					</div>&nbsp;&nbsp;&nbsp;
       
 
-<a th:if="${mate != null}" th:href="@{/qddeleteAction(questionId=${question.questionId})}">
-    <button class="btn btn-danger" type="button" value="삭제하기">삭제하기</button>
-</a>
-
-
-
-    </div>
-  </th:block>
-</div>
-
+<a th:if="${mate != null}"
+						th:href="@{/qddeleteAction(questionId=${question.questionId})}">
+						<button class="btn btn-danger" type="button" value="삭제하기">삭제하기</button>
+					</a>
+			</div>
+			</th:block>
+		</div>
 
 
 
 
 
-<br>
-<br>
-<hr>
-<div class="d-flex justify-content-end">
 
-<a th:if="${mate != null}" href="qdwriteForm">
-    <button class="btn btn-primary" type="button" value="글쓰기">&nbsp;글쓰기&nbsp;</button>
-</a>&nbsp;&nbsp;
-</div>
+		<br> <br>
+		<hr>
+		<div class="d-flex justify-content-end">
 
-</div>
+			<a th:if="${mate != null}" href="qdwriteForm">
+				<button class="btn btn-primary" type="button" value="글쓰기">&nbsp;글쓰기&nbsp;</button>
+			</a>&nbsp;&nbsp;
+		</div>
+
+		</div>
 
 
 
@@ -133,8 +140,8 @@
 
 
 
-				<script src=""></script>
-					</section>
-					
+		<script src=""></script>
+	</section>
+
 </body>
 </html>
