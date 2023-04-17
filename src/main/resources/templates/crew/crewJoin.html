@@ -23,7 +23,8 @@
               <p>즐거운 러닝 되셨나요?
                 <br>참석 멤버들을 평가해주세요!
               </p>
-	  		  <div class="member_ev position-relative mt-3 mb-3" th:each="crewMates, crewMatesStat : ${crewMatesLists}">
+	  		  <div th:each="crewMates, crewMatesStat : ${crewMatesLists}">
+	  		  <!-- 유저 -->
 	          <div th:text="${crewMates.email}" th:id="${'email'+crewMatesStat.count}" class="member_ev position-relative mt-3 mb-3">momo
                   <!-- 코멘트 버튼 --> 
                   <button 
@@ -32,29 +33,34 @@
 	                  type="button" class="btn btn-outline-primary comment_button ms-1" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
 	                    코멘트
                   </button>
+                  
                   <div class="btn-group ev_button d-sm-inline position-absolute end-0" role="group" aria-label="Basic radio toggle button group">
                       <input 
                       th:name="${'user'+crewMatesStat.count}" 
                       th:id="${'user'+crewMatesStat.count+'g'}" 
                       type="radio" class="btn-check" name="user1" id="user1g" autocomplete="off" checked="" value="" />
+                      
                       <label th:for="${'user'+crewMatesStat.count+'g'}"
                       class="btn btn-outline-primary" for="user1g" style="border-radius: 1.078em; width:55px;">
                         <img src="/img/icon/thumbs-up-regular.svg" alt=""/>
                       </label>
+                      
                       <input th:name="${'user'+crewMatesStat.count}" 
                       th:id="${'user'+crewMatesStat.count+'b'}" 
                       type="radio" class="btn-check" name="user1" id="user1b" autocomplete="off" checked="" value="" />
                       <label class="btn btn-outline-primary" for="user1b" style="border-radius: 1.078em; width:55px;">
-                      <img src="/img/icon/thumbs-down-regular.svg" alt=""/>
+                      	<img src="/img/icon/thumbs-down-regular.svg" alt=""/>
                       </label>
+                      
                       <input th:name="${'user'+crewMatesStat.count}" 
                       th:id="${'user'+crewMatesStat.count+'x'}" 
                       type="radio" class="btn-check" name="user1" id="user1x" autocomplete="off" checked="" value="" />
                       <label class="btn btn-outline-primary" for="user1x" style="border-radius: 1.078em; width:55px;">
-                      <img src="/img/icon/xmark-solid.svg" alt=""/>
+                      	<img src="/img/icon/xmark-solid.svg" alt=""/>
                       </label>
                   </div>
                 </div>
+                
                 <!-- 코멘트 바디 -->
                 <div th:id="${'#collapse'+crewMatesStat.count}"
                 id="collapse1" class="accordion-collapse collapse member_comment" aria-labelledby="headingOne" style="">
