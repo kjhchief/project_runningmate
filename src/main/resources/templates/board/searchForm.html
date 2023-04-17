@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
+   th:replace="~{layout/layout3 :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}">
 
 
 <head>
@@ -21,9 +21,20 @@
                         <ul class="navbar-nav me-auto">
                             <h5 class="" style="color: #007bff;">자주 묻는 질문</h5>
                         </ul>
+                        
+                        
+                        <form class="d-flex" action="/search" method="get">
+                     <input class="form-control me-sm-2" style="height: 60px;"
+                        type="search" name="keyword" placeholder="키워드로 질문하기">
+                  </form>
+                  
+                        
+                        
+                        
+                        
                     </div>
                 </nav>
-                <hr style="width: 100%; margin: 8px 0;">
+                <hr>
             
 <div class="list-title"
     style="background-color: #4582EC; color: white; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; margin-bottom: 20px;"
@@ -59,7 +70,7 @@
 <br>
             <div class="d-flex justify-content-end">
                 <a href="/qdlistForm"><button class="btn btn-secondary"
-                                type="button" value="목록보기">목록보기</button></a></div>
+                                type="button" value="목록보기">메인으로</button></a></div>
                         </div>
                     </div>
             
@@ -69,5 +80,4 @@
 </body>
 
 </html>
-
 
