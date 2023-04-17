@@ -12,7 +12,6 @@ public interface IQuestionMapper {
     public List<QuestionDto> list();
     
     
-    public int write(String questionTitle, String questionContent,String category);
     
     public QuestionDto viewDto(String questionId);
     

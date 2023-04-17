@@ -31,7 +31,7 @@
 
 
 
-
+<!--자주 묻는 질문 글쓰기-->
 <insert id="write2" parameterType="com.runningmate.domain.board.dto.QuestionDto">
     INSERT INTO question (question_id, question_Title, question_content, category)
     VALUES (question_seq.nextval, #{questionTitle}, #{questionContent}, #{category})
@@ -40,20 +40,20 @@
 
 
 
-<!-- 공지사항 글 보기 -->
+<!-- 자주 묻는 질문 글 보기 -->
 <select id="viewDto" resultMap="QuestionDtoResultMap">
    select * from question where question_id = #{param1}
 </select>
 
 
 
-<!-- 공지사항 글 지우기 -->
+<!-- 자주 묻는 질문 글 지우기 -->
 <delete id="deleteDto" parameterType="string">
     DELETE FROM question WHERE question_id = #{param1}
 </delete>
 
 
-<!-- 서치 구현 -->
+<!-- 자주 묻는 질문 서치 구현 -->
     <select id="searchQuestions" resultType="com.runningmate.domain.board.dto.QuestionDto">
     SELECT * FROM question
     WHERE question_title LIKE '%' || #{keyword} || '%'
