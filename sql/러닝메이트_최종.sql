@@ -152,8 +152,7 @@ ALTER TABLE crewlist
   ADD ( CONSTRAINT crewlist_id_pk   PRIMARY KEY(crewlist_id),
    CONSTRAINT crewlist_email_fk FOREIGN KEY(email) REFERENCES mate(email),
    CONSTRAINT crewlist_crew_id_fk FOREIGN KEY(crew_id) REFERENCES crew(crew_id),
-   CONSTRAINT crewlist_types_ck CHECK (types IN('참여', '주최', '찜')),
-   CONSTRAINT crewlist_email_uk      UNIQUE(email)
+   CONSTRAINT crewlist_types_ck CHECK (types IN('참여', '주최', '찜'))
    );
 --예시 데이터 추가
 --학원 컴터에서는 145로, 집에서는 50으로
