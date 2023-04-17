@@ -17,7 +17,7 @@
 
 <th:block th:each="day : ${days}">
  <h5 th:text="${#temporals.format(day.localDateTime, 'MM월 dd일 E요일')}">3월 24일 금요일</h5>
-  <div class="run_list" th:each="levelCrew : ${levelCrews0}">
+  <div class="run_list">
     <table class="table table-hover text-center">
       <tbody>
         <tr>

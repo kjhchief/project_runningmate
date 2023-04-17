@@ -1,5 +1,7 @@
 package com.runningmate;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,14 +56,25 @@ public class CrewServiceTest {
 	@Test
 //	@Disabled
 	void ListList(){
+		List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
+		for (int i = 0; i < 7; i++) {
+			DayOfweeks dayOfweeks2 = crewService.calculDay(i);
+			dayOfweeks.add(i, dayOfweeks2);
+		}
+		
+		// 날짜별 모임리스트 불러오기. 오늘은 0
 		List<List<CrewCreate>> levelCrews = new ArrayList<>();
 
 		for (int i = 0; i < 7; i++) {
 		    List<CrewCreate> crews = crewService.findBydateCrews(i);
 		    levelCrews.add(new ArrayList<>(crews));
 		}
-
-		levelCrews.get(0);
-		log.info("뭐가 들어있나: {}", levelCrews.get(0));
+		
+		for (int i = 0; i < dayOfweeks.size(); i++) {
+		    DayOfweeks dayOfWeek = dayOfweeks.get(i);
+		    List<CrewCreate> crews = levelCrews.get(i);
+		    
+		    System.out.println(dayOfWeek + ": " + crews);
+		}
 	}
 }

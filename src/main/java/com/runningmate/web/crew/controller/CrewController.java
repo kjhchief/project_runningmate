@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -110,12 +111,12 @@ public class CrewController {
 				return "mate/login";
 			}
 			
+			
 			List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
 			for (int i = 0; i < 7; i++) {
 				DayOfweeks dayOfweeks2 = crewService.calculDay(i);
 				dayOfweeks.add(i, dayOfweeks2);
 			}
-			model.addAttribute("days", dayOfweeks);
 			
 			
 			// 날짜별 모임리스트 불러오기. 오늘은 0
@@ -126,10 +127,25 @@ public class CrewController {
 			    levelCrews.add(new ArrayList<>(crews));
 			}
 			
-			model.addAttribute("levelCrews", levelCrews.get(0));
+			for (int i = 0; i < dayOfweeks.size(); i++) {
+			    DayOfweeks dayOfWeek = dayOfweeks.get(i);
+			    List<CrewCreate> crews = levelCrews.get(i);
+			    System.out.println(dayOfWeek + ": " + crews);
+			}
 
-			log.info("뭐가 들어있나: {}", levelCrews.get(0));
-
+			model.addAttribute("levelCrews", levelCrews);
+			model.addAttribute("days", dayOfweeks);
+			model.addAttribute("crews", dayOfweeks);
+			
+			for (List<CrewCreate> list : levelCrews) {
+				System.out.println("일자별 모임 목록");
+				// 일자별 모임 목록
+				for (CrewCreate crewCreate : list) {
+					System.out.println(crewCreate);					
+				}				
+				
+			}
+			
 			
 			return "crew/levelMatchingAll";
 		}
