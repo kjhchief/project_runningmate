@@ -212,22 +212,14 @@ SELECT m.name, m.email, c.title, c.crew_id
 
 
 --3. 자주 묻는 질문 테이블
-DROP TABLE faq;
-
-CREATE TABLE faq (
-	faq_id	VARCHAR2(50)		NOT NULL,
-	category	VARCHAR2(50)		NULL,
-	faq_title	VARCHAR2(300)		NOT NULL,
-	faq_content	VARCHAR2(4000)		NOT NULL,
-	faq_date	DATE		NOT NULL,
-	email	VARCHAR2(100)		NOT NULL
+CREATE TABLE question (
+   question_id   NUMBER(4),
+   question_title   VARCHAR2(50),  
+   question_content   VARCHAR2(4000),    
+   category   VARCHAR2(50)
 );
--- 제약조건 추가
-ALTER TABLE faq
-  ADD ( 
-        CONSTRAINT faq_id_pk   PRIMARY KEY(faq_id),
-        CONSTRAINT faq_email_fk FOREIGN KEY(email) REFERENCES mate(email)
-   );
+
+create sequence question_seq; 
 
 --4. 공지사항 테이블
 DROP TABLE notice;
