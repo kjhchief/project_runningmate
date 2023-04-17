@@ -256,6 +256,17 @@ public class MateController {
 		}
 		
 	}
+		
+		//모임찜한목록페이지
+		@GetMapping("/wishlist")
+		public String wishlistForm() {
+		return "/crew/wishlist"; 
+		}
 	
+		//모임신청목록페이지
+		@GetMapping("/crewList")
+		public String crewListForm() {
+		return "/crew/crewList"; 
+		}
 				
 }

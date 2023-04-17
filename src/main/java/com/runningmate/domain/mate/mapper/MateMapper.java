@@ -31,5 +31,5 @@ public interface MateMapper { //다시push할게요dydydyd
 	//아이디 찾기
 	public String findEmail(@Param("name") String name, @Param("password")String  password);
 	//비밀번호 찾기
-	public String findPassword( @Param("name")String  name, @Param("email") String email);
+	public String findPassword(@Param("name")String  name, @Param("email") String email);
 }
