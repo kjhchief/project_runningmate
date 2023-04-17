@@ -100,24 +100,23 @@
 
 
 			<div>
-				<th:block th:each="question : ${frequentQuestions}">
-					<div class="list-title"
-						style="width: 85%; background-color: #E8E8E8; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; cursor: pointer;"
-						onmouseover="this.style.backgroundColor='#4582EC'; this.style.color='#FFFFFF'"
-						onmouseout="this.style.backgroundColor='#E8E8E8'; this.style.color='#000000'"
-						th:text="${question.questionTitle}"
-						th:onclick="'location.href=\'/qdcontentForm?questionId=' + ${question.questionId} + '\''">
-					</div>&nbsp;&nbsp;&nbsp;
-      
-
-<a th:if="${mate != null}"
-						th:href="@{/qddeleteAction(questionId=${question.questionId})}">
-						<button class="btn btn-danger" type="button" value="삭제하기">삭제하기</button>
-					</a>
-			</div>
-			</th:block>
-		</div>
-
+    <th:block th:each="question : ${frequentQuestions}">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="list-title"
+                style="width: 90%; background-color: #E8E8E8; padding: 20px 20px; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 24px; cursor: pointer;"
+                onmouseover="this.style.backgroundColor='#4582EC'; this.style.color='#FFFFFF'"
+                onmouseout="this.style.backgroundColor='#E8E8E8'; this.style.color='#000000'"
+                th:text="${question.questionTitle}"
+                th:onclick="'location.href=\'/qdcontentForm?questionId=' + ${question.questionId} + '\''">
+            </div>
+            <a th:if="${mate != null}"
+                th:href="@{/qddeleteAction(questionId=${question.questionId})}">
+                <button class="btn btn-danger" type="button" value="삭제하기" style="margin-left: 0;">삭제하기</button>
+            </a>
+        </div>
+        <div style="height: 10px;"></div>
+    </th:block>
+</div>
 
 
 
@@ -129,7 +128,7 @@
 
 			<a th:if="${mate != null}" href="qdwriteForm">
 				<button class="btn btn-primary" type="button" value="글쓰기">&nbsp;글쓰기&nbsp;</button>
-			</a>&nbsp;&nbsp;
+			</a>&nbsp;
 		</div>
 
 		</div>
