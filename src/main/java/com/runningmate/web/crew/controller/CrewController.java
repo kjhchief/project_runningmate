@@ -91,8 +91,9 @@ public class CrewController {
 
 	// 모임 만들기 화면 요청 처리 메소드
 	@GetMapping
-	public String createcrew(HttpSession httpSession) {
+	public String createcrew(HttpSession httpSession, Model model) {
 		Mate mate = (Mate)httpSession.getAttribute("mate");
+		model.addAttribute("mate", mate);
 		if(mate==null) {
 			return "mate/login";
 		}
@@ -103,6 +104,12 @@ public class CrewController {
 	// 레벨별 매칭 페이지 화면 요청 처리 메소드
 		@GetMapping("/levelall")
 		public String LevelView(HttpSession httpSession, Model model) {
+			Mate mate = (Mate)httpSession.getAttribute("mate");
+			model.addAttribute("mate", mate);
+			if(mate==null) {
+				return "mate/login";
+			}
+			
 			crewListDays(model);
 			return "crew/levelMatchingAll";
 		}
@@ -157,6 +164,7 @@ public class CrewController {
 	public String JoinCrew(@PathVariable String crewId, HttpSession httpSession, Model model) {
 		// 로그인한 회원 객체 세션에서 받아오기
 		Mate mate = (Mate)httpSession.getAttribute("mate");
+		model.addAttribute("mate", mate);
 		if(mate==null) {
 			return "mate/login";
 		}
