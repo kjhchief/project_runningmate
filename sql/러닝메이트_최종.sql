@@ -275,14 +275,13 @@ ALTER TABLE review
 --7. 공지사항 댓글 테이블
 DROP TABLE reply;
 
-CREATE TABLE reply (
-    reply_id         NUMBER(4)         PRIMARY KEY,
-    email            VARCHAR2(100),    -- 이메일 칼럼 추가
-    reply_content    VARCHAR2(4000),
-    reply_date       DATE              DEFAULT SYSDATE,
-    reply_notice_id  NUMBER(4),
-    CONSTRAINT reply_mate_fk FOREIGN KEY (email) REFERENCES mate(email) -- 외래키 제약 조건 설정
-);
+ CREATE TABLE reply (
+   reply_id         NUMBER(4)         PRIMARY KEY,
+   email            VARCHAR2(100),    -- 이메일 칼럼 추가
+   reply_content    VARCHAR2(4000),
+   reply_date       DATE              DEFAULT SYSDATE,
+   reply_notice_id  NUMBER(4),
+   CONSTRAINT reply_mate_fk FOREIGN KEY (email) REFERENCES mate(email) ON DELETE CASCADE );  
 
 create sequence reply_seq; 
 
@@ -348,7 +347,10 @@ commit;
 DELETE FROM photo 
 WHERE photo_id = 108;
 
+--04월 17일 월요일
 
+SELECT crew_id, title, TO_CHAR(crewdate, 'MM"월"DD"일" DAY') mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+FROM crew;
 
 
 
