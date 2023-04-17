@@ -13,10 +13,8 @@
               <span th:text="${locaCrew.crewLocation}">위치 주소</span>
             </div>
           </td>
-          <td>
-           <a th:href="@{${'/crew/' + locaCrew.crewId}}">
-             <button type="button" class="btn btn-primary btn-sm">신청 가능</button>
-           </a>
+          <td class="pe-4">
+             <button type="button" class="btn btn-primary btn-sm me-3" th:onclick ="|location.href ='@{'/crew/' + ${locaCrew.crewId}}'|" style="float:right;">신청 가능</button>
           </td>
         </tr>
         

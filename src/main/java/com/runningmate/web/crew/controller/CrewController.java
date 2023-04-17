@@ -110,7 +110,27 @@ public class CrewController {
 				return "mate/login";
 			}
 			
-			crewListDays(model);
+			List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
+			for (int i = 0; i < 7; i++) {
+				DayOfweeks dayOfweeks2 = crewService.calculDay(i);
+				dayOfweeks.add(i, dayOfweeks2);
+			}
+			model.addAttribute("days", dayOfweeks);
+			
+			
+			// 날짜별 모임리스트 불러오기. 오늘은 0
+			List<List<CrewCreate>> levelCrews = new ArrayList<>();
+
+			for (int i = 0; i < 7; i++) {
+			    List<CrewCreate> crews = crewService.findBydateCrews(i);
+			    levelCrews.add(new ArrayList<>(crews));
+			}
+			
+			model.addAttribute("levelCrews", levelCrews.get(0));
+
+			log.info("뭐가 들어있나: {}", levelCrews.get(0));
+
+			
 			return "crew/levelMatchingAll";
 		}
 	

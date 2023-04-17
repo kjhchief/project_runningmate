@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{layout/layout4 :: layout(~{::title}, ~{::script} ,~{::section})}">
+  th:replace="~{layout/layout :: layout(~{::title},~{::section})}">
 
     <title>수준별 매칭 페이지</title>
 <section>
@@ -15,11 +15,32 @@
 
       <!-- 리스트 -->
 
-        <div id="runlist3_message"></div>
+<th:block th:each="day : ${days}">
+ <h5 th:text="${#temporals.format(day.localDateTime, 'MM월 dd일 E요일')}">3월 24일 금요일</h5>
+  <div class="run_list" th:each="levelCrew : ${levelCrews0}">
+    <table class="table table-hover text-center">
+      <tbody>
+        <tr>
+          <th scope="row" th:text="${levelCrew.crewdate}">16:00</th>
+          <td colspan="2"><span th:text="${levelCrew.title}">남산 공원</span> 
+            <div class="prop">
+              <span th:text="${levelCrew.crewLocation}">위치 주소</span>
+            </div>
+          </td>
+          <td>
+           <a th:href="@{${'/crew/' + levelCrew.crewId}}">
+             <button type="button" class="btn btn-primary btn-sm">신청 가능</button>
+           </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</th:block>
 
 
 
     </div>
     </section>
-    <script src="/js/crew/levelMatchingAll.js"></script>
+    <!-- <script src="/js/crew/levelMatchingAll.js"></script> -->
 </html>

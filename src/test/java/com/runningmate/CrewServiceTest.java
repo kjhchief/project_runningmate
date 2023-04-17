@@ -1,5 +1,6 @@
 package com.runningmate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -44,10 +45,23 @@ public class CrewServiceTest {
 	}
 	
 	@Test
-//	@Disabled
+	@Disabled
 	void dayCalculTest() {
 		DayOfweeks dayOfweeks = crewService.calculDay(1);
 		log.info("날짜 {}", dayOfweeks);
 	}
 	
+	@Test
+//	@Disabled
+	void ListList(){
+		List<List<CrewCreate>> levelCrews = new ArrayList<>();
+
+		for (int i = 0; i < 7; i++) {
+		    List<CrewCreate> crews = crewService.findBydateCrews(i);
+		    levelCrews.add(new ArrayList<>(crews));
+		}
+
+		levelCrews.get(0);
+		log.info("뭐가 들어있나: {}", levelCrews.get(0));
+	}
 }
