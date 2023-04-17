@@ -137,12 +137,15 @@ public class MateController {
 	public String mypage(HttpSession session, Model model) {
 		//일반로그인 세션
 		Mate mate = (Mate)session.getAttribute("mate");
+		if(mate != null) {
 		model.addAttribute("mate", mate);
 			log.info("mate : {}", mate);
+		}else {
 		//카카오 세션	
 		Mate kakaoMate = (Mate)session.getAttribute("kakaoMate");
 		model.addAttribute("kakaoMate", kakaoMate);
-		log.info("kakaoMate : {}", kakaoMate);	
+		log.info("kakaoMate : {}", kakaoMate);
+		}
 		return "/mate/mypage" ;
 	}
 	
@@ -164,7 +167,7 @@ public class MateController {
 		return "/mate/mateDetail";
 	}
 	
-	//mate정보 수정 기능 처리
+	//mate정보 수정 기능  처리
 	@PostMapping("/mateDetail")
 	public String mateDatail(HttpSession session, Model model, 
 							@RequestParam(name="new-password", required=false) String newPassword, 

@@ -11,7 +11,7 @@ public class QuestionDto {
     private int questionId;
     private String questionTitle;
     private String questionContent;
-    private String category; // 카테고리 필드 추가
+    private String category;
 
     
 }
