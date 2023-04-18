@@ -17,8 +17,11 @@ import com.runningmate.domain.crew.service.CrewService;
 import com.runningmate.domain.manage.dto.Review;
 import com.runningmate.domain.manage.dto.goodBad;
 import com.runningmate.domain.manage.mapper.ReviewMapper;
+import com.runningmate.web.mate.controller.MateController;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/{crewId}/modal")
 public class ReviewController {
@@ -44,7 +47,7 @@ public class ReviewController {
 	
 	
 	@PostMapping("/save")
-	public void saveAction(@RequestParam("options") List<goodBad> memberEv) {
+	public void saveAction(@RequestBody List<goodBad> memberEv) {
 		for (goodBad json : memberEv) {
 			String value = json.getValue();
 			String email = json.getEmail();

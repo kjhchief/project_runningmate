@@ -25,7 +25,8 @@
               </p>
 	  		  <div th:each="crewMates, crewMatesStat : ${crewMatesLists}">
 	  		  <!-- 유저 -->
-	          <div th:text="${crewMates.email}" th:id="${'email'+crewMatesStat.count}" class="member_ev position-relative mt-3 mb-3">momo
+	          <div class="member_ev position-relative mt-3 mb-3">
+	          	  <span th:text="${crewMates.email}" th:id="${'email'+crewMatesStat.count}"></span> 
                   <!-- 코멘트 버튼 --> 
                   <button 
 	                  th:data-bs-target="'#collapse'+${crewMatesStat.count}"
@@ -75,7 +76,7 @@
               </div>
         
             <div class="modal-footer">
-              <button id="submit_button" type="button" class="btn btn-primary">Save changes</button>
+              <button id="submit_button" type="button" class="btn btn-primary" onclick="getMemberEv()">Save</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
             </div>
