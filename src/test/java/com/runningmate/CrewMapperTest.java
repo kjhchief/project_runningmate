@@ -105,7 +105,7 @@ public class CrewMapperTest {
 	}
 	
 	@Test
-//	@Disabled
+	@Disabled
 	void searchLocationTest() {
 		List<CrewCreate> crewLoc = crewService.searchByLocation("도봉");
 		log.info("locations::::: {}", crewLoc);
@@ -116,6 +116,13 @@ public class CrewMapperTest {
 	void dateAndLevelTest() {
 		List<CrewCreate> crewDateLoc = crewService.findBydateCrews(0);
 		log.info("crewDateLoc::::: {}", crewDateLoc);
+	}
+	
+	@Test
+//	@Disabled
+	void datesTest() {
+		List<CrewCreate> dates = crewService.dates(0); 
+		log.info("dates::::: {}", dates);
 	}
 	
 	

@@ -111,40 +111,15 @@ public class CrewController {
 				return "mate/login";
 			}
 			
+			List<CrewCreate> levelCrews = crewService.findBydateCrews(0); 
+//			List<CrewCreate> dates = crewService.dates(0); 
 			
-			List<DayOfweeks> dayOfweeks = new ArrayList<>(); 
-			for (int i = 0; i < 7; i++) {
-				DayOfweeks dayOfweeks2 = crewService.calculDay(i);
-				dayOfweeks.add(i, dayOfweeks2);
-			}
-			
-			
-			// 날짜별 모임리스트 불러오기. 오늘은 0
-			List<List<CrewCreate>> levelCrews = new ArrayList<>();
-
-			for (int i = 0; i < 7; i++) {
-			    List<CrewCreate> crews = crewService.findBydateCrews(i);
-			    levelCrews.add(new ArrayList<>(crews));
-			}
-			
-			for (int i = 0; i < dayOfweeks.size(); i++) {
-			    DayOfweeks dayOfWeek = dayOfweeks.get(i);
-			    List<CrewCreate> crews = levelCrews.get(i);
-			    System.out.println(dayOfWeek + ": " + crews);
-			}
-
 			model.addAttribute("levelCrews", levelCrews);
-			model.addAttribute("days", dayOfweeks);
-			model.addAttribute("crews", dayOfweeks);
+//			model.addAttribute("dates", dates);
+			log.info("levelCrews: {}", levelCrews);
+//			log.info("dates: {}", dates);
 			
-			for (List<CrewCreate> list : levelCrews) {
-				System.out.println("일자별 모임 목록");
-				// 일자별 모임 목록
-				for (CrewCreate crewCreate : list) {
-					System.out.println(crewCreate);					
-				}				
-				
-			}
+			
 			
 			
 			return "crew/levelMatchingAll";

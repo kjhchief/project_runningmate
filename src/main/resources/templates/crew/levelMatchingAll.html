@@ -15,12 +15,12 @@
 
       <!-- 리스트 -->
 
-<th:block th:each="day : ${days}">
- <h5 th:text="${#temporals.format(day.localDateTime, 'MM월 dd일 E요일')}">3월 24일 금요일</h5>
+<!-- <th:block th:each="date : ${dates}">
+ <h5 th:text="${date.crewdate}">3월 24일 금요일</h5> -->
   <div class="run_list">
     <table class="table table-hover text-center">
       <tbody>
-        <tr>
+         <tr th:each="levelCrew : ${levelCrews}">
           <th scope="row" th:text="${levelCrew.crewdate}">16:00</th>
           <td colspan="2"><span th:text="${levelCrew.title}">남산 공원</span> 
             <div class="prop">
@@ -36,7 +36,7 @@
       </tbody>
     </table>
   </div>
-</th:block>
+<!-- </th:block> -->
 
 
 

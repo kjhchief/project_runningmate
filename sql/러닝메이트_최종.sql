@@ -349,8 +349,12 @@ WHERE photo_id = 108;
 
 --04월 17일 월요일
 
-SELECT crew_id, title, TO_CHAR(crewdate, 'MM"월"DD"일" DAY') mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
-FROM crew;
+SELECT crew_id, title, TO_CHAR(crewdate, 'HH24:SS'), mate_count, crew_location, crew_location_dt, crewlevel, course_leng, course_intro, weather_intro, etc_intro, description
+FROM crew
+WHERE TRUNC(crewdate) = TRUNC(SYSDATE + 0);
+SELECT TO_CHAR(crewdate, 'MM"월" DD"일" DAY')
+FROM crew
+WHERE TRUNC(crewdate) = TRUNC(SYSDATE + 0);
 
 
 

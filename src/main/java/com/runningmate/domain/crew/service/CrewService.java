@@ -37,4 +37,6 @@ public interface CrewService {
 	public List<CrewCreate> searchByLocation(String loca);
 	// 날짜와 수준으로 모임 리스트 불러오기
 	public List<CrewCreate> findBydateCrews(int i);
+	// 특정 기간 날짜만
+	public List<CrewCreate> dates(int i);
 }
